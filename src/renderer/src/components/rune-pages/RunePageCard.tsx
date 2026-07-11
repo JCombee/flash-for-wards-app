@@ -6,6 +6,7 @@ interface RunePageCardProps {
   page: StoredRunePage
   onEdit?: (page: StoredRunePage) => void
   onDelete?: (id: string) => void
+  onDuplicate?: (page: StoredRunePage) => void
   onTogglePin?: (page: StoredRunePage) => void
   /** Custom action node rendered in place of Edit/Del (always visible). */
   actions?: React.ReactNode
@@ -20,6 +21,7 @@ export function RunePageCard({
   page,
   onEdit,
   onDelete,
+  onDuplicate,
   onTogglePin,
   actions,
   highlight,
@@ -78,6 +80,14 @@ export function RunePageCard({
                 className="text-xs px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-gray-300 transition-colors"
               >
                 Edit
+              </button>
+            )}
+            {onDuplicate && (
+              <button
+                onClick={() => onDuplicate(page)}
+                className="text-xs px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-gray-300 transition-colors"
+              >
+                Copy
               </button>
             )}
             {onDelete && (

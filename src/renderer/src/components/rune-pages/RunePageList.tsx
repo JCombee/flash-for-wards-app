@@ -17,6 +17,17 @@ export function RunePageList() {
     refresh()
   }
 
+  async function handleDuplicate(page: StoredRunePage) {
+    await window.api.createRunePage({
+      name: `${page.name} (copy)`,
+      primaryStyleId: page.primaryStyleId,
+      subStyleId: page.subStyleId,
+      selectedPerkIds: page.selectedPerkIds,
+      pinned: false
+    })
+    refresh()
+  }
+
   async function handleTogglePin(page: StoredRunePage) {
     await window.api.updateRunePage(page.id, { pinned: !page.pinned })
     refresh()
@@ -53,6 +64,7 @@ export function RunePageList() {
               page={page}
               onEdit={setEditingPage}
               onDelete={handleDelete}
+              onDuplicate={handleDuplicate}
               onTogglePin={handleTogglePin}
             />
           ))}
