@@ -47,17 +47,39 @@ function runMigrations(): void {
       selected_perk_ids TEXT NOT NULL,
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL,
-      last_used_at INTEGER
+      last_used_at INTEGER,
+      pinned INTEGER NOT NULL DEFAULT 0
     );
 
     CREATE TABLE IF NOT EXISTS settings (
       id INTEGER PRIMARY KEY,
       reserved_page_id INTEGER,
-      reserved_page_name TEXT NOT NULL DEFAULT 'Flash For Wards Reserved Rune Page',
+      reserved_page_name TEXT NOT NULL DEFAULT 'Flash For Wards Reserved',
       onboarding_complete INTEGER NOT NULL DEFAULT 0,
       auto_focus_on_champ_select INTEGER NOT NULL DEFAULT 1
     );
 
     INSERT OR IGNORE INTO settings (id) VALUES (1);
+
+    -- LCU rune page names cap out ~24 chars; shorten the old long default
+    UPDATE settings
+      SET reserved_page_name = 'Flash For Wards Reserved'
+      WHERE reserved_page_name = 'Flash For Wards Reserved Rune Page';
   `)
+
+  // Idempotent column add for pre-existing DBs (no ADD COLUMN IF NOT EXISTS in SQLite)
+  if (!tableHasColumn('rune_pages', 'pinned')) {
+    getDb().run('ALTER TABLE rune_pages ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0')
+  }
+}
+
+function tableHasColumn(table: string, column: string): boolean {
+  const stmt = getDb().prepare(`PRAGMA table_info(${table})`)
+  let found = false
+  while (stmt.step()) {
+    const row = stmt.getAsObject() as Record<string, unknown>
+    if (row['name'] === column) found = true
+  }
+  stmt.free()
+  return found
 }

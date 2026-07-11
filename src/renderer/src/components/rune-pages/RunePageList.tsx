@@ -17,6 +17,11 @@ export function RunePageList() {
     refresh()
   }
 
+  async function handleTogglePin(page: StoredRunePage) {
+    await window.api.updateRunePage(page.id, { pinned: !page.pinned })
+    refresh()
+  }
+
   function handleSaved() {
     setEditingPage(null)
     setCreatingNew(false)
@@ -48,6 +53,7 @@ export function RunePageList() {
               page={page}
               onEdit={setEditingPage}
               onDelete={handleDelete}
+              onTogglePin={handleTogglePin}
             />
           ))}
         </div>

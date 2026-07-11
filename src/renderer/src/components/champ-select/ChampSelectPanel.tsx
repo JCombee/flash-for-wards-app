@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
+import { RunePageCard } from '../rune-pages/RunePageCard'
 
 export function ChampSelectPanel() {
   const runePages = useAppStore((s) => s.runePages)
@@ -10,7 +11,9 @@ export function ChampSelectPanel() {
   const settings = useAppStore((s) => s.settings)
   const [applyingId, setApplyingId] = useState<string | null>(null)
 
-  const sorted = [...runePages].sort((a, b) => (b.lastUsedAt ?? 0) - (a.lastUsedAt ?? 0))
+  const sorted = [...runePages].sort(
+    (a, b) => Number(b.pinned ?? false) - Number(a.pinned ?? false) || (b.lastUsedAt ?? 0) - (a.lastUsedAt ?? 0)
+  )
 
   async function applyPage(id: string, name: string) {
     if (applyingId) return
@@ -68,39 +71,31 @@ export function ChampSelectPanel() {
           <p className="text-sm">Go to <strong className="text-gray-300">My Rune Pages</strong> to create or import some.</p>
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {sorted.map((page) => {
             const isApplying = applyingId === page.id
             const wasApplied = lastApplyStatus === 'success' && lastAppliedName === page.name
             return (
-              <button
+              <RunePageCard
                 key={page.id}
-                onClick={() => applyPage(page.id, page.name)}
+                page={page}
+                highlight={wasApplied}
                 disabled={!!applyingId}
-                className={`w-full text-left flex items-center justify-between rounded-lg px-4 py-3 border transition-all ${
-                  wasApplied
-                    ? 'border-green-500/50 bg-green-900/20'
-                    : 'border-lol-gold/20 bg-lol-dark-mid hover:border-lol-gold/50 hover:bg-lol-gold/5'
-                } disabled:opacity-60 disabled:cursor-not-allowed`}
-              >
-                <div>
-                  <p className="text-sm font-medium text-lol-gold-light">{page.name}</p>
-                  {page.lastUsedAt && (
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      Last used {new Date(page.lastUsedAt).toLocaleDateString()}
-                    </p>
-                  )}
-                </div>
-                <span className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
-                  isApplying
-                    ? 'bg-gray-600 text-gray-300'
-                    : wasApplied
-                    ? 'bg-green-600 text-white'
-                    : 'bg-lol-blue text-lol-dark'
-                }`}>
-                  {isApplying ? 'Applying…' : wasApplied ? 'Applied' : 'Apply'}
-                </span>
-              </button>
+                onClick={() => applyPage(page.id, page.name)}
+                actions={
+                  <span
+                    className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
+                      isApplying
+                        ? 'bg-gray-600 text-gray-300'
+                        : wasApplied
+                        ? 'bg-green-600 text-white'
+                        : 'bg-lol-blue text-lol-dark'
+                    }`}
+                  >
+                    {isApplying ? 'Applying…' : wasApplied ? 'Applied' : 'Apply'}
+                  </span>
+                }
+              />
             )
           })}
         </div>

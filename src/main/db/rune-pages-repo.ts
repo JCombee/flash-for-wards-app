@@ -11,7 +11,8 @@ function rowToPage(row: Record<string, unknown>): StoredRunePage {
     selectedPerkIds: JSON.parse(row['selected_perk_ids'] as string),
     createdAt: row['created_at'] as number,
     updatedAt: row['updated_at'] as number,
-    lastUsedAt: (row['last_used_at'] as number | null) ?? undefined
+    lastUsedAt: (row['last_used_at'] as number | null) ?? undefined,
+    pinned: (row['pinned'] as number) === 1
   }
 }
 
@@ -31,7 +32,7 @@ function execRow(sql: string, params: (string | number | null)[] = []): Record<s
 }
 
 export function getAllRunePages(): StoredRunePage[] {
-  const rows = execRows('SELECT * FROM rune_pages ORDER BY last_used_at DESC, created_at DESC')
+  const rows = execRows('SELECT * FROM rune_pages ORDER BY pinned DESC, last_used_at DESC, created_at DESC')
   return rows.map(rowToPage)
 }
 
@@ -67,6 +68,7 @@ export function updateRunePage(
   if (data.subStyleId !== undefined) { sets.push('sub_style_id = ?'); values.push(data.subStyleId) }
   if (data.selectedPerkIds !== undefined) { sets.push('selected_perk_ids = ?'); values.push(JSON.stringify(data.selectedPerkIds)) }
   if (data.lastUsedAt !== undefined) { sets.push('last_used_at = ?'); values.push(data.lastUsedAt) }
+  if (data.pinned !== undefined) { sets.push('pinned = ?'); values.push(data.pinned ? 1 : 0) }
 
   values.push(id)
   getDb().run(`UPDATE rune_pages SET ${sets.join(', ')} WHERE id = ?`, values)

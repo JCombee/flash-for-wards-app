@@ -3,7 +3,7 @@ import { useAppStore } from '../../stores/app-store'
 import { useSettings } from '../../hooks/useSettings'
 import type { LcuRunePage } from '../../types'
 
-const RESERVED_NAME = 'Flash For Wards Reserved Rune Page'
+const RESERVED_NAME = 'Flash For Wards Reserved'
 
 export function OnboardingModal() {
   const settings = useAppStore((s) => s.settings)

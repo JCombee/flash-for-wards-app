@@ -7,6 +7,7 @@ export interface StoredRunePage {
   createdAt: number
   updatedAt: number
   lastUsedAt?: number
+  pinned?: boolean
 }
 
 export interface AppSettings {
