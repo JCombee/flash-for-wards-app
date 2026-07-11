@@ -1,5 +1,6 @@
 import React from 'react'
 import type { StoredRunePage } from '../../types'
+import { STYLE_BY_ID, PERK_BY_ID } from '../../data/runes'
 
 interface RunePageCardProps {
   page: StoredRunePage
@@ -7,22 +8,26 @@ interface RunePageCardProps {
   onDelete: (id: string) => void
 }
 
-const STYLE_NAMES: Record<number, string> = {
-  8000: 'Precision',
-  8100: 'Domination',
-  8200: 'Sorcery',
-  8300: 'Inspiration',
-  8400: 'Resolve'
-}
-
 export function RunePageCard({ page, onEdit, onDelete }: RunePageCardProps) {
-  const primaryName = STYLE_NAMES[page.primaryStyleId] ?? `Style ${page.primaryStyleId}`
-  const subName = STYLE_NAMES[page.subStyleId] ?? `Style ${page.subStyleId}`
+  const primaryName = STYLE_BY_ID.get(page.primaryStyleId)?.name ?? `Style ${page.primaryStyleId}`
+  const subName = STYLE_BY_ID.get(page.subStyleId)?.name ?? `Style ${page.subStyleId}`
+  const keystone = PERK_BY_ID.get(page.selectedPerkIds?.[0] ?? 0)
 
   return (
     <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4 hover:border-lol-gold/40 transition-colors group">
       <div className="flex items-start justify-between gap-2 mb-3">
-        <h3 className="font-semibold text-lol-gold-light text-sm leading-tight">{page.name}</h3>
+        <div className="flex items-center gap-2 min-w-0">
+          {keystone && (
+            <img
+              src={keystone.iconUrl}
+              alt={keystone.name}
+              className="w-6 h-6 object-contain shrink-0"
+            />
+          )}
+          <h3 className="font-semibold text-lol-gold-light text-sm leading-tight truncate">
+            {page.name}
+          </h3>
+        </div>
         <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
           <button
             onClick={() => onEdit(page)}

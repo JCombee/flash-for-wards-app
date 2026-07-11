@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import type { StoredRunePage, LcuRunePage } from '../../types'
 import { useAppStore } from '../../stores/app-store'
+import { RuneTreeEditor } from './RuneTreeEditor'
 
 interface RunePageEditorProps {
   page?: StoredRunePage
@@ -8,17 +9,10 @@ interface RunePageEditorProps {
   onCancel: () => void
 }
 
-const PERK_LABELS = [
-  'Keystone',
-  'Primary Slot 1', 'Primary Slot 2', 'Primary Slot 3',
-  'Secondary Slot 1', 'Secondary Slot 2',
-  'Offense Shard', 'Flex Shard', 'Defense Shard'
-]
-
 export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) {
   const lcuStatus = useAppStore((s) => s.lcuStatus)
 
-  const [mode, setMode] = useState<'import' | 'manual'>('import')
+  const [mode, setMode] = useState<'import' | 'visual'>('visual')
   const [lcuPages, setLcuPages] = useState<LcuRunePage[]>([])
   const [loadingLcu, setLoadingLcu] = useState(false)
   const [name, setName] = useState(page?.name ?? '')
@@ -45,8 +39,15 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
     setSelectedPerkIds(lp.selectedPerkIds)
   }
 
+  const complete =
+    name.trim().length > 0 &&
+    primaryStyleId !== subStyleId &&
+    subStyleId > 0 &&
+    selectedPerkIds.length === 9 &&
+    selectedPerkIds.every((id) => id > 0)
+
   async function handleSave() {
-    if (!name.trim()) return
+    if (!complete) return
     setSaving(true)
     try {
       const data = { name: name.trim(), primaryStyleId, subStyleId, selectedPerkIds }
@@ -63,7 +64,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
 
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-40">
-      <div className="bg-lol-dark-mid border border-lol-gold/40 rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="bg-lol-dark-mid border border-lol-gold/40 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lol-gold font-bold">{page ? 'Edit Rune Page' : 'New Rune Page'}</h2>
           <button onClick={onCancel} className="text-gray-500 hover:text-gray-300 text-xl">×</button>
@@ -78,10 +79,10 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
               Import from Client
             </button>
             <button
-              onClick={() => setMode('manual')}
-              className={`px-3 py-1.5 rounded text-sm transition-colors ${mode === 'manual' ? 'bg-lol-gold text-lol-dark font-semibold' : 'bg-white/10 text-gray-300'}`}
+              onClick={() => setMode('visual')}
+              className={`px-3 py-1.5 rounded text-sm transition-colors ${mode === 'visual' ? 'bg-lol-gold text-lol-dark font-semibold' : 'bg-white/10 text-gray-300'}`}
             >
-              Manual Entry
+              Build Visually
             </button>
           </div>
         )}
@@ -120,51 +121,16 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
             />
           </div>
 
-          {mode === 'manual' && (
-            <>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="text-xs text-gray-400 block mb-1">Primary Style ID</label>
-                  <input
-                    type="number"
-                    value={primaryStyleId}
-                    onChange={(e) => setPrimaryStyleId(Number(e.target.value))}
-                    className="w-full bg-black/40 border border-lol-gold/30 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-lol-gold/60"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-400 block mb-1">Secondary Style ID</label>
-                  <input
-                    type="number"
-                    value={subStyleId}
-                    onChange={(e) => setSubStyleId(Number(e.target.value))}
-                    className="w-full bg-black/40 border border-lol-gold/30 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-lol-gold/60"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="text-xs text-gray-400 block mb-2">Perk IDs (9 values)</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {selectedPerkIds.map((id, i) => (
-                    <div key={i}>
-                      <label className="text-xs text-gray-500 block mb-0.5">{PERK_LABELS[i]}</label>
-                      <input
-                        type="number"
-                        value={id}
-                        onChange={(e) => {
-                          const next = [...selectedPerkIds]
-                          next[i] = Number(e.target.value)
-                          setSelectedPerkIds(next)
-                        }}
-                        className="w-full bg-black/40 border border-lol-gold/20 rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-lol-gold/40"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
+          <RuneTreeEditor
+            primaryStyleId={primaryStyleId}
+            subStyleId={subStyleId}
+            selectedPerkIds={selectedPerkIds}
+            onChange={(next) => {
+              setPrimaryStyleId(next.primaryStyleId)
+              setSubStyleId(next.subStyleId)
+              setSelectedPerkIds(next.selectedPerkIds)
+            }}
+          />
         </div>
 
         <div className="flex justify-end gap-2 mt-6">
@@ -176,7 +142,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
           </button>
           <button
             onClick={handleSave}
-            disabled={saving || !name.trim()}
+            disabled={saving || !complete}
             className="px-4 py-2 bg-lol-gold hover:bg-lol-gold/80 text-lol-dark font-semibold rounded text-sm disabled:opacity-50 transition-colors"
           >
             {saving ? 'Saving...' : 'Save Page'}
