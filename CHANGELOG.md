@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-07-12
+
+### Added
+
+- App logo in the sidebar.
+
+### Changed
+
+- Internal: the renderer is now built from a shared component library (`src/renderer/src/components/ui/`) with named design tokens, replacing Tailwind class strings duplicated across screens.
+- Rounded corners, borders, and hover states are now consistent across the app.
+
 ## [1.2.0] - 2026-07-12
 
 ### Added
@@ -38,7 +49,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/JCombee/flash-for-wards-app/releases/tag/v1.1.0
 [1.0.0]: https://github.com/JCombee/flash-for-wards-app/releases/tag/v1.0.0
