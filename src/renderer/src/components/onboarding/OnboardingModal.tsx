@@ -99,7 +99,7 @@ export function OnboardingModal() {
                 onClick={copyName}
                 className="text-xs text-lol-gold hover:text-lol-gold-light transition-colors shrink-0"
               >
-                {copied ? 'Copied!' : 'Copy'}
+                {copied ? 'Copied' : 'Copy'}
               </button>
             </div>
             <p className="text-xs text-gray-500 mt-1">

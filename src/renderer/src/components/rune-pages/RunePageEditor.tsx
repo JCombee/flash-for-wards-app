@@ -142,7 +142,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
                   LCU not connected — open the League client first.
                 </p>
               )}
-              {loadingLcu && <p className="text-gray-400 text-sm">Loading pages from client...</p>}
+              {loadingLcu && <p className="text-gray-400 text-sm">Loading pages from client…</p>}
               {!loadingLcu && lcuPages.length > 0 && (
                 <div className="space-y-1 max-h-64 overflow-y-auto">
                   <p className="text-xs text-gray-400 mb-2">Select a page to import:</p>
