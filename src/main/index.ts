@@ -6,7 +6,7 @@ import { lcuConnection } from './lcu/connection'
 import { getGameflowPhase, getChampSelectSession } from './lcu/rune-api'
 import { registerRunePageHandlers } from './ipc/rune-pages'
 import { registerSettingsHandlers } from './ipc/settings'
-import { registerLcuHandlers, setCurrentStatus } from './ipc/lcu'
+import { registerLcuHandlers, setCurrentStatus, setInChampSelect } from './ipc/lcu'
 import { registerUpdaterHandlers } from './ipc/updater'
 import { initUpdater, stopUpdater } from './updater'
 import { getSettings } from './db/settings-repo'
@@ -59,6 +59,7 @@ function handlePhaseChange(phase: string): void {
     active: phase === 'ChampSelect',
     phase
   }
+  setInChampSelect(champSelectPhase.active)
   sendToRenderer('champ-select:phase', champSelectPhase)
 
   if (!mainWindow || mainWindow.isDestroyed()) return
