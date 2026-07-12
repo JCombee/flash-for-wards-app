@@ -17,6 +17,7 @@ interface AppStore {
   currentChampionId: number
   selectedPageForApply: string | null
   lastApplyStatus: 'idle' | 'success' | 'error'
+  lastAppliedId: string | null
   lastAppliedName: string | null
   lastApplyError: string | null
   appVersion: string
@@ -30,7 +31,11 @@ interface AppStore {
   setChampSelectPhase: (phase: ChampSelectPhase) => void
   setCurrentChampionId: (id: number) => void
   setSelectedPageForApply: (id: string | null) => void
-  setApplyResult: (status: 'idle' | 'success' | 'error', name?: string, error?: string) => void
+  setApplyResult: (
+    status: 'idle' | 'success' | 'error',
+    applied?: { id: string; name: string },
+    error?: string
+  ) => void
 }
 
 export const useAppStore = create<AppStore>((set) => ({
@@ -42,6 +47,7 @@ export const useAppStore = create<AppStore>((set) => ({
   currentChampionId: 0,
   selectedPageForApply: null,
   lastApplyStatus: 'idle',
+  lastAppliedId: null,
   lastAppliedName: null,
   lastApplyError: null,
   appVersion: '',
@@ -56,15 +62,24 @@ export const useAppStore = create<AppStore>((set) => ({
     set({
       champSelectActive: phase.active,
       champSelectPhase: phase.phase,
-      // Clear the tracked champion when champ select ends.
-      ...(phase.active ? {} : { currentChampionId: 0 })
+      // Clear the tracked champion and any stale apply result when champ select ends.
+      ...(phase.active
+        ? {}
+        : {
+            currentChampionId: 0,
+            lastApplyStatus: 'idle' as const,
+            lastAppliedId: null,
+            lastAppliedName: null,
+            lastApplyError: null
+          })
     }),
   setCurrentChampionId: (id) => set({ currentChampionId: id }),
   setSelectedPageForApply: (id) => set({ selectedPageForApply: id }),
-  setApplyResult: (status, name, error) =>
+  setApplyResult: (status, applied, error) =>
     set({
       lastApplyStatus: status,
-      lastAppliedName: name ?? null,
+      lastAppliedId: applied?.id ?? null,
+      lastAppliedName: applied?.name ?? null,
       lastApplyError: error ?? null
     })
 }))

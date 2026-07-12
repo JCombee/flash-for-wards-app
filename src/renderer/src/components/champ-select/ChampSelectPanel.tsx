@@ -9,9 +9,43 @@ import { CHAMPION_BY_ID } from '../../data/champions'
 import { getDefaultRunePage, defaultPageName } from '../../data/default-runes'
 import type { ApplyResult, StoredRunePage } from '../../types'
 
+// The card's action slot stops click propagation, so this needs its own handler
+// rather than relying on the card's onClick.
+function ApplyBadge({
+  applying,
+  applied,
+  disabled,
+  onApply
+}: {
+  applying: boolean
+  applied: boolean
+  disabled: boolean
+  onApply: () => void
+}) {
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      onClick={onApply}
+      className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
+        applying
+          ? 'bg-gray-600 text-gray-300'
+          : applied
+            ? 'bg-green-600 text-white'
+            : 'bg-lol-blue text-lol-dark'
+      } ${disabled ? 'cursor-not-allowed' : ''}`}
+    >
+      {applying ? 'Applying…' : applied ? 'Applied' : 'Apply'}
+    </button>
+  )
+}
+
 export function ChampSelectPanel() {
+  const champSelectActive = useAppStore((s) => s.champSelectActive)
+  const lcuStatus = useAppStore((s) => s.lcuStatus)
   const runePages = useAppStore((s) => s.runePages)
   const lastApplyStatus = useAppStore((s) => s.lastApplyStatus)
+  const lastAppliedId = useAppStore((s) => s.lastAppliedId)
   const lastAppliedName = useAppStore((s) => s.lastAppliedName)
   const lastApplyError = useAppStore((s) => s.lastApplyError)
   const setApplyResult = useAppStore((s) => s.setApplyResult)
@@ -46,16 +80,18 @@ export function ChampSelectPanel() {
   }
 
   async function runApply(id: string, name: string, apply: () => Promise<ApplyResult>) {
-    if (applyingId) return
+    if (applyingId || !champSelectActive) return
     setApplyingId(id)
     setApplyResult('idle')
     try {
       const result = await apply()
       if (result.success) {
-        setApplyResult('success', name)
+        setApplyResult('success', { id, name })
       } else {
         let msg: string
         if (result.error === 'lcu_disconnected') msg = 'Client disconnected — wait for reconnect'
+        else if (result.error === 'not_in_champ_select')
+          msg = 'Champion select ended — pages can only be applied during champ select'
         else if (result.error === 'no_reserved_page') msg = 'No reserved page set — go to Settings'
         else if (result.error === 'reserved_page_missing')
           msg = 'Reserved page deleted — re-run Setup in Settings'
@@ -107,9 +143,41 @@ export function ChampSelectPanel() {
 
   const noReservedPage = settings && !settings.reservedPageId
 
+  // Applying a page overwrites the reserved slot in the live client — only offer
+  // it while the client is actually in champ select.
+  if (!champSelectActive) {
+    return (
+      <div className="flex-1 p-6 overflow-y-auto">
+        <div className="mb-4">
+          <h2 className="text-lol-blue text-lg font-bold mb-1">Champion Select</h2>
+          <p className="text-gray-400 text-sm">
+            Rune pages can only be applied while you&apos;re in champion select.
+          </p>
+        </div>
+
+        {noReservedPage && (
+          <div className="mb-4">
+            <Notice variant="warning">
+              No reserved page configured — go to Settings to link one first.
+            </Notice>
+          </div>
+        )}
+
+        <div className="text-center py-12 text-gray-500">
+          <p className="mb-2">Waiting for champion select…</p>
+          <p className="text-sm">
+            {lcuStatus === 'connected'
+              ? 'Start a game — your pages will show up here as soon as you pick.'
+              : 'Open the League client to get started.'}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   function renderCard(page: (typeof sorted)[number]) {
     const isApplying = applyingId === page.id
-    const wasApplied = lastApplyStatus === 'success' && lastAppliedName === page.name
+    const wasApplied = lastApplyStatus === 'success' && lastAppliedId === page.id
     return (
       <RunePageCard
         key={page.id}
@@ -118,17 +186,12 @@ export function ChampSelectPanel() {
         disabled={!!applyingId}
         onClick={() => applyPage(page.id, page.name)}
         actions={
-          <span
-            className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
-              isApplying
-                ? 'bg-gray-600 text-gray-300'
-                : wasApplied
-                  ? 'bg-green-600 text-white'
-                  : 'bg-lol-blue text-lol-dark'
-            }`}
-          >
-            {isApplying ? 'Applying…' : wasApplied ? 'Applied' : 'Apply'}
-          </span>
+          <ApplyBadge
+            applying={isApplying}
+            applied={wasApplied}
+            disabled={!!applyingId}
+            onApply={() => applyPage(page.id, page.name)}
+          />
         }
       />
     )
@@ -205,7 +268,7 @@ export function ChampSelectPanel() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <RunePageCard
               page={fallbackPage}
-              highlight={lastApplyStatus === 'success' && lastAppliedName === fallbackPage.name}
+              highlight={lastApplyStatus === 'success' && lastAppliedId === fallbackPage.id}
               disabled={!!applyingId}
               onClick={applyFallback}
               actions={
@@ -218,15 +281,12 @@ export function ChampSelectPanel() {
                   >
                     {savingDefault ? 'Saving…' : 'Save'}
                   </Button>
-                  <span
-                    className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
-                      applyingId === fallbackPage.id
-                        ? 'bg-gray-600 text-gray-300'
-                        : 'bg-lol-blue text-lol-dark'
-                    }`}
-                  >
-                    {applyingId === fallbackPage.id ? 'Applying…' : 'Apply'}
-                  </span>
+                  <ApplyBadge
+                    applying={applyingId === fallbackPage.id}
+                    applied={lastApplyStatus === 'success' && lastAppliedId === fallbackPage.id}
+                    disabled={!!applyingId}
+                    onApply={applyFallback}
+                  />
                 </>
               }
             />
