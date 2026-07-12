@@ -12,6 +12,24 @@ export interface StoredRunePage {
   championIds?: number[]
 }
 
+/** The rune selection itself, without any of the stored-page bookkeeping. */
+export interface RunePageData {
+  name: string
+  primaryStyleId: number
+  subStyleId: number
+  selectedPerkIds: number[]
+}
+
+/** Riot's recommended page for a champion, bundled at build time. Not in the DB. */
+export interface DefaultRunePage {
+  championId: number
+  /** Riot's default lane for the champion — TOP / JUNGLE / MIDDLE / BOTTOM / UTILITY. */
+  position: string
+  primaryStyleId: number
+  subStyleId: number
+  selectedPerkIds: number[]
+}
+
 export interface AppSettings {
   reservedPageId: number | null
   reservedPageName: string

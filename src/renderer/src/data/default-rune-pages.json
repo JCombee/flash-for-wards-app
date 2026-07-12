@@ -1,0 +1,2943 @@
+{
+  "1": {
+    "championId": 1,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8112,
+      8126,
+      8140,
+      8106,
+      8345,
+      8347,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "2": {
+    "championId": 2,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8473,
+      8453,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "3": {
+    "championId": 3,
+    "position": "MIDDLE",
+    "primaryStyleId": 8400,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8439,
+      8401,
+      8473,
+      8451,
+      8275,
+      8210,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "4": {
+    "championId": 4,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8234,
+      8236,
+      8345,
+      8347,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "5": {
+    "championId": 5,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8008,
+      9111,
+      9104,
+      8014,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "6": {
+    "championId": 6,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9103,
+      8299,
+      8410,
+      8304,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "7": {
+    "championId": 7,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8105,
+      8236,
+      8210,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "8": {
+    "championId": 8,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8214,
+      8275,
+      8210,
+      8237,
+      8299,
+      9105,
+      5007,
+      5008,
+      5001
+    ]
+  },
+  "9": {
+    "championId": 9,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8112,
+      8126,
+      8140,
+      8106,
+      8224,
+      8210,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "10": {
+    "championId": 10,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8005,
+      9101,
+      9104,
+      8299,
+      8234,
+      8236,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "11": {
+    "championId": 11,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      9923,
+      8143,
+      8140,
+      8135,
+      9104,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "12": {
+    "championId": 12,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8439,
+      8463,
+      8473,
+      8242,
+      8347,
+      8306,
+      5007,
+      5001,
+      5001
+    ]
+  },
+  "13": {
+    "championId": 13,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8992,
+      8226,
+      8234,
+      8237,
+      8473,
+      8451,
+      5005,
+      5010,
+      5011
+    ]
+  },
+  "14": {
+    "championId": 14,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8429,
+      8451,
+      8410,
+      8321,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "15": {
+    "championId": 15,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8008,
+      8009,
+      9103,
+      8017,
+      8321,
+      8313,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "16": {
+    "championId": 16,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8237,
+      8473,
+      8453,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "17": {
+    "championId": 17,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8299,
+      8473,
+      8451,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "18": {
+    "championId": 18,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8008,
+      9111,
+      9104,
+      8014,
+      8139,
+      8135,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "19": {
+    "championId": 19,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8008,
+      9111,
+      9104,
+      8299,
+      8234,
+      8232,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "20": {
+    "championId": 20,
+    "position": "JUNGLE",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8439,
+      8463,
+      8429,
+      8453,
+      9105,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "21": {
+    "championId": 21,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      8009,
+      9103,
+      8014,
+      8345,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "22": {
+    "championId": 22,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8014,
+      8126,
+      8106,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "23": {
+    "championId": 23,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8444,
+      8453,
+      8299,
+      9104,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "24": {
+    "championId": 24,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8444,
+      8242,
+      8345,
+      8347,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "25": {
+    "championId": 25,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8321,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "26": {
+    "championId": 26,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "27": {
+    "championId": 27,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8451,
+      8444,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "28": {
+    "championId": 28,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8128,
+      8143,
+      8140,
+      8105,
+      8233,
+      8236,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "29": {
+    "championId": 29,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8008,
+      9111,
+      9104,
+      8017,
+      8224,
+      8236,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "30": {
+    "championId": 30,
+    "position": "JUNGLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8992,
+      8224,
+      8233,
+      8236,
+      8299,
+      9111,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "31": {
+    "championId": 31,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8429,
+      8451,
+      9105,
+      9111,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "32": {
+    "championId": 32,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8126,
+      8106,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "33": {
+    "championId": 33,
+    "position": "JUNGLE",
+    "primaryStyleId": 8400,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8439,
+      8463,
+      8429,
+      8242,
+      8234,
+      8232,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "34": {
+    "championId": 34,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8112,
+      8126,
+      8140,
+      8105,
+      8014,
+      8009,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "35": {
+    "championId": 35,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8128,
+      8126,
+      8140,
+      8106,
+      8236,
+      8210,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "36": {
+    "championId": 36,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8444,
+      8451,
+      8410,
+      8304,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "37": {
+    "championId": 37,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "38": {
+    "championId": 38,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8106,
+      8451,
+      8444,
+      5008,
+      5001,
+      5001
+    ]
+  },
+  "39": {
+    "championId": 39,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8345,
+      8316,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "40": {
+    "championId": 40,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8234,
+      8236,
+      8463,
+      8453,
+      5008,
+      5010,
+      5001
+    ]
+  },
+  "41": {
+    "championId": 41,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8444,
+      8451,
+      8237,
+      8210,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "42": {
+    "championId": 42,
+    "position": "BOTTOM",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      9923,
+      8143,
+      8140,
+      8135,
+      8014,
+      8009,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "43": {
+    "championId": 43,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8233,
+      8237,
+      8137,
+      8106,
+      5007,
+      5008,
+      5011
+    ]
+  },
+  "44": {
+    "championId": 44,
+    "position": "UTILITY",
+    "primaryStyleId": 8300,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8351,
+      8304,
+      8345,
+      8347,
+      9105,
+      8009,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "45": {
+    "championId": 45,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8236,
+      8126,
+      8106,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "48": {
+    "championId": 48,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8473,
+      8446,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "50": {
+    "championId": 50,
+    "position": "UTILITY",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      8009,
+      9105,
+      8299,
+      8429,
+      8451,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "51": {
+    "championId": 51,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8008,
+      8009,
+      9103,
+      8014,
+      8233,
+      8236,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "53": {
+    "championId": 53,
+    "position": "UTILITY",
+    "primaryStyleId": 8300,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8351,
+      8306,
+      8345,
+      8347,
+      8234,
+      8275,
+      5007,
+      5001,
+      5001
+    ]
+  },
+  "54": {
+    "championId": 54,
+    "position": "TOP",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "55": {
+    "championId": 55,
+    "position": "MIDDLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8014,
+      8105,
+      8143,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "56": {
+    "championId": 56,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      9923,
+      8143,
+      8140,
+      8106,
+      9104,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "57": {
+    "championId": 57,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8126,
+      8106,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "58": {
+    "championId": 58,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8473,
+      8242,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "59": {
+    "championId": 59,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8014,
+      8105,
+      8143,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "60": {
+    "championId": 60,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8128,
+      8126,
+      8140,
+      8105,
+      8275,
+      8232,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "61": {
+    "championId": 61,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8237,
+      8014,
+      8009,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "62": {
+    "championId": 62,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8106,
+      8014,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "63": {
+    "championId": 63,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "64": {
+    "championId": 64,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8106,
+      8014,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "67": {
+    "championId": 67,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8008,
+      9111,
+      9104,
+      8014,
+      8429,
+      8451,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "68": {
+    "championId": 68,
+    "position": "TOP",
+    "primaryStyleId": 8200,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8229,
+      8275,
+      8233,
+      8237,
+      8139,
+      8106,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "69": {
+    "championId": 69,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8992,
+      8226,
+      8210,
+      8237,
+      8014,
+      8009,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "72": {
+    "championId": 72,
+    "position": "JUNGLE",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8401,
+      8429,
+      8451,
+      8410,
+      8304,
+      5007,
+      5001,
+      5001
+    ]
+  },
+  "74": {
+    "championId": 74,
+    "position": "TOP",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8233,
+      8237,
+      8345,
+      8304,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "75": {
+    "championId": 75,
+    "position": "TOP",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8230,
+      8226,
+      8210,
+      8237,
+      8410,
+      8345,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "76": {
+    "championId": 76,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8014,
+      8210,
+      8232,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "77": {
+    "championId": 77,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8410,
+      8304,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "78": {
+    "championId": 78,
+    "position": "UTILITY",
+    "primaryStyleId": 8100,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      9923,
+      8143,
+      8137,
+      8135,
+      8347,
+      8306,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "79": {
+    "championId": 79,
+    "position": "TOP",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8230,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "80": {
+    "championId": 80,
+    "position": "UTILITY",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9105,
+      8014,
+      8126,
+      8105,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "81": {
+    "championId": 81,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      8009,
+      9103,
+      8014,
+      8345,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "82": {
+    "championId": 82,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8473,
+      8453,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "83": {
+    "championId": 83,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9103,
+      8299,
+      8473,
+      8446,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "84": {
+    "championId": 84,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8106,
+      8451,
+      8444,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "85": {
+    "championId": 85,
+    "position": "TOP",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8112,
+      8139,
+      8140,
+      8106,
+      8233,
+      8237,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "86": {
+    "championId": 86,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8429,
+      8451,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "89": {
+    "championId": 89,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8439,
+      8463,
+      8444,
+      8451,
+      9105,
+      9111,
+      5007,
+      5001,
+      5001
+    ]
+  },
+  "90": {
+    "championId": 90,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8992,
+      8226,
+      8210,
+      8237,
+      8347,
+      8304,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "91": {
+    "championId": 91,
+    "position": "JUNGLE",
+    "primaryStyleId": 8300,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8369,
+      8321,
+      8313,
+      8347,
+      8143,
+      8135,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "92": {
+    "championId": 92,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8321,
+      8316,
+      5007,
+      5008,
+      5001
+    ]
+  },
+  "96": {
+    "championId": 96,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9103,
+      8299,
+      8429,
+      8451,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "98": {
+    "championId": 98,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8437,
+      8401,
+      8444,
+      8453,
+      8126,
+      8106,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "99": {
+    "championId": 99,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "101": {
+    "championId": 101,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "102": {
+    "championId": 102,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "103": {
+    "championId": 103,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8112,
+      8139,
+      8140,
+      8106,
+      8345,
+      8347,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "104": {
+    "championId": 104,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8021,
+      9111,
+      9104,
+      8014,
+      8137,
+      8135,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "105": {
+    "championId": 105,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8135,
+      8237,
+      8210,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "106": {
+    "championId": 106,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8437,
+      8401,
+      8444,
+      8453,
+      9105,
+      8009,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "107": {
+    "championId": 107,
+    "position": "JUNGLE",
+    "primaryStyleId": 8300,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8369,
+      8321,
+      8313,
+      8347,
+      8143,
+      8106,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "110": {
+    "championId": 110,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8014,
+      8139,
+      8135,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "111": {
+    "championId": 111,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8439,
+      8401,
+      8429,
+      8453,
+      9105,
+      9111,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "112": {
+    "championId": 112,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8992,
+      8226,
+      8210,
+      8237,
+      8473,
+      8401,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "113": {
+    "championId": 113,
+    "position": "JUNGLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8230,
+      8275,
+      8234,
+      8232,
+      9104,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "114": {
+    "championId": 114,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8299,
+      8345,
+      8316,
+      5008,
+      5008,
+      5011
+    ]
+  },
+  "115": {
+    "championId": 115,
+    "position": "BOTTOM",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8014,
+      8009,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "117": {
+    "championId": 117,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "119": {
+    "championId": 119,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8005,
+      8009,
+      9104,
+      8299,
+      8233,
+      8236,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "120": {
+    "championId": 120,
+    "position": "JUNGLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8230,
+      8275,
+      8234,
+      8232,
+      9105,
+      9111,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "121": {
+    "championId": 121,
+    "position": "JUNGLE",
+    "primaryStyleId": 8300,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8369,
+      8321,
+      8313,
+      8347,
+      8143,
+      8135,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "122": {
+    "championId": 122,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8299,
+      8224,
+      8234,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "126": {
+    "championId": 126,
+    "position": "TOP",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8230,
+      8226,
+      8233,
+      8236,
+      8345,
+      8304,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "127": {
+    "championId": 127,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8112,
+      8126,
+      8140,
+      8106,
+      8226,
+      8210,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "131": {
+    "championId": 131,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8135,
+      8473,
+      8401,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "133": {
+    "championId": 133,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8135,
+      8233,
+      8236,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "134": {
+    "championId": 134,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "136": {
+    "championId": 136,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8992,
+      8226,
+      8233,
+      8237,
+      8473,
+      8451,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "141": {
+    "championId": 141,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8224,
+      8210,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "142": {
+    "championId": 142,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8112,
+      8139,
+      8140,
+      8105,
+      8017,
+      9105,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "143": {
+    "championId": 143,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "145": {
+    "championId": 145,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      8009,
+      9103,
+      8014,
+      8345,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "147": {
+    "championId": 147,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8236,
+      8463,
+      8453,
+      5007,
+      5008,
+      5011
+    ]
+  },
+  "150": {
+    "championId": 150,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8473,
+      8451,
+      9104,
+      9111,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "154": {
+    "championId": 154,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8347,
+      8304,
+      5007,
+      5008,
+      5001
+    ]
+  },
+  "157": {
+    "championId": 157,
+    "position": "MIDDLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8008,
+      9101,
+      9104,
+      8299,
+      8451,
+      8444,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "161": {
+    "championId": 161,
+    "position": "UTILITY",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8128,
+      8126,
+      8141,
+      8105,
+      8226,
+      8237,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "163": {
+    "championId": 163,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8230,
+      8226,
+      8210,
+      8237,
+      9105,
+      8009,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "164": {
+    "championId": 164,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8401,
+      8473,
+      8242,
+      8345,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "166": {
+    "championId": 166,
+    "position": "MIDDLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8005,
+      8009,
+      9104,
+      8017,
+      8233,
+      8236,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "200": {
+    "championId": 200,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8014,
+      8143,
+      8135,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "201": {
+    "championId": 201,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8465,
+      8463,
+      8473,
+      8242,
+      8345,
+      8347,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "202": {
+    "championId": 202,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8021,
+      8009,
+      9103,
+      8014,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "203": {
+    "championId": 203,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8014,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "221": {
+    "championId": 221,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8021,
+      9111,
+      9104,
+      8299,
+      8429,
+      8451,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "222": {
+    "championId": 222,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8021,
+      8009,
+      9103,
+      8014,
+      8233,
+      8236,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "223": {
+    "championId": 223,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8437,
+      8401,
+      8444,
+      8242,
+      9104,
+      9111,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "233": {
+    "championId": 233,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8014,
+      8347,
+      8304,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "234": {
+    "championId": 234,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8014,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "235": {
+    "championId": 235,
+    "position": "BOTTOM",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8992,
+      8226,
+      8234,
+      8236,
+      8347,
+      8304,
+      5008,
+      5010,
+      5001
+    ]
+  },
+  "236": {
+    "championId": 236,
+    "position": "BOTTOM",
+    "primaryStyleId": 8300,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8369,
+      8304,
+      8345,
+      8347,
+      9103,
+      8009,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "238": {
+    "championId": 238,
+    "position": "MIDDLE",
+    "primaryStyleId": 8300,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8369,
+      8321,
+      8313,
+      8347,
+      8017,
+      9105,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "240": {
+    "championId": 240,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8444,
+      8451,
+      8299,
+      9104,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "245": {
+    "championId": 245,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8128,
+      8143,
+      8140,
+      8135,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "246": {
+    "championId": 246,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8112,
+      8143,
+      8140,
+      8135,
+      8299,
+      8009,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "254": {
+    "championId": 254,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8014,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "266": {
+    "championId": 266,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8473,
+      8453,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "267": {
+    "championId": 267,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8237,
+      8473,
+      8453,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "268": {
+    "championId": 268,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8233,
+      8237,
+      8017,
+      9104,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "350": {
+    "championId": 350,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8214,
+      8226,
+      8210,
+      8237,
+      8017,
+      8009,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "360": {
+    "championId": 360,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9103,
+      8299,
+      8139,
+      8135,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "412": {
+    "championId": 412,
+    "position": "UTILITY",
+    "primaryStyleId": 8300,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8351,
+      8306,
+      8345,
+      8347,
+      8473,
+      8242,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "420": {
+    "championId": 420,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "421": {
+    "championId": 421,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8014,
+      8347,
+      8304,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "427": {
+    "championId": 427,
+    "position": "JUNGLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8214,
+      8275,
+      8210,
+      8232,
+      8140,
+      8105,
+      5007,
+      5008,
+      5001
+    ]
+  },
+  "429": {
+    "championId": 429,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8299,
+      8143,
+      8135,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "432": {
+    "championId": 432,
+    "position": "UTILITY",
+    "primaryStyleId": 8100,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8112,
+      8126,
+      8141,
+      8135,
+      8316,
+      8304,
+      5005,
+      5010,
+      5001
+    ]
+  },
+  "497": {
+    "championId": 497,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8465,
+      8446,
+      8473,
+      8453,
+      8234,
+      8275,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "498": {
+    "championId": 498,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8005,
+      8009,
+      9103,
+      8014,
+      8139,
+      8106,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "516": {
+    "championId": 516,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8473,
+      8451,
+      8345,
+      8304,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "517": {
+    "championId": 517,
+    "position": "MIDDLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      8009,
+      9105,
+      8299,
+      8444,
+      8242,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "518": {
+    "championId": 518,
+    "position": "UTILITY",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "523": {
+    "championId": 523,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9103,
+      8017,
+      8321,
+      8313,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "526": {
+    "championId": 526,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8439,
+      8401,
+      8473,
+      8242,
+      9105,
+      9111,
+      5007,
+      5001,
+      5001
+    ]
+  },
+  "555": {
+    "championId": 555,
+    "position": "UTILITY",
+    "primaryStyleId": 8100,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      9923,
+      8126,
+      8137,
+      8106,
+      8473,
+      8242,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "711": {
+    "championId": 711,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8128,
+      8139,
+      8140,
+      8106,
+      8226,
+      8210,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "777": {
+    "championId": 777,
+    "position": "MIDDLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8021,
+      9101,
+      9104,
+      8299,
+      8451,
+      8444,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "799": {
+    "championId": 799,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9105,
+      8299,
+      8451,
+      8444,
+      5008,
+      5008,
+      5011
+    ]
+  },
+  "800": {
+    "championId": 800,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8000,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8014,
+      8009,
+      5007,
+      5008,
+      5001
+    ]
+  },
+  "804": {
+    "championId": 804,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8017,
+      8224,
+      8236,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "805": {
+    "championId": 805,
+    "position": "MIDDLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      9923,
+      8143,
+      8137,
+      8106,
+      8473,
+      8453,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "875": {
+    "championId": 875,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9104,
+      8299,
+      8444,
+      8242,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "876": {
+    "championId": 876,
+    "position": "JUNGLE",
+    "primaryStyleId": 8100,
+    "subStyleId": 8200,
+    "selectedPerkIds": [
+      8128,
+      8126,
+      8140,
+      8135,
+      8234,
+      8232,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "887": {
+    "championId": 887,
+    "position": "TOP",
+    "primaryStyleId": 8000,
+    "subStyleId": 8400,
+    "selectedPerkIds": [
+      8005,
+      8009,
+      9104,
+      8299,
+      8473,
+      8242,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "888": {
+    "championId": 888,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8465,
+      8401,
+      8473,
+      8453,
+      8345,
+      8347,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "893": {
+    "championId": 893,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8143,
+      8106,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "895": {
+    "championId": 895,
+    "position": "BOTTOM",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8005,
+      9111,
+      9103,
+      8299,
+      8143,
+      8135,
+      5005,
+      5008,
+      5001
+    ]
+  },
+  "897": {
+    "championId": 897,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8401,
+      8444,
+      8451,
+      8345,
+      8347,
+      5005,
+      5001,
+      5001
+    ]
+  },
+  "901": {
+    "championId": 901,
+    "position": "BOTTOM",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8992,
+      8275,
+      8234,
+      8236,
+      8347,
+      8304,
+      5008,
+      5010,
+      5001
+    ]
+  },
+  "902": {
+    "championId": 902,
+    "position": "UTILITY",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8465,
+      8463,
+      8473,
+      8453,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "904": {
+    "championId": 904,
+    "position": "TOP",
+    "primaryStyleId": 8400,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8437,
+      8446,
+      8444,
+      8453,
+      8345,
+      8347,
+      5005,
+      5008,
+      5011
+    ]
+  },
+  "910": {
+    "championId": 910,
+    "position": "MIDDLE",
+    "primaryStyleId": 8200,
+    "subStyleId": 8300,
+    "selectedPerkIds": [
+      8229,
+      8226,
+      8210,
+      8237,
+      8345,
+      8347,
+      5008,
+      5008,
+      5001
+    ]
+  },
+  "950": {
+    "championId": 950,
+    "position": "JUNGLE",
+    "primaryStyleId": 8000,
+    "subStyleId": 8100,
+    "selectedPerkIds": [
+      8010,
+      9111,
+      9104,
+      8014,
+      8143,
+      8135,
+      5005,
+      5008,
+      5001
+    ]
+  }
+}

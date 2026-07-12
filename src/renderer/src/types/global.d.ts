@@ -5,6 +5,7 @@ import type {
   LcuStatus,
   ChampSelectPhase,
   ApplyResult,
+  RunePageData,
   UpdateStatus
 } from './index'
 
@@ -37,6 +38,7 @@ declare global {
       // LCU operations
       getLcuPages: () => Promise<LcuRunePage[]>
       applyRunePage: (storedPageId: string) => Promise<ApplyResult>
+      applyRunePageData: (page: RunePageData) => Promise<ApplyResult>
       getLcuStatus: () => Promise<LcuStatus>
 
       // Updates

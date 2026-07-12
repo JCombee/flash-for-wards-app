@@ -30,6 +30,10 @@ LCU (LoL client) ←—HTTPS/WS—→ Main Process ←—IPC—→ Preload (wind
 
 Types live in `src/renderer/src/types/index.ts` and are imported by both main and renderer via the `@shared` alias (defined in `electron.vite.config.ts` for both targets). Do not create a separate `shared/` directory.
 
+### Bundled data (`src/renderer/src/data/`)
+
+`champions.json` (Community Dragon) and `default-rune-pages.json` (Riot's recommended page per champion, pulled from a running League client) are generated, not hand-edited. Regenerate with `npm run gen:champions` / `npm run gen:default-runes` — the latter needs the client open. Default pages are built-in fallbacks: they never enter the DB, are applied by value via `lcu:pages:apply-data`, and only become real rows when the user saves a copy.
+
 ### Main process (`src/main/`)
 
 - `index.ts` — app lifecycle: init DB → register IPC handlers → create window → start LCU connection
