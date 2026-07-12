@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
+import { useRunePages } from '../../hooks/useRunePages'
 import { RunePageCard } from '../rune-pages/RunePageCard'
+import { Badge } from '../ui/Badge'
+import { Button } from '../ui/Button'
 import { Notice } from '../ui/Notice'
 import { CHAMPION_BY_ID } from '../../data/champions'
+import { getDefaultRunePage, defaultPageName } from '../../data/default-runes'
+import type { ApplyResult, StoredRunePage } from '../../types'
 
 export function ChampSelectPanel() {
   const runePages = useAppStore((s) => s.runePages)
@@ -12,7 +17,9 @@ export function ChampSelectPanel() {
   const setApplyResult = useAppStore((s) => s.setApplyResult)
   const settings = useAppStore((s) => s.settings)
   const currentChampionId = useAppStore((s) => s.currentChampionId)
+  const { refresh } = useRunePages()
   const [applyingId, setApplyingId] = useState<string | null>(null)
+  const [savingDefault, setSavingDefault] = useState(false)
 
   const sorted = [...runePages].sort(
     (a, b) =>
@@ -24,12 +31,29 @@ export function ChampSelectPanel() {
   const preferred =
     currentChampionId > 0 ? sorted.filter((p) => p.championIds?.includes(currentChampionId)) : []
 
-  async function applyPage(id: string, name: string) {
+  // Riot's recommended page, so a champion the user has no page for still has
+  // something to apply. Only surfaced when none of their own pages cover it.
+  const fallback =
+    preferred.length === 0 && currentChampionId > 0
+      ? getDefaultRunePage(currentChampionId)
+      : undefined
+  const fallbackPage: StoredRunePage | undefined = fallback && {
+    id: `default:${fallback.championId}`,
+    name: defaultPageName(fallback.championId),
+    primaryStyleId: fallback.primaryStyleId,
+    subStyleId: fallback.subStyleId,
+    selectedPerkIds: fallback.selectedPerkIds,
+    createdAt: 0,
+    updatedAt: 0,
+    championIds: [fallback.championId]
+  }
+
+  async function runApply(id: string, name: string, apply: () => Promise<ApplyResult>) {
     if (applyingId) return
     setApplyingId(id)
     setApplyResult('idle')
     try {
-      const result = await window.api.applyRunePage(id)
+      const result = await apply()
       if (result.success) {
         setApplyResult('success', name)
       } else {
@@ -46,6 +70,41 @@ export function ChampSelectPanel() {
       setApplyResult('error', undefined, String(err))
     } finally {
       setApplyingId(null)
+    }
+  }
+
+  function applyPage(id: string, name: string) {
+    return runApply(id, name, () => window.api.applyRunePage(id))
+  }
+
+  function applyFallback() {
+    if (!fallbackPage) return
+    return runApply(fallbackPage.id, fallbackPage.name, () =>
+      window.api.applyRunePageData({
+        name: fallbackPage.name,
+        primaryStyleId: fallbackPage.primaryStyleId,
+        subStyleId: fallbackPage.subStyleId,
+        selectedPerkIds: fallbackPage.selectedPerkIds
+      })
+    )
+  }
+
+  // Fork the built-in default into a real page the user owns and can edit.
+  async function saveFallback() {
+    if (!fallbackPage || savingDefault) return
+    setSavingDefault(true)
+    try {
+      await window.api.createRunePage({
+        name: fallbackPage.name,
+        primaryStyleId: fallbackPage.primaryStyleId,
+        subStyleId: fallbackPage.subStyleId,
+        selectedPerkIds: fallbackPage.selectedPerkIds,
+        championIds: fallbackPage.championIds ?? [],
+        pinned: false
+      })
+      refresh()
+    } finally {
+      setSavingDefault(false)
     }
   }
 
@@ -128,16 +187,70 @@ export function ChampSelectPanel() {
         </div>
       )}
 
-      {sorted.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
-          <p className="mb-2">No rune pages saved yet.</p>
-          <p className="text-sm">
-            Go to <strong className="text-gray-300">My Rune Pages</strong> to create or import some.
+      {fallbackPage && (
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            {currentChampion && (
+              <img
+                src={currentChampion.iconUrl}
+                alt={currentChampion.name}
+                className="w-5 h-5 rounded"
+              />
+            )}
+            <h3 className="text-lol-gold text-sm font-bold">
+              Recommended{currentChampion ? ` for ${currentChampion.name}` : ''}
+            </h3>
+            <Badge>{fallback?.position ?? 'DEFAULT'}</Badge>
+          </div>
+          <p className="text-xs text-gray-500 mb-2">
+            You have no page for this champion — this is the League client&apos;s own
+            recommendation.
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <RunePageCard
+              page={fallbackPage}
+              highlight={lastApplyStatus === 'success' && lastAppliedName === fallbackPage.name}
+              disabled={!!applyingId}
+              onClick={applyFallback}
+              actions={
+                <>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    disabled={savingDefault}
+                    onClick={saveFallback}
+                  >
+                    {savingDefault ? 'Saving…' : 'Save'}
+                  </Button>
+                  <span
+                    className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
+                      applyingId === fallbackPage.id
+                        ? 'bg-gray-600 text-gray-300'
+                        : 'bg-lol-blue text-lol-dark'
+                    }`}
+                  >
+                    {applyingId === fallbackPage.id ? 'Applying…' : 'Apply'}
+                  </span>
+                </>
+              }
+            />
+          </div>
         </div>
+      )}
+
+      {sorted.length === 0 ? (
+        !fallbackPage && (
+          <div className="text-center py-12 text-gray-500">
+            <p className="mb-2">No rune pages saved yet.</p>
+            <p className="text-sm">
+              Go to <strong className="text-gray-300">My Rune Pages</strong> to create or import
+              some.
+            </p>
+          </div>
+        )
       ) : (
         <>
-          {preferred.length > 0 && (
+          {(preferred.length > 0 || fallbackPage) && (
             <h3 className="text-gray-400 text-sm font-semibold mb-2">All Pages</h3>
           )}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -5,6 +5,7 @@ import type {
   LcuStatus,
   ChampSelectPhase,
   ApplyResult,
+  RunePageData,
   UpdateStatus
 } from '../renderer/src/types/index'
 
@@ -43,6 +44,10 @@ contextBridge.exposeInMainWorld('api', {
 
   applyRunePage: (storedPageId: string): Promise<ApplyResult> =>
     ipcRenderer.invoke('lcu:pages:apply', storedPageId),
+
+  /** Apply a rune selection that has no stored row — e.g. a built-in default page. */
+  applyRunePageData: (page: RunePageData): Promise<ApplyResult> =>
+    ipcRenderer.invoke('lcu:pages:apply-data', page),
 
   getLcuStatus: (): Promise<LcuStatus> => ipcRenderer.invoke('lcu:status:get'),
 
