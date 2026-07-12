@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import {
   RUNE_STYLES,
   STAT_SHARD_ROWS,
@@ -24,9 +24,11 @@ interface RuneTreeEditorProps extends RuneSelection {
 
 interface Hover {
   perk: Perk
-  x: number
-  y: number
+  anchor: { centerX: number; top: number; bottom: number }
 }
+
+const TOOLTIP_GAP = 8
+const VIEWPORT_MARGIN = 8
 
 export function RuneTreeEditor({
   primaryStyleId,
@@ -288,13 +290,41 @@ function SlotRow({
 }
 
 function RuneTooltip({ hover }: { hover: Hover }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [pos, setPos] = useState<{ left: number; top: number } | null>(null)
+
+  useLayoutEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const { width, height } = el.getBoundingClientRect()
+    const { centerX, top, bottom } = hover.anchor
+
+    const maxLeft = window.innerWidth - width - VIEWPORT_MARGIN
+    const left = Math.min(
+      Math.max(centerX - width / 2, VIEWPORT_MARGIN),
+      Math.max(maxLeft, VIEWPORT_MARGIN)
+    )
+
+    // Prefer above the tile; flip below when it would clip the top edge.
+    const above = top - TOOLTIP_GAP - height
+    const belowTop = bottom + TOOLTIP_GAP
+    const maxTop = window.innerHeight - height - VIEWPORT_MARGIN
+    const top_ =
+      above >= VIEWPORT_MARGIN
+        ? above
+        : Math.min(Math.max(belowTop, VIEWPORT_MARGIN), Math.max(maxTop, VIEWPORT_MARGIN))
+
+    setPos({ left, top: top_ })
+  }, [hover])
+
   return (
     <div
-      className="fixed z-50 pointer-events-none w-72 max-w-[90vw] bg-lol-dark border border-lol-gold/40 rounded px-3 py-2 shadow-lg"
+      ref={ref}
+      className="fixed z-50 pointer-events-none w-72 max-w-[calc(100vw-1rem)] bg-lol-dark border border-lol-gold/40 rounded px-3 py-2 shadow-lg"
       style={{
-        left: hover.x,
-        top: hover.y,
-        transform: 'translate(-50%, -100%)'
+        left: pos?.left ?? hover.anchor.centerX,
+        top: pos?.top ?? hover.anchor.top,
+        visibility: pos ? 'visible' : 'hidden'
       }}
     >
       <p className="text-lol-gold-light font-semibold text-xs mb-0.5">{hover.perk.name}</p>
@@ -307,7 +337,7 @@ function RuneTooltip({ hover }: { hover: Hover }) {
 
 function hoverFor(e: React.MouseEvent<HTMLElement>, perk: Perk): Hover {
   const r = e.currentTarget.getBoundingClientRect()
-  return { perk, x: r.left + r.width / 2, y: r.top - 8 }
+  return { perk, anchor: { centerX: r.left + r.width / 2, top: r.top, bottom: r.bottom } }
 }
 
 // Reuse the tooltip shape for style icons (no shortDesc → show subdesc).

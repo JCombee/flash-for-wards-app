@@ -80,6 +80,18 @@ const COMMANDS = {
     await page.waitForTimeout(400)
   },
 
+  // Tooltips only appear on real pointer movement — el.dispatchEvent won't do.
+  async hover(sel) {
+    if (!page) return console.log('ERROR: launch first')
+    try {
+      await page.hover(sel, { timeout: 5_000 })
+      console.log('hover', sel, '-> OK')
+    } catch {
+      console.log('hover', sel, '-> NOT_FOUND')
+    }
+    await page.waitForTimeout(300)
+  },
+
   async type(text) {
     if (page) await page.keyboard.type(text, { delay: 30 })
   },
