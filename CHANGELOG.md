@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-07-12
+
 ### Added
 
 - Automatic updates: the app checks GitHub releases on launch (and every 4 hours), downloads new versions in the background, and shows a "Restart now" banner when an update is ready.
@@ -30,5 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/JCombee/flash-for-wards-app/releases/tag/v1.1.0
 [1.0.0]: https://github.com/JCombee/flash-for-wards-app/releases/tag/v1.0.0
