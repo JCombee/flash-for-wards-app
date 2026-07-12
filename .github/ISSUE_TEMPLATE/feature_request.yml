@@ -1,0 +1,35 @@
+name: Feature request
+description: Suggest an idea
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the situation you're in, not just the feature you want.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like it to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      description: >
+        Flash For Wards only interacts with the League client's rune page endpoints.
+        Anything that automates gameplay, scripts inputs, or reads game memory is
+        out of scope.
+      options:
+        - label: This request does not involve automating gameplay or reading game memory.
+          required: true
