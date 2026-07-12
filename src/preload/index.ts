@@ -4,7 +4,8 @@ import type {
   AppSettings,
   LcuStatus,
   ChampSelectPhase,
-  ApplyResult
+  ApplyResult,
+  UpdateStatus
 } from '../renderer/src/types/index'
 
 contextBridge.exposeInMainWorld('api', {
@@ -45,6 +46,11 @@ contextBridge.exposeInMainWorld('api', {
 
   getLcuStatus: (): Promise<LcuStatus> => ipcRenderer.invoke('lcu:status:get'),
 
+  // Updates
+  getAppVersion: (): Promise<string> => ipcRenderer.invoke('updater:get-version'),
+
+  installUpdate: (): Promise<void> => ipcRenderer.invoke('updater:install'),
+
   // Push subscriptions
   onLcuStatus: (cb: (status: LcuStatus) => void) => {
     const handler = (_: Electron.IpcRendererEvent, s: LcuStatus) => cb(s)
@@ -62,5 +68,11 @@ contextBridge.exposeInMainWorld('api', {
     const handler = (_: Electron.IpcRendererEvent, d: unknown) => cb(d)
     ipcRenderer.on('champ-select:session', handler)
     return () => ipcRenderer.removeListener('champ-select:session', handler)
+  },
+
+  onUpdateStatus: (cb: (status: UpdateStatus) => void) => {
+    const handler = (_: Electron.IpcRendererEvent, s: UpdateStatus) => cb(s)
+    ipcRenderer.on('update:status', handler)
+    return () => ipcRenderer.removeListener('update:status', handler)
   }
 })

@@ -9,7 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Automatic updates: the app checks GitHub releases on launch (and every 4 hours), downloads new versions in the background, and shows a "Restart now" banner when an update is ready.
 - Project documentation: README, LICENSE, contributing guide, code of conduct, security policy, issue and PR templates.
+
+### Fixed
+
+- Windows app user model ID now matches the installer's app ID, so update and restart notifications are attributed to the app.
 
 ## [1.0.0]
 

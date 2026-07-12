@@ -4,7 +4,8 @@ import type {
   LcuRunePage,
   LcuStatus,
   ChampSelectPhase,
-  ApplyResult
+  ApplyResult,
+  UpdateStatus
 } from './index'
 
 declare global {
@@ -38,10 +39,15 @@ declare global {
       applyRunePage: (storedPageId: string) => Promise<ApplyResult>
       getLcuStatus: () => Promise<LcuStatus>
 
+      // Updates
+      getAppVersion: () => Promise<string>
+      installUpdate: () => Promise<void>
+
       // Push subscriptions (return cleanup fn)
       onLcuStatus: (cb: (status: LcuStatus) => void) => () => void
       onChampSelectPhase: (cb: (phase: ChampSelectPhase) => void) => () => void
       onChampSelectSession: (cb: (session: unknown) => void) => () => void
+      onUpdateStatus: (cb: (status: UpdateStatus) => void) => () => void
     }
   }
 }

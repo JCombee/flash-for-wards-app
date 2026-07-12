@@ -34,6 +34,7 @@
     "build:linux": "npm run build && electron-builder --linux"
   },
   "dependencies": {
+    "electron-updater": "^6.8.9",
     "league-connect": "^6.0.0-rc13",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
