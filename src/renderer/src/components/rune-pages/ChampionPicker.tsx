@@ -36,7 +36,7 @@ export function ChampionPicker({ selectedIds, onChange }: ChampionPickerProps) {
         <div className="flex flex-wrap gap-1.5 mb-2">
           {selectedChamps.map((c) => (
             <Badge key={c.id} variant="accent" onRemove={() => toggle(c.id)}>
-              <img src={c.iconUrl} alt={c.name} className="w-4 h-4 rounded-sm" />
+              <img src={c.iconUrl} alt={c.name} className="w-4 h-4 rounded" />
               {c.name}
             </Badge>
           ))}

@@ -105,7 +105,7 @@ export function SettingsPage() {
             <div>
               <p className="text-xs text-gray-400 mb-2">Or manually pick a page slot:</p>
               <select
-                className="bg-black/40 border border-lol-gold/30 rounded px-3 py-2 text-sm text-white w-full focus:outline-none"
+                className="bg-black/40 border border-lol-gold/40 focus:border-lol-gold/60 rounded px-3 py-2 text-sm text-white w-full outline-none transition-colors"
                 value={settings.reservedPageId ?? ''}
                 onChange={(e) => setReservedPage(Number(e.target.value))}
               >

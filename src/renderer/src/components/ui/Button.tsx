@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success' | 'info'
 type Size = 'sm' | 'md'
 
 const VARIANTS: Record<Variant, string> = {
@@ -8,7 +8,9 @@ const VARIANTS: Record<Variant, string> = {
   secondary: 'bg-white/10 hover:bg-white/20 text-gray-300',
   ghost: 'bg-transparent hover:bg-white/10 text-gray-400',
   danger: 'bg-red-900/30 hover:bg-red-900/60 text-red-400',
-  success: 'bg-green-600 hover:bg-green-500 text-white font-semibold'
+  success: 'bg-green-600 hover:bg-green-500 text-white font-semibold',
+  // Blue is reserved for live/in-progress states — an update waiting to install is one.
+  info: 'bg-lol-blue hover:bg-lol-blue-dark text-lol-dark font-semibold'
 }
 
 const SIZES: Record<Size, string> = {

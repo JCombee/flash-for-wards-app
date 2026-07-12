@@ -16,8 +16,9 @@ copy, and the code in `src/renderer/src/components/ui/` is the canonical impleme
 
 | Primitive             | Use for                                                              |
 | --------------------- | -------------------------------------------------------------------- |
-| `Button`              | every button — `primary` / `secondary` / `ghost` / `danger` / `success`, `sm` / `md` |
+| `Button`              | every button — `primary` / `secondary` / `ghost` / `danger` / `success` / `info`, `sm` / `md` |
 | `NavItem`             | sidebar rows; `live` renders the pulsing blue dot                    |
+| `Notice`              | inline status banner — `info` / `success` / `danger` / `warning`     |
 | `Input`               | single-line text fields                                              |
 | `Toggle`              | the app's one switch control (label + hint)                          |
 | `Tabs`                | segmented pill tabs                                                  |

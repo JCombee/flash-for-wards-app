@@ -113,7 +113,7 @@ export function RunePageCard({
               src={c.iconUrl}
               alt={c.name}
               title={c.name}
-              className="w-5 h-5 rounded-sm"
+              className="w-5 h-5 rounded"
             />
           ))}
         </div>

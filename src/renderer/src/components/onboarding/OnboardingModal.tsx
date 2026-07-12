@@ -91,7 +91,7 @@ export function OnboardingModal() {
             <p className="text-sm text-gray-300 mb-1">
               Optionally name it something recognisable, like:
             </p>
-            <div className="flex items-center gap-2 bg-black/40 border border-lol-gold/30 rounded px-3 py-2">
+            <div className="flex items-center gap-2 bg-black/40 border border-lol-gold/40 rounded px-3 py-2">
               <code className="text-lol-gold-light text-xs flex-1 select-text">
                 {RESERVED_NAME}
               </code>
