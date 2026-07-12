@@ -91,7 +91,9 @@ export function OnboardingModal() {
                 Optionally name it something recognisable, like:
               </p>
               <div className="flex items-center gap-2 bg-black/40 border border-lol-gold/30 rounded px-3 py-2">
-                <code className="text-lol-gold-light text-xs flex-1 select-text">{RESERVED_NAME}</code>
+                <code className="text-lol-gold-light text-xs flex-1 select-text">
+                  {RESERVED_NAME}
+                </code>
                 <button
                   onClick={copyName}
                   className="text-xs text-lol-gold hover:text-lol-gold-light transition-colors shrink-0"
@@ -123,9 +125,7 @@ export function OnboardingModal() {
                 {detecting ? 'Loading pages...' : 'Load My Rune Pages'}
               </button>
 
-              {error && (
-                <p className="mt-2 text-red-400 text-sm">{error}</p>
-              )}
+              {error && <p className="mt-2 text-red-400 text-sm">{error}</p>}
 
               {lcuPages && lcuPages.length > 0 && (
                 <div className="mt-3">

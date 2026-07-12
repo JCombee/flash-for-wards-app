@@ -1,0 +1,34 @@
+appId: com.jcombee.flash-for-wards
+productName: Flash For Wards
+directories:
+  output: dist
+  buildResources: build
+
+files:
+  - out/**
+  - package.json
+  - node_modules/sql.js/dist/sql-wasm.wasm
+
+# sql.js loads its WASM file from disk at runtime via locateFile — it cannot be
+# read from inside the asar archive, so keep it unpacked.
+asarUnpack:
+  - node_modules/sql.js/dist/**
+
+publish:
+  provider: github
+  owner: JCombee
+  repo: flash-for-wards-app
+
+win:
+  target: nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+
+mac:
+  target: dmg
+  category: public.app-category.games
+
+linux:
+  target: AppImage
+  category: Game

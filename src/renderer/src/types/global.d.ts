@@ -12,15 +12,26 @@ declare global {
     api: {
       // Rune pages CRUD
       getRunePages: () => Promise<StoredRunePage[]>
-      createRunePage: (page: Omit<StoredRunePage, 'id' | 'createdAt' | 'updatedAt'>) => Promise<StoredRunePage>
-      updateRunePage: (id: string, page: Partial<Omit<StoredRunePage, 'id' | 'createdAt'>>) => Promise<StoredRunePage>
+      createRunePage: (
+        page: Omit<StoredRunePage, 'id' | 'createdAt' | 'updatedAt'>
+      ) => Promise<StoredRunePage>
+      updateRunePage: (
+        id: string,
+        page: Partial<Omit<StoredRunePage, 'id' | 'createdAt'>>
+      ) => Promise<StoredRunePage>
       deleteRunePage: (id: string) => Promise<void>
       importFromLcu: (lcuPageId: number) => Promise<StoredRunePage>
 
       // Settings
       getSettings: () => Promise<AppSettings>
       setSettings: (settings: Partial<AppSettings>) => Promise<AppSettings>
-      findReservedPage: () => Promise<{ found: boolean; pageId?: number; pageName?: string; error?: string; message?: string }>
+      findReservedPage: () => Promise<{
+        found: boolean
+        pageId?: number
+        pageName?: string
+        error?: string
+        message?: string
+      }>
 
       // LCU operations
       getLcuPages: () => Promise<LcuRunePage[]>

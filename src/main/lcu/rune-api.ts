@@ -35,10 +35,12 @@ function lcuRequest<T>(
       res.on('data', (chunk) => (data += chunk))
       res.on('end', () => {
         if (res.statusCode && res.statusCode >= 400) {
-          reject(Object.assign(
-            new Error(`LCU ${res.statusCode}: ${data}`),
-            { statusCode: res.statusCode, body: data }
-          ))
+          reject(
+            Object.assign(new Error(`LCU ${res.statusCode}: ${data}`), {
+              statusCode: res.statusCode,
+              body: data
+            })
+          )
           return
         }
         try {

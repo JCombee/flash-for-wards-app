@@ -23,7 +23,10 @@ export interface StatShardRow {
   perks: Perk[]
 }
 
-const data = runesJson as { styles: RuneStyle[]; statShardRows: StatShardRow[] }
+const data = runesJson as {
+  styles: RuneStyle[]
+  statShardRows: StatShardRow[]
+}
 
 /** Primary styles in client order (Precision, Domination, Sorcery, Inspiration, Resolve). */
 export const RUNE_STYLES: RuneStyle[] = data.styles

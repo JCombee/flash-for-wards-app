@@ -30,7 +30,8 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
   useEffect(() => {
     if (mode === 'import' && lcuStatus === 'connected') {
       setLoadingLcu(true)
-      window.api.getLcuPages()
+      window.api
+        .getLcuPages()
         .then(setLcuPages)
         .finally(() => setLoadingLcu(false))
     }
@@ -55,7 +56,13 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
     if (!complete) return
     setSaving(true)
     try {
-      const data = { name: name.trim(), primaryStyleId, subStyleId, selectedPerkIds, championIds }
+      const data = {
+        name: name.trim(),
+        primaryStyleId,
+        subStyleId,
+        selectedPerkIds,
+        championIds
+      }
       if (page) {
         await window.api.updateRunePage(page.id, data)
       } else {
@@ -96,7 +103,9 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
               <div className="flex-1" />
             </>
           )}
-          <button onClick={onCancel} className="text-gray-500 hover:text-gray-300 text-xl">×</button>
+          <button onClick={onCancel} className="text-gray-500 hover:text-gray-300 text-xl">
+            ×
+          </button>
         </div>
 
         <div className="flex gap-2 mb-4">
@@ -130,9 +139,13 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
             {!page && mode === 'import' ? (
               <div>
                 {lcuStatus !== 'connected' && (
-                  <p className="text-yellow-400 text-sm mb-2">LCU not connected — open the League client first.</p>
+                  <p className="text-yellow-400 text-sm mb-2">
+                    LCU not connected — open the League client first.
+                  </p>
                 )}
-                {loadingLcu && <p className="text-gray-400 text-sm">Loading pages from client...</p>}
+                {loadingLcu && (
+                  <p className="text-gray-400 text-sm">Loading pages from client...</p>
+                )}
                 {!loadingLcu && lcuPages.length > 0 && (
                   <div className="space-y-1 max-h-64 overflow-y-auto">
                     <p className="text-xs text-gray-400 mb-2">Select a page to import:</p>

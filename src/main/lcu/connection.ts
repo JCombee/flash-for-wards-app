@@ -24,7 +24,10 @@ class LcuConnection extends EventEmitter {
     while (this.running) {
       try {
         this.emit('connecting')
-        const creds = await authenticate({ awaitConnection: true, pollInterval: 3000 })
+        const creds = await authenticate({
+          awaitConnection: true,
+          pollInterval: 3000
+        })
         this.credentials = creds
         this.emit('connected', { port: creds.port, credentials: creds })
 
@@ -44,11 +47,15 @@ class LcuConnection extends EventEmitter {
 
         await new Promise<void>((resolve) => {
           // league-connect v6 wraps a ws — try both event surfaces
-          const socket = (ws as unknown as { socket?: { on: (e: string, cb: () => void) => void } }).socket
+          const socket = (
+            ws as unknown as {
+              socket?: { on: (e: string, cb: () => void) => void }
+            }
+          ).socket
           if (socket) {
             socket.on('close', resolve)
           } else {
-            (ws as unknown as { on: (e: string, cb: () => void) => void }).on('close', resolve)
+            ;(ws as unknown as { on: (e: string, cb: () => void) => void }).on('close', resolve)
           }
         })
       } catch {

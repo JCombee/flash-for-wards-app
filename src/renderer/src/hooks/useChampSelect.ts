@@ -5,7 +5,11 @@ import type { ChampSelectPhase } from '../types'
 /** Minimal shape of the raw LCU champ-select session we consume. */
 interface ChampSelectSession {
   localPlayerCellId?: number
-  myTeam?: { cellId: number; championId?: number; championPickIntent?: number }[]
+  myTeam?: {
+    cellId: number
+    championId?: number
+    championPickIntent?: number
+  }[]
 }
 
 export function useChampSelect(): void {

@@ -1,0 +1,62 @@
+name: Bug report
+description: Something is broken
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, what happened instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the app with the League client running
+        2. Click ...
+        3. ...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Flash For Wards version
+      placeholder: '1.0.0'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lcu-status
+    attributes:
+      label: What did the status bar say?
+      options:
+        - Connected
+        - Connecting
+        - Disconnected
+        - Didn't look / not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Errors or logs
+      description: >
+        Any error message shown in the app. If it was an LCU error, include the
+        status code and response body.
+      render: text

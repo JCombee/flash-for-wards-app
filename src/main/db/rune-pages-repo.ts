@@ -28,12 +28,17 @@ function execRows(sql: string, params: (string | number | null)[] = []): Record<
   return rows
 }
 
-function execRow(sql: string, params: (string | number | null)[] = []): Record<string, unknown> | undefined {
+function execRow(
+  sql: string,
+  params: (string | number | null)[] = []
+): Record<string, unknown> | undefined {
   return execRows(sql, params)[0]
 }
 
 export function getAllRunePages(): StoredRunePage[] {
-  const rows = execRows('SELECT * FROM rune_pages ORDER BY pinned DESC, last_used_at DESC, created_at DESC')
+  const rows = execRows(
+    'SELECT * FROM rune_pages ORDER BY pinned DESC, last_used_at DESC, created_at DESC'
+  )
   return rows.map(rowToPage)
 }
 
@@ -50,7 +55,16 @@ export function createRunePage(
   getDb().run(
     `INSERT INTO rune_pages (id, name, primary_style_id, sub_style_id, selected_perk_ids, created_at, updated_at, champion_ids)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    [id, data.name, data.primaryStyleId, data.subStyleId, JSON.stringify(data.selectedPerkIds), now, now, JSON.stringify(data.championIds ?? [])]
+    [
+      id,
+      data.name,
+      data.primaryStyleId,
+      data.subStyleId,
+      JSON.stringify(data.selectedPerkIds),
+      now,
+      now,
+      JSON.stringify(data.championIds ?? [])
+    ]
   )
   persistDb()
   return getRunePageById(id)!
@@ -64,13 +78,34 @@ export function updateRunePage(
   const sets: string[] = ['updated_at = ?']
   const values: (string | number | null)[] = [now]
 
-  if (data.name !== undefined) { sets.push('name = ?'); values.push(data.name) }
-  if (data.primaryStyleId !== undefined) { sets.push('primary_style_id = ?'); values.push(data.primaryStyleId) }
-  if (data.subStyleId !== undefined) { sets.push('sub_style_id = ?'); values.push(data.subStyleId) }
-  if (data.selectedPerkIds !== undefined) { sets.push('selected_perk_ids = ?'); values.push(JSON.stringify(data.selectedPerkIds)) }
-  if (data.lastUsedAt !== undefined) { sets.push('last_used_at = ?'); values.push(data.lastUsedAt) }
-  if (data.pinned !== undefined) { sets.push('pinned = ?'); values.push(data.pinned ? 1 : 0) }
-  if (data.championIds !== undefined) { sets.push('champion_ids = ?'); values.push(JSON.stringify(data.championIds)) }
+  if (data.name !== undefined) {
+    sets.push('name = ?')
+    values.push(data.name)
+  }
+  if (data.primaryStyleId !== undefined) {
+    sets.push('primary_style_id = ?')
+    values.push(data.primaryStyleId)
+  }
+  if (data.subStyleId !== undefined) {
+    sets.push('sub_style_id = ?')
+    values.push(data.subStyleId)
+  }
+  if (data.selectedPerkIds !== undefined) {
+    sets.push('selected_perk_ids = ?')
+    values.push(JSON.stringify(data.selectedPerkIds))
+  }
+  if (data.lastUsedAt !== undefined) {
+    sets.push('last_used_at = ?')
+    values.push(data.lastUsedAt)
+  }
+  if (data.pinned !== undefined) {
+    sets.push('pinned = ?')
+    values.push(data.pinned ? 1 : 0)
+  }
+  if (data.championIds !== undefined) {
+    sets.push('champion_ids = ?')
+    values.push(JSON.stringify(data.championIds))
+  }
 
   values.push(id)
   getDb().run(`UPDATE rune_pages SET ${sets.join(', ')} WHERE id = ?`, values)

@@ -9,9 +9,11 @@ interface SidebarProps {
 
 function StatusDot({ status }: { status: string }) {
   const color =
-    status === 'connected' ? 'bg-green-400' :
-    status === 'connecting' ? 'bg-yellow-400 animate-pulse' :
-    'bg-gray-500'
+    status === 'connected'
+      ? 'bg-green-400'
+      : status === 'connecting'
+        ? 'bg-yellow-400 animate-pulse'
+        : 'bg-gray-500'
   return <span className={`inline-block w-2 h-2 rounded-full ${color}`} />
 }
 

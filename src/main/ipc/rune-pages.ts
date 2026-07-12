@@ -12,8 +12,9 @@ import type { StoredRunePage } from '@shared/index'
 export function registerRunePageHandlers(): void {
   ipcMain.handle('db:rune-pages:get', () => getAllRunePages())
 
-  ipcMain.handle('db:rune-pages:create', (_e, data: Omit<StoredRunePage, 'id' | 'createdAt' | 'updatedAt'>) =>
-    createRunePage(data)
+  ipcMain.handle(
+    'db:rune-pages:create',
+    (_e, data: Omit<StoredRunePage, 'id' | 'createdAt' | 'updatedAt'>) => createRunePage(data)
   )
 
   ipcMain.handle(
