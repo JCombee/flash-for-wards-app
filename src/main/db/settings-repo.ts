@@ -17,7 +17,8 @@ function rowToSettings(row: Record<string, unknown>): AppSettings {
     reservedPageId: (row['reserved_page_id'] as number | null) ?? null,
     reservedPageName: row['reserved_page_name'] as string,
     onboardingComplete: row['onboarding_complete'] === 1,
-    autoFocusOnChampSelect: row['auto_focus_on_champ_select'] === 1
+    autoFocusOnChampSelect: row['auto_focus_on_champ_select'] === 1,
+    launchOnStartup: row['launch_on_startup'] === 1
   }
 }
 
@@ -46,6 +47,10 @@ export function updateSettings(data: Partial<AppSettings>): AppSettings {
   if (data.autoFocusOnChampSelect !== undefined) {
     sets.push('auto_focus_on_champ_select = ?')
     values.push(data.autoFocusOnChampSelect ? 1 : 0)
+  }
+  if (data.launchOnStartup !== undefined) {
+    sets.push('launch_on_startup = ?')
+    values.push(data.launchOnStartup ? 1 : 0)
   }
 
   if (sets.length > 0) {

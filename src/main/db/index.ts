@@ -57,7 +57,8 @@ function runMigrations(): void {
       reserved_page_id INTEGER,
       reserved_page_name TEXT NOT NULL DEFAULT 'Flash For Wards Reserved',
       onboarding_complete INTEGER NOT NULL DEFAULT 0,
-      auto_focus_on_champ_select INTEGER NOT NULL DEFAULT 1
+      auto_focus_on_champ_select INTEGER NOT NULL DEFAULT 1,
+      launch_on_startup INTEGER NOT NULL DEFAULT 0
     );
 
     INSERT OR IGNORE INTO settings (id) VALUES (1);
@@ -74,6 +75,9 @@ function runMigrations(): void {
   }
   if (!tableHasColumn('rune_pages', 'champion_ids')) {
     getDb().run("ALTER TABLE rune_pages ADD COLUMN champion_ids TEXT NOT NULL DEFAULT '[]'")
+  }
+  if (!tableHasColumn('settings', 'launch_on_startup')) {
+    getDb().run('ALTER TABLE settings ADD COLUMN launch_on_startup INTEGER NOT NULL DEFAULT 0')
   }
 }
 

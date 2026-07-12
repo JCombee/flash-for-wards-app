@@ -2,12 +2,19 @@ import { ipcMain } from 'electron'
 import { getSettings, updateSettings } from '../db/settings-repo'
 import { getLcuPages } from '../lcu/rune-api'
 import { lcuConnection } from '../lcu/connection'
+import { applyLaunchOnStartup } from '../startup'
 import type { AppSettings } from '@shared/index'
 
 export function registerSettingsHandlers(): void {
   ipcMain.handle('db:settings:get', () => getSettings())
 
-  ipcMain.handle('db:settings:set', (_e, data: Partial<AppSettings>) => updateSettings(data))
+  ipcMain.handle('db:settings:set', (_e, data: Partial<AppSettings>) => {
+    const settings = updateSettings(data)
+    if (data.launchOnStartup !== undefined) {
+      applyLaunchOnStartup(settings.launchOnStartup)
+    }
+    return settings
+  })
 
   ipcMain.handle('lcu:find-reserved-page', async () => {
     if (!lcuConnection.isConnected()) {

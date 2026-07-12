@@ -10,6 +10,7 @@ import { registerLcuHandlers, setCurrentStatus } from './ipc/lcu'
 import { registerUpdaterHandlers } from './ipc/updater'
 import { initUpdater, stopUpdater } from './updater'
 import { getSettings } from './db/settings-repo'
+import { applyLaunchOnStartup } from './startup'
 import type { Credentials } from 'league-connect'
 import type { LcuStatus, ChampSelectPhase } from '@shared/index'
 
@@ -111,6 +112,10 @@ app.whenReady().then(async () => {
   })
 
   await initDb()
+
+  // Reassert the login item every boot — an update moves the exe, which leaves
+  // the registry entry pointing at the old path.
+  applyLaunchOnStartup(getSettings().launchOnStartup)
 
   registerRunePageHandlers()
   registerSettingsHandlers()
