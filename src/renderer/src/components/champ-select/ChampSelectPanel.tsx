@@ -31,12 +31,9 @@ export function ChampSelectPanel() {
   const preferred =
     currentChampionId > 0 ? sorted.filter((p) => p.championIds?.includes(currentChampionId)) : []
 
-  // Riot's recommended page, so a champion the user has no page for still has
-  // something to apply. Only surfaced when none of their own pages cover it.
-  const fallback =
-    preferred.length === 0 && currentChampionId > 0
-      ? getDefaultRunePage(currentChampionId)
-      : undefined
+  // Riot's recommended page for the picked champion — always available, even
+  // when the user has their own pages for them.
+  const fallback = currentChampionId > 0 ? getDefaultRunePage(currentChampionId) : undefined
   const fallbackPage: StoredRunePage | undefined = fallback && {
     id: `default:${fallback.championId}`,
     name: defaultPageName(fallback.championId),
@@ -203,8 +200,7 @@ export function ChampSelectPanel() {
             <Badge>{fallback?.position ?? 'DEFAULT'}</Badge>
           </div>
           <p className="text-xs text-gray-500 mb-2">
-            You have no page for this champion — this is the League client&apos;s own
-            recommendation.
+            The League client&apos;s own page for this champion. Save it to make it yours.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <RunePageCard
