@@ -21,6 +21,10 @@ publish:
 
 win:
   target: nsis
+  # Both icons come from `npm run gen:icon`. Point at the .ico explicitly: left to
+  # derive one from icon.png, electron-builder emits a 256px-only .ico and Windows
+  # downscales it into the taskbar, washing out the ring.
+  icon: build/icon.ico
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
