@@ -23,12 +23,7 @@ function ApplyButton({
   onApply: () => void
 }) {
   return (
-    <Button
-      variant={applied ? 'success' : 'info'}
-      size="sm"
-      disabled={disabled}
-      onClick={onApply}
-    >
+    <Button variant={applied ? 'success' : 'info'} size="sm" disabled={disabled} onClick={onApply}>
       {applying ? 'Applying…' : applied ? 'Applied' : 'Apply'}
     </Button>
   )

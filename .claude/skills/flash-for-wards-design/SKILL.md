@@ -14,23 +14,23 @@ copy, and the code in `src/renderer/src/components/ui/` is the canonical impleme
 `src/renderer/src/components/ui/` holds every primitive. Reach for these before writing a new
 `className` string; a new one-off button or modal in a feature component is a bug.
 
-| Primitive             | Use for                                                              |
-| --------------------- | -------------------------------------------------------------------- |
-| `Button`              | every button — `primary` / `secondary` / `ghost` / `danger` / `success` / `info`, `sm` / `md` |
-| `NavItem`             | sidebar rows; `live` renders the pulsing blue dot                    |
-| `Notice`              | inline status banner — `info` / `success` / `danger` / `warning`     |
-| `Input`               | single-line text fields                                              |
-| `Toggle`              | the app's one switch control (label + hint)                          |
-| `Tabs`                | segmented pill tabs                                                  |
-| `Badge`               | pill labels — `neutral` chips, `accent` chips with optional `onRemove` |
-| `StatusDot`           | LCU connection indicator                                             |
-| `Modal`               | scrim + centered panel; `strong` = darker scrim for blocking first-run flows |
-| `IconTile`            | selectable circular rune/champion icon (dim+grayscale → gold ring)   |
+| Primitive   | Use for                                                                                       |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| `Button`    | every button — `primary` / `secondary` / `ghost` / `danger` / `success` / `info`, `sm` / `md` |
+| `NavItem`   | sidebar rows; `live` renders the pulsing blue dot                                             |
+| `Notice`    | inline status banner — `info` / `success` / `danger` / `warning`                              |
+| `Input`     | single-line text fields                                                                       |
+| `Toggle`    | the app's one switch control (label + hint)                                                   |
+| `Tabs`      | segmented pill tabs                                                                           |
+| `Badge`     | pill labels — `neutral` chips, `accent` chips with optional `onRemove`                        |
+| `StatusDot` | LCU connection indicator                                                                      |
+| `Modal`     | scrim + centered panel; `strong` = darker scrim for blocking first-run flows                  |
+| `IconTile`  | selectable circular rune/champion icon (dim+grayscale → gold ring)                            |
 
 ## Foundations
 
 - **Palette.** Near-black `#010A13` (app) and `#0A1628` (panels/cards), a single gold accent
-  `#C89B3C`, warm off-white `#F0E6D3` for headings, and cyan-blue `#0BC4E3` reserved *only* for
+  `#C89B3C`, warm off-white `#F0E6D3` for headings, and cyan-blue `#0BC4E3` reserved _only_ for
   live/in-progress states (champ select). Status colors are stock Tailwind green/red/yellow-400.
   Tokens live in `src/renderer/src/styles/tokens.css` as RGB triplets; Tailwind composes them
   with alpha (`border-lol-gold/20`).
