@@ -30,16 +30,47 @@ Applying a page does not create a new page in the client — it **overwrites the
 
 ## Install
 
-Grab an installer from [Releases](https://github.com/JCombee/flash-for-wards-app/releases), or build from source:
+Prebuilt installers for every release are on the [Releases page](https://github.com/JCombee/flash-for-wards-app/releases/latest). Grab the one for your platform — you don't need Node.js, a compiler, or a checkout of this repo.
+
+Once installed, the app updates itself: it checks the Releases feed on startup, downloads new versions in the background, and installs them on quit.
+
+### Windows
+
+1. Download the `.exe` installer (`Flash For Wards-<version>-setup.exe`) from the latest release.
+2. Run it. The installer is not code-signed, so Windows SmartScreen will show a **"Windows protected your PC"** dialog. Click **More info → Run anyway** to continue.
+3. Pick an install directory (or accept the default) and finish the wizard.
+4. Launch **Flash For Wards** from the Start menu.
+
+### macOS
+
+1. Download the `.dmg` from the latest release. Releases are built on Apple Silicon runners, so the `.dmg` targets **arm64** (M1/M2/M3/M4). On an Intel Mac, [build from source](#build-from-source) instead.
+2. Open the `.dmg` and drag **Flash For Wards** into your **Applications** folder.
+3. The app is not notarized, so Gatekeeper blocks the first launch. Open it once via **right-click → Open** in Applications and confirm the prompt. If macOS still refuses ("app is damaged"), clear the quarantine flag:
+
+   ```bash
+   xattr -dr com.apple.quarantine "/Applications/Flash For Wards.app"
+   ```
+
+4. Subsequent launches work normally.
+
+### Linux
+
+Download the `.AppImage`, mark it executable (`chmod +x`), and run it.
+
+## Build from source
+
+Only needed if you want to modify the app or you'd rather not run an unsigned binary. Requires **Node.js 20+**.
 
 ```bash
 git clone git@github.com:JCombee/flash-for-wards-app.git
 cd flash-for-wards-app
 npm install
-npm run build:win   # or build:mac / build:linux
+npm run build:win     # or build:mac / build:linux
 ```
 
-Requires Node.js 20+.
+The installer lands in `dist/`. Build on the platform you're targeting — cross-compiling Electron installers is not supported here.
+
+To run without packaging, use `npm run dev` (see [Development](#development)).
 
 ## First run
 
