@@ -17,6 +17,7 @@ export interface AppSettings {
   reservedPageName: string
   onboardingComplete: boolean
   autoFocusOnChampSelect: boolean
+  launchOnStartup: boolean
 }
 
 export interface LcuRunePage {

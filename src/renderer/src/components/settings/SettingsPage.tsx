@@ -3,6 +3,35 @@ import { useAppStore } from '../../stores/app-store'
 import { useSettings } from '../../hooks/useSettings'
 import type { LcuRunePage } from '../../types'
 
+function Toggle({
+  checked,
+  onToggle,
+  label,
+  hint
+}: {
+  checked: boolean
+  onToggle: () => void
+  label: string
+  hint: string
+}) {
+  return (
+    <label className="flex items-center gap-3 cursor-pointer">
+      <div
+        onClick={onToggle}
+        className={`w-10 h-6 shrink-0 rounded-full transition-colors relative ${checked ? 'bg-lol-blue' : 'bg-gray-600'}`}
+      >
+        <span
+          className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${checked ? 'left-5' : 'left-1'}`}
+        />
+      </div>
+      <div>
+        <p className="text-sm text-gray-200">{label}</p>
+        <p className="text-xs text-gray-500">{hint}</p>
+      </div>
+    </label>
+  )
+}
+
 export function SettingsPage() {
   const settings = useAppStore((s) => s.settings)
   const lcuStatus = useAppStore((s) => s.lcuStatus)
@@ -46,6 +75,11 @@ export function SettingsPage() {
   async function toggleAutoFocus() {
     if (!settings) return
     await update({ autoFocusOnChampSelect: !settings.autoFocusOnChampSelect })
+  }
+
+  async function toggleLaunchOnStartup() {
+    if (!settings) return
+    await update({ launchOnStartup: !settings.launchOnStartup })
   }
 
   async function resetOnboarding() {
@@ -122,23 +156,19 @@ export function SettingsPage() {
         <h3 className="text-sm font-semibold text-lol-gold mb-3 uppercase tracking-wider">
           Behavior
         </h3>
-        <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4">
-          <label className="flex items-center gap-3 cursor-pointer">
-            <div
-              onClick={toggleAutoFocus}
-              className={`w-10 h-6 rounded-full transition-colors relative ${settings.autoFocusOnChampSelect ? 'bg-lol-blue' : 'bg-gray-600'}`}
-            >
-              <span
-                className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${settings.autoFocusOnChampSelect ? 'left-5' : 'left-1'}`}
-              />
-            </div>
-            <div>
-              <p className="text-sm text-gray-200">Bring window to front during champion select</p>
-              <p className="text-xs text-gray-500">
-                App will focus automatically when a game starts
-              </p>
-            </div>
-          </label>
+        <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4 space-y-4">
+          <Toggle
+            checked={settings.autoFocusOnChampSelect}
+            onToggle={toggleAutoFocus}
+            label="Bring window to front during champion select"
+            hint="App will focus automatically when a game starts"
+          />
+          <Toggle
+            checked={settings.launchOnStartup}
+            onToggle={toggleLaunchOnStartup}
+            label="Launch on system startup"
+            hint="Start Flash For Wards automatically when you log in"
+          />
         </div>
       </section>
 
