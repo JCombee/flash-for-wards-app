@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
 import { useRunePages } from '../../hooks/useRunePages'
+import { RecommendedPages } from './RecommendedPages'
 import { RunePageCard } from './RunePageCard'
 import { RunePageEditor } from './RunePageEditor'
 import { Button } from '../ui/Button'
@@ -52,7 +53,8 @@ export function RunePageList() {
         <div className="text-center py-16 text-gray-500">
           <p className="text-lg mb-2">No rune pages yet</p>
           <p className="text-sm">
-            Click &quot;+ New Page&quot; to create your first saved rune page.
+            Click &quot;+ New Page&quot; to create your first saved rune page, or save a recommended
+            one above.
           </p>
         </div>
       ) : (
@@ -69,6 +71,10 @@ export function RunePageList() {
           ))}
         </div>
       )}
+
+      <div className="mt-8 pt-6 border-t border-lol-gold/10">
+        <RecommendedPages onSaved={refresh} />
+      </div>
 
       {creatingNew && (
         <RunePageEditor onSave={handleSaved} onCancel={() => setCreatingNew(false)} />
