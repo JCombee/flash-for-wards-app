@@ -56,18 +56,18 @@ Screenshots land in `.shots/` (gitignored). Override with
 
 ### Commands
 
-| command | what it does |
-|---|---|
-| `launch` | launch built app, wait for the rune-page list to render |
-| `ss [name]` | screenshot → `.shots/<name>.png` |
-| `click <css-sel>` | click element via DOM |
-| `click-text <text>` | click the button/link with that visible label |
-| `type <text>` / `press <key>` | keyboard input to the focused element |
-| `wait <css-sel>` | wait for selector, 10s timeout |
-| `eval <js>` | evaluate in the renderer, print JSON |
-| `text [css-sel]` | print innerText |
-| `status` | print the LCU status line from the status bar |
-| `quit` | close the app and exit |
+| command                       | what it does                                            |
+| ----------------------------- | ------------------------------------------------------- |
+| `launch`                      | launch built app, wait for the rune-page list to render |
+| `ss [name]`                   | screenshot → `.shots/<name>.png`                        |
+| `click <css-sel>`             | click element via DOM                                   |
+| `click-text <text>`           | click the button/link with that visible label           |
+| `type <text>` / `press <key>` | keyboard input to the focused element                   |
+| `wait <css-sel>`              | wait for selector, 10s timeout                          |
+| `eval <js>`                   | evaluate in the renderer, print JSON                    |
+| `text [css-sel]`              | print innerText                                         |
+| `status`                      | print the LCU status line from the status bar           |
+| `quit`                        | close the app and exit                                  |
 
 Lines starting with `#` are comments.
 
@@ -84,7 +84,7 @@ npm run dev   # electron-vite dev, hot reload, opens a window
   practical handle. That's why the driver leads with it.
 - **`npm run dev` is not the driver's target.** The driver launches
   `electron.exe` against `out/`, so an unbuilt or stale `out/` silently
-  shows you the *previous* version of your change. Always `npm run build`
+  shows you the _previous_ version of your change. Always `npm run build`
   first. The driver hard-errors if `out/main/index.js` is missing.
 - **The app talks to a real League client.** If the client is running,
   `status` reads `connected` and `⬇ Import from client` in the rune editor

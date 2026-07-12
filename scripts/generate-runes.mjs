@@ -80,11 +80,13 @@ async function main() {
     const slots = style.slots
       .filter((slot) => slot.type === 'kKeyStone' || slot.type === 'kMixedRegularSplashable')
       .map((slot) =>
-        slot.perks.filter((id) => id !== 0).map((id) => {
-          const perk = perkById.get(id)
-          if (!perk) throw new Error(`perk ${id} in style ${styleId} missing from perks.json`)
-          return perk
-        })
+        slot.perks
+          .filter((id) => id !== 0)
+          .map((id) => {
+            const perk = perkById.get(id)
+            if (!perk) throw new Error(`perk ${id} in style ${styleId} missing from perks.json`)
+            return perk
+          })
       )
     return {
       id: style.id,

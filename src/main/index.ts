@@ -121,12 +121,15 @@ app.whenReady().then(async () => {
     stopPolling()
   })
 
-  lcuConnection.on('connected', ({ port, credentials }: { port: number; credentials: Credentials }) => {
-    const status: LcuStatus = { status: 'connected', port }
-    setCurrentStatus(status)
-    sendToRenderer('lcu:status', status)
-    startPolling(credentials)
-  })
+  lcuConnection.on(
+    'connected',
+    ({ port, credentials }: { port: number; credentials: Credentials }) => {
+      const status: LcuStatus = { status: 'connected', port }
+      setCurrentStatus(status)
+      sendToRenderer('lcu:status', status)
+      startPolling(credentials)
+    }
+  )
 
   lcuConnection.on('disconnected', () => {
     const status: LcuStatus = { status: 'disconnected' }

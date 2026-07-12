@@ -52,7 +52,11 @@ export function RuneTreeEditor({
     if (clearsSecondary) {
       next[4] = next[5] = 0
     }
-    emit({ primaryStyleId: styleId, subStyleId: clearsSecondary ? 0 : subStyleId, selectedPerkIds: next })
+    emit({
+      primaryStyleId: styleId,
+      subStyleId: clearsSecondary ? 0 : subStyleId,
+      selectedPerkIds: next
+    })
   }
 
   function chooseSecondary(styleId: number) {
@@ -76,14 +80,27 @@ export function RuneTreeEditor({
     const r4 = next[4] ? rowOf(next[4]) : -1
     const r5 = next[5] ? rowOf(next[5]) : -1
 
-    if (next[4] === perkId) { next[4] = 0; emit({ selectedPerkIds: next }); return }
-    if (next[5] === perkId) { next[5] = 0; emit({ selectedPerkIds: next }); return }
+    if (next[4] === perkId) {
+      next[4] = 0
+      emit({ selectedPerkIds: next })
+      return
+    }
+    if (next[5] === perkId) {
+      next[5] = 0
+      emit({ selectedPerkIds: next })
+      return
+    }
 
-    if (r4 === rowIndex) { next[4] = perkId } // replace within same row
-    else if (r5 === rowIndex) { next[5] = perkId }
-    else if (!next[4]) { next[4] = perkId }
-    else if (!next[5]) { next[5] = perkId }
-    else return // both slots full, on two other rows — locked until deselect
+    if (r4 === rowIndex) {
+      next[4] = perkId
+    } // replace within same row
+    else if (r5 === rowIndex) {
+      next[5] = perkId
+    } else if (!next[4]) {
+      next[4] = perkId
+    } else if (!next[5]) {
+      next[5] = perkId
+    } else return // both slots full, on two other rows — locked until deselect
     emit({ selectedPerkIds: next })
   }
 
@@ -255,9 +272,7 @@ function SlotRow({
   const dim = size === 'lg' ? 'w-12 h-12' : size === 'sm' ? 'w-8 h-8' : 'w-10 h-10'
   return (
     <div>
-      {heading && (
-        <p className="text-xs uppercase tracking-wide text-gray-500 mb-1.5">{heading}</p>
-      )}
+      {heading && <p className="text-xs uppercase tracking-wide text-gray-500 mb-1.5">{heading}</p>}
       <div className="flex gap-3">
         {perks.map((p) => {
           const selected = isSelected(p)
@@ -287,7 +302,11 @@ function RuneTooltip({ hover }: { hover: Hover }) {
   return (
     <div
       className="fixed z-50 pointer-events-none w-72 max-w-[90vw] bg-lol-dark border border-lol-gold/40 rounded px-3 py-2 shadow-lg"
-      style={{ left: hover.x, top: hover.y, transform: 'translate(-50%, -100%)' }}
+      style={{
+        left: hover.x,
+        top: hover.y,
+        transform: 'translate(-50%, -100%)'
+      }}
     >
       <p className="text-lol-gold-light font-semibold text-xs mb-0.5">{hover.perk.name}</p>
       {hover.perk.shortDesc && (

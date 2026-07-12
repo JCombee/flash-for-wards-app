@@ -1,7 +1,10 @@
 import { getDb, persistDb } from './index'
 import type { AppSettings } from '@shared/index'
 
-function execRow(sql: string, params: (string | number | null)[] = []): Record<string, unknown> | undefined {
+function execRow(
+  sql: string,
+  params: (string | number | null)[] = []
+): Record<string, unknown> | undefined {
   const stmt = getDb().prepare(sql)
   stmt.bind(params)
   const row = stmt.step() ? (stmt.getAsObject() as Record<string, unknown>) : undefined
@@ -28,10 +31,22 @@ export function updateSettings(data: Partial<AppSettings>): AppSettings {
   const sets: string[] = []
   const values: (string | number | null)[] = []
 
-  if (data.reservedPageId !== undefined) { sets.push('reserved_page_id = ?'); values.push(data.reservedPageId) }
-  if (data.reservedPageName !== undefined) { sets.push('reserved_page_name = ?'); values.push(data.reservedPageName) }
-  if (data.onboardingComplete !== undefined) { sets.push('onboarding_complete = ?'); values.push(data.onboardingComplete ? 1 : 0) }
-  if (data.autoFocusOnChampSelect !== undefined) { sets.push('auto_focus_on_champ_select = ?'); values.push(data.autoFocusOnChampSelect ? 1 : 0) }
+  if (data.reservedPageId !== undefined) {
+    sets.push('reserved_page_id = ?')
+    values.push(data.reservedPageId)
+  }
+  if (data.reservedPageName !== undefined) {
+    sets.push('reserved_page_name = ?')
+    values.push(data.reservedPageName)
+  }
+  if (data.onboardingComplete !== undefined) {
+    sets.push('onboarding_complete = ?')
+    values.push(data.onboardingComplete ? 1 : 0)
+  }
+  if (data.autoFocusOnChampSelect !== undefined) {
+    sets.push('auto_focus_on_champ_select = ?')
+    values.push(data.autoFocusOnChampSelect ? 1 : 0)
+  }
 
   if (sets.length > 0) {
     values.push(1)

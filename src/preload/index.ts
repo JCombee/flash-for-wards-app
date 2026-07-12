@@ -9,30 +9,33 @@ import type {
 
 contextBridge.exposeInMainWorld('api', {
   // Rune pages CRUD
-  getRunePages: (): Promise<StoredRunePage[]> =>
-    ipcRenderer.invoke('db:rune-pages:get'),
+  getRunePages: (): Promise<StoredRunePage[]> => ipcRenderer.invoke('db:rune-pages:get'),
 
-  createRunePage: (page: Omit<StoredRunePage, 'id' | 'createdAt' | 'updatedAt'>): Promise<StoredRunePage> =>
-    ipcRenderer.invoke('db:rune-pages:create', page),
+  createRunePage: (
+    page: Omit<StoredRunePage, 'id' | 'createdAt' | 'updatedAt'>
+  ): Promise<StoredRunePage> => ipcRenderer.invoke('db:rune-pages:create', page),
 
-  updateRunePage: (id: string, page: Partial<Omit<StoredRunePage, 'id' | 'createdAt'>>): Promise<StoredRunePage> =>
-    ipcRenderer.invoke('db:rune-pages:update', id, page),
+  updateRunePage: (
+    id: string,
+    page: Partial<Omit<StoredRunePage, 'id' | 'createdAt'>>
+  ): Promise<StoredRunePage> => ipcRenderer.invoke('db:rune-pages:update', id, page),
 
-  deleteRunePage: (id: string): Promise<void> =>
-    ipcRenderer.invoke('db:rune-pages:delete', id),
+  deleteRunePage: (id: string): Promise<void> => ipcRenderer.invoke('db:rune-pages:delete', id),
 
   importFromLcu: (lcuPageId: number): Promise<StoredRunePage> =>
     ipcRenderer.invoke('db:rune-pages:import-from-lcu', lcuPageId),
 
   // Settings
-  getSettings: (): Promise<AppSettings> =>
-    ipcRenderer.invoke('db:settings:get'),
+  getSettings: (): Promise<AppSettings> => ipcRenderer.invoke('db:settings:get'),
 
   setSettings: (settings: Partial<AppSettings>): Promise<AppSettings> =>
     ipcRenderer.invoke('db:settings:set', settings),
 
-  findReservedPage: (): Promise<{ found: boolean; pageId?: number; pageName?: string }> =>
-    ipcRenderer.invoke('lcu:find-reserved-page'),
+  findReservedPage: (): Promise<{
+    found: boolean
+    pageId?: number
+    pageName?: string
+  }> => ipcRenderer.invoke('lcu:find-reserved-page'),
 
   // LCU operations
   getLcuPages: () => ipcRenderer.invoke('lcu:pages:list'),
@@ -40,8 +43,7 @@ contextBridge.exposeInMainWorld('api', {
   applyRunePage: (storedPageId: string): Promise<ApplyResult> =>
     ipcRenderer.invoke('lcu:pages:apply', storedPageId),
 
-  getLcuStatus: (): Promise<LcuStatus> =>
-    ipcRenderer.invoke('lcu:status:get'),
+  getLcuStatus: (): Promise<LcuStatus> => ipcRenderer.invoke('lcu:status:get'),
 
   // Push subscriptions
   onLcuStatus: (cb: (status: LcuStatus) => void) => {

@@ -143,7 +143,10 @@ const COMMANDS = {
   }
 }
 
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 
 // Piped stdin emits every line before the first await resolves — serialize or
 // commands run out of order.

@@ -55,7 +55,9 @@ export function RunePageList() {
       {runePages.length === 0 ? (
         <div className="text-center py-16 text-gray-500">
           <p className="text-lg mb-2">No rune pages yet</p>
-          <p className="text-sm">Click &quot;+ New Page&quot; to create your first saved rune page.</p>
+          <p className="text-sm">
+            Click &quot;+ New Page&quot; to create your first saved rune page.
+          </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -76,7 +78,11 @@ export function RunePageList() {
         <RunePageEditor onSave={handleSaved} onCancel={() => setCreatingNew(false)} />
       )}
       {editingPage && (
-        <RunePageEditor page={editingPage} onSave={handleSaved} onCancel={() => setEditingPage(null)} />
+        <RunePageEditor
+          page={editingPage}
+          onSave={handleSaved}
+          onCancel={() => setEditingPage(null)}
+        />
       )}
     </div>
   )

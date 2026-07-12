@@ -4,9 +4,7 @@ import { resolve } from 'path'
 
 export default defineConfig({
   main: {
-    plugins: [
-      externalizeDepsPlugin({ exclude: ['league-connect'] })
-    ],
+    plugins: [externalizeDepsPlugin({ exclude: ['league-connect'] })],
     build: {
       rollupOptions: {
         // bufferutil and utf-8-validate are optional native addons for ws — not installed, mark external

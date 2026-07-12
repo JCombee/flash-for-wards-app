@@ -33,15 +33,23 @@ export function registerLcuHandlers(): void {
     try {
       const credentials = lcuConnection.getCredentials()
       const lcuPages = await getLcuPages(credentials)
-      const reservedLcuPage = lcuPages.find(p => p.id === settings.reservedPageId)
+      const reservedLcuPage = lcuPages.find((p) => p.id === settings.reservedPageId)
       if (!reservedLcuPage) return { success: false, error: 'reserved_page_missing' }
       await overwriteLcuPage(credentials, settings.reservedPageId, reservedLcuPage.name, page)
       updateLastUsed(storedPageId, Date.now())
       return { success: true }
     } catch (err: unknown) {
-      const e = err as { statusCode?: number; message?: string; body?: string }
+      const e = err as {
+        statusCode?: number
+        message?: string
+        body?: string
+      }
       if (e.statusCode === 404) return { success: false, error: 'reserved_page_missing' }
-      return { success: false, error: 'unknown', errorDetail: e.message ?? String(err) }
+      return {
+        success: false,
+        error: 'unknown',
+        errorDetail: e.message ?? String(err)
+      }
     }
   })
 }

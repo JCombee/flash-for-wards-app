@@ -46,6 +46,7 @@ export interface ChampSelectPhase {
 
 export interface ApplyResult {
   success: boolean
-  error?: 'page_not_found' | 'no_reserved_page' | 'reserved_page_missing' | 'lcu_disconnected' | 'unknown'
+  error?:
+    'page_not_found' | 'no_reserved_page' | 'reserved_page_missing' | 'lcu_disconnected' | 'unknown'
   errorDetail?: string
 }

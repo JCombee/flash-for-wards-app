@@ -8,14 +8,22 @@ export function SettingsPage() {
   const lcuStatus = useAppStore((s) => s.lcuStatus)
   const { update, refresh } = useSettings()
   const [detecting, setDetecting] = useState(false)
-  const [detectResult, setDetectResult] = useState<{ found: boolean; pageId?: number; error?: string; message?: string } | null>(null)
+  const [detectResult, setDetectResult] = useState<{
+    found: boolean
+    pageId?: number
+    error?: string
+    message?: string
+  } | null>(null)
   const [lcuPages, setLcuPages] = useState<LcuRunePage[]>([])
   const [loadingPages, setLoadingPages] = useState(false)
 
   useEffect(() => {
     if (lcuStatus === 'connected') {
       setLoadingPages(true)
-      window.api.getLcuPages().then(setLcuPages).finally(() => setLoadingPages(false))
+      window.api
+        .getLcuPages()
+        .then(setLcuPages)
+        .finally(() => setLoadingPages(false))
     }
   }, [lcuStatus])
 
@@ -51,14 +59,15 @@ export function SettingsPage() {
       <h2 className="text-lg font-semibold text-lol-gold-light mb-6">Settings</h2>
 
       <section className="mb-8">
-        <h3 className="text-sm font-semibold text-lol-gold mb-3 uppercase tracking-wider">Reserved Rune Page</h3>
+        <h3 className="text-sm font-semibold text-lol-gold mb-3 uppercase tracking-wider">
+          Reserved Rune Page
+        </h3>
         <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4 space-y-4">
           <div>
             <p className="text-xs text-gray-400 mb-1">Current reserved page</p>
             {settings.reservedPageId ? (
               <p className="text-sm text-white">
-                ID: <span className="text-lol-gold font-mono">{settings.reservedPageId}</span>
-                {' '}
+                ID: <span className="text-lol-gold font-mono">{settings.reservedPageId}</span>{' '}
                 <span className="text-gray-500 text-xs">({settings.reservedPageName})</span>
               </p>
             ) : (
@@ -84,8 +93,8 @@ export function SettingsPage() {
               {detectResult.error === 'lcu_disconnected'
                 ? 'Client not connected — open League client first.'
                 : detectResult.error === 'request_failed'
-                ? `Request failed: ${detectResult.message ?? 'unknown'}`
-                : `No page named "${settings.reservedPageName}" found.`}
+                  ? `Request failed: ${detectResult.message ?? 'unknown'}`
+                  : `No page named "${settings.reservedPageName}" found.`}
             </p>
           )}
 
@@ -99,7 +108,9 @@ export function SettingsPage() {
               >
                 <option value="">— select a page —</option>
                 {lcuPages.map((p) => (
-                  <option key={p.id} value={p.id}>{p.name}</option>
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
                 ))}
               </select>
             </div>
@@ -108,7 +119,9 @@ export function SettingsPage() {
       </section>
 
       <section className="mb-8">
-        <h3 className="text-sm font-semibold text-lol-gold mb-3 uppercase tracking-wider">Behavior</h3>
+        <h3 className="text-sm font-semibold text-lol-gold mb-3 uppercase tracking-wider">
+          Behavior
+        </h3>
         <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4">
           <label className="flex items-center gap-3 cursor-pointer">
             <div
@@ -121,7 +134,9 @@ export function SettingsPage() {
             </div>
             <div>
               <p className="text-sm text-gray-200">Bring window to front during champion select</p>
-              <p className="text-xs text-gray-500">App will focus automatically when a game starts</p>
+              <p className="text-xs text-gray-500">
+                App will focus automatically when a game starts
+              </p>
             </div>
           </label>
         </div>
@@ -130,7 +145,9 @@ export function SettingsPage() {
       <section>
         <h3 className="text-sm font-semibold text-lol-gold mb-3 uppercase tracking-wider">Setup</h3>
         <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4">
-          <p className="text-sm text-gray-400 mb-3">Re-run the first-time setup to change your reserved page.</p>
+          <p className="text-sm text-gray-400 mb-3">
+            Re-run the first-time setup to change your reserved page.
+          </p>
           <button
             onClick={resetOnboarding}
             className="px-3 py-2 bg-white/10 hover:bg-white/20 text-gray-300 rounded text-sm transition-colors"

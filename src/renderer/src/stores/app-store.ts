@@ -48,5 +48,9 @@ export const useAppStore = create<AppStore>((set) => ({
   setCurrentChampionId: (id) => set({ currentChampionId: id }),
   setSelectedPageForApply: (id) => set({ selectedPageForApply: id }),
   setApplyResult: (status, name, error) =>
-    set({ lastApplyStatus: status, lastAppliedName: name ?? null, lastApplyError: error ?? null })
+    set({
+      lastApplyStatus: status,
+      lastAppliedName: name ?? null,
+      lastApplyError: error ?? null
+    })
 }))
