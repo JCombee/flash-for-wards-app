@@ -11,7 +11,7 @@ import type { ApplyResult, StoredRunePage } from '../../types'
 
 // The card's action slot stops click propagation, so this needs its own handler
 // rather than relying on the card's onClick.
-function ApplyBadge({
+function ApplyButton({
   applying,
   applied,
   disabled,
@@ -23,20 +23,9 @@ function ApplyBadge({
   onApply: () => void
 }) {
   return (
-    <button
-      type="button"
-      disabled={disabled}
-      onClick={onApply}
-      className={`text-xs font-semibold px-3 py-1 rounded transition-colors ${
-        applying
-          ? 'bg-gray-600 text-gray-300'
-          : applied
-            ? 'bg-green-600 text-white'
-            : 'bg-lol-blue text-lol-dark'
-      } ${disabled ? 'cursor-not-allowed' : ''}`}
-    >
+    <Button variant={applied ? 'success' : 'info'} size="sm" disabled={disabled} onClick={onApply}>
       {applying ? 'Applying…' : applied ? 'Applied' : 'Apply'}
-    </button>
+    </Button>
   )
 }
 
@@ -149,7 +138,7 @@ export function ChampSelectPanel() {
     return (
       <div className="flex-1 p-6 overflow-y-auto">
         <div className="mb-4">
-          <h2 className="text-lol-blue text-lg font-bold mb-1">Champion Select</h2>
+          <h2 className="text-lg font-semibold text-lol-gold-light mb-1">Champion Select</h2>
           <p className="text-gray-400 text-sm">
             Rune pages can only be applied while you&apos;re in champion select.
           </p>
@@ -186,7 +175,7 @@ export function ChampSelectPanel() {
         disabled={!!applyingId}
         onClick={() => applyPage(page.id, page.name)}
         actions={
-          <ApplyBadge
+          <ApplyButton
             applying={isApplying}
             applied={wasApplied}
             disabled={!!applyingId}
@@ -200,7 +189,7 @@ export function ChampSelectPanel() {
   return (
     <div className="flex-1 p-6 overflow-y-auto">
       <div className="mb-4">
-        <h2 className="text-lol-blue text-lg font-bold mb-1">Champion Select</h2>
+        <h2 className="text-lg font-semibold text-lol-gold-light mb-1">Champion Select</h2>
         <p className="text-gray-400 text-sm">
           Click a rune page to apply it to your reserved slot.
         </p>
@@ -281,7 +270,7 @@ export function ChampSelectPanel() {
                   >
                     {savingDefault ? 'Saving…' : 'Save'}
                   </Button>
-                  <ApplyBadge
+                  <ApplyButton
                     applying={applyingId === fallbackPage.id}
                     applied={lastApplyStatus === 'success' && lastAppliedId === fallbackPage.id}
                     disabled={!!applyingId}

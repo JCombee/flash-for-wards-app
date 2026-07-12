@@ -11,6 +11,7 @@ import { registerUpdaterHandlers } from './ipc/updater'
 import { initUpdater, stopUpdater } from './updater'
 import { getSettings } from './db/settings-repo'
 import { applyLaunchOnStartup } from './startup'
+import icon from '../../build/icon.png?asset'
 import type { Credentials } from 'league-connect'
 import type { LcuStatus, ChampSelectPhase } from '@shared/index'
 
@@ -24,6 +25,9 @@ function createWindow(): void {
     height: 670,
     show: false,
     autoHideMenuBar: true,
+    // The packaged .exe gets its icon from build/ via electron-builder; this is
+    // what the window and taskbar show while running (notably in dev).
+    icon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false,

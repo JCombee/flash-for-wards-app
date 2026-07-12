@@ -11,7 +11,5 @@ const VARIANTS: Record<Variant, string> = {
 
 /** Inline status banner. Depth comes from the border, per the design system — no shadow. */
 export function Notice({ variant, children }: { variant: Variant; children: ReactNode }) {
-  return (
-    <div className={`px-4 py-2 border rounded text-sm ${VARIANTS[variant]}`}>{children}</div>
-  )
+  return <div className={`px-4 py-2 border rounded text-sm ${VARIANTS[variant]}`}>{children}</div>
 }
