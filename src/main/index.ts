@@ -19,6 +19,9 @@ let mainWindow: BrowserWindow | null = null
 let pollTimer: NodeJS.Timeout | null = null
 let lastPolledPhase = ''
 
+/** How long the always-on-top flag stays set while the raise lands. */
+const RAISE_SETTLE_MS = 300
+
 function createWindow(): void {
   mainWindow = new BrowserWindow({
     width: 900,
@@ -70,14 +73,29 @@ function handlePhaseChange(phase: string): void {
 
   if (champSelectPhase.active) {
     const settings = getSettings()
-    if (settings.autoFocusOnChampSelect) {
-      mainWindow.setAlwaysOnTop(true, 'screen-saver')
-      mainWindow.show()
-      mainWindow.focus()
-    }
-  } else {
-    mainWindow.setAlwaysOnTop(false)
+    if (settings.autoFocusOnChampSelect) raiseOnce()
   }
+}
+
+/**
+ * Bring the window to the front once, then let it behave like any other window —
+ * clicking back to the client must bury it again.
+ *
+ * The always-on-top flag is the only way to surface above the fullscreen LoL
+ * client on Windows ('screen-saver' level), so we set it purely to win the raise
+ * and drop it on the next tick. Leaving it set would pin the window over the
+ * game for the whole of champ select.
+ */
+function raiseOnce(): void {
+  if (!mainWindow || mainWindow.isDestroyed()) return
+  mainWindow.setAlwaysOnTop(true, 'screen-saver')
+  mainWindow.show()
+  mainWindow.focus()
+  // Give the compositor a beat to actually perform the raise before dropping the
+  // flag — clearing it in the same tick can lose the race against the game.
+  setTimeout(() => {
+    if (mainWindow && !mainWindow.isDestroyed()) mainWindow.setAlwaysOnTop(false)
+  }, RAISE_SETTLE_MS)
 }
 
 function startPolling(credentials: Credentials): void {
