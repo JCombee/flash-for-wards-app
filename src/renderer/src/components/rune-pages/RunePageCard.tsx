@@ -1,6 +1,7 @@
 import React from 'react'
 import type { StoredRunePage } from '../../types'
 import { STYLE_BY_ID, PERK_BY_ID } from '../../data/runes'
+import { CHAMPION_BY_ID } from '../../data/champions'
 
 interface RunePageCardProps {
   page: StoredRunePage
@@ -31,6 +32,9 @@ export function RunePageCard({
   const primaryName = STYLE_BY_ID.get(page.primaryStyleId)?.name ?? `Style ${page.primaryStyleId}`
   const subName = STYLE_BY_ID.get(page.subStyleId)?.name ?? `Style ${page.subStyleId}`
   const keystone = PERK_BY_ID.get(page.selectedPerkIds?.[0] ?? 0)
+  const champions = (page.championIds ?? [])
+    .map((id) => CHAMPION_BY_ID.get(id))
+    .filter((c): c is NonNullable<typeof c> => !!c)
 
   return (
     <div
@@ -107,6 +111,20 @@ export function RunePageCard({
         <span className="text-gray-600">/</span>
         <span className="px-2 py-0.5 bg-black/30 rounded">{subName}</span>
       </div>
+
+      {champions.length > 0 && (
+        <div className="flex flex-wrap gap-1 mt-2">
+          {champions.map((c) => (
+            <img
+              key={c.id}
+              src={c.iconUrl}
+              alt={c.name}
+              title={c.name}
+              className="w-5 h-5 rounded-sm"
+            />
+          ))}
+        </div>
+      )}
 
       {page.lastUsedAt && (
         <p className="text-xs text-gray-600 mt-2">

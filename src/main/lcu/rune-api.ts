@@ -67,6 +67,11 @@ export function getGameflowPhase(credentials: Credentials): Promise<string> {
   return lcuRequest<string>(credentials, 'GET', '/lol-gameflow/v1/gameflow-phase')
 }
 
+/** Rejects with a 404 when not currently in champion select. */
+export function getChampSelectSession(credentials: Credentials): Promise<unknown> {
+  return lcuRequest<unknown>(credentials, 'GET', '/lol-champ-select/v1/session')
+}
+
 export function overwriteLcuPage(
   credentials: Credentials,
   pageId: number,

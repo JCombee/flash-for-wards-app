@@ -3,7 +3,7 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { initDb } from './db/index'
 import { lcuConnection } from './lcu/connection'
-import { getGameflowPhase } from './lcu/rune-api'
+import { getGameflowPhase, getChampSelectSession } from './lcu/rune-api'
 import { registerRunePageHandlers } from './ipc/rune-pages'
 import { registerSettingsHandlers } from './ipc/settings'
 import { registerLcuHandlers, setCurrentStatus } from './ipc/lcu'
@@ -81,6 +81,11 @@ function startPolling(credentials: Credentials): void {
         lastPolledPhase = phase
         handlePhaseChange(phase)
       }
+
+      if (phase === 'ChampSelect') {
+        const session = await getChampSelectSession(credentials)
+        sendToRenderer('champ-select:session', session)
+      }
     } catch {
       // ignore — WS events are primary; polling is fallback
     }
@@ -142,7 +147,9 @@ app.whenReady().then(async () => {
         handlePhaseChange(phase)
       }
     } else if (channel === 'champ-select:session') {
-      sendToRenderer('champ-select:session', data)
+      // WS frames arrive as { data, eventType, uri } — forward the payload itself
+      const raw = data as { data?: unknown }
+      sendToRenderer('champ-select:session', raw?.data ?? data)
     }
   })
 

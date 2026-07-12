@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import type { StoredRunePage, LcuRunePage } from '../../types'
 import { useAppStore } from '../../stores/app-store'
 import { RuneTreeEditor } from './RuneTreeEditor'
+import { ChampionPicker } from './ChampionPicker'
 
 interface RunePageEditorProps {
   page?: StoredRunePage
@@ -21,6 +22,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
   const [selectedPerkIds, setSelectedPerkIds] = useState<number[]>(
     page?.selectedPerkIds ?? Array(9).fill(0)
   )
+  const [championIds, setChampionIds] = useState<number[]>(page?.championIds ?? [])
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
     if (!complete) return
     setSaving(true)
     try {
-      const data = { name: name.trim(), primaryStyleId, subStyleId, selectedPerkIds }
+      const data = { name: name.trim(), primaryStyleId, subStyleId, selectedPerkIds, championIds }
       if (page) {
         await window.api.updateRunePage(page.id, data)
       } else {
@@ -131,6 +133,8 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
               setSelectedPerkIds(next.selectedPerkIds)
             }}
           />
+
+          <ChampionPicker selectedIds={championIds} onChange={setChampionIds} />
         </div>
 
         <div className="flex justify-end gap-2 mt-6">

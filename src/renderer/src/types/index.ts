@@ -8,6 +8,8 @@ export interface StoredRunePage {
   updatedAt: number
   lastUsedAt?: number
   pinned?: boolean
+  /** Champion IDs that prefer this page — surfaced in champ select. */
+  championIds?: number[]
 }
 
 export interface AppSettings {

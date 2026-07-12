@@ -48,7 +48,8 @@ function runMigrations(): void {
       created_at INTEGER NOT NULL,
       updated_at INTEGER NOT NULL,
       last_used_at INTEGER,
-      pinned INTEGER NOT NULL DEFAULT 0
+      pinned INTEGER NOT NULL DEFAULT 0,
+      champion_ids TEXT NOT NULL DEFAULT '[]'
     );
 
     CREATE TABLE IF NOT EXISTS settings (
@@ -70,6 +71,9 @@ function runMigrations(): void {
   // Idempotent column add for pre-existing DBs (no ADD COLUMN IF NOT EXISTS in SQLite)
   if (!tableHasColumn('rune_pages', 'pinned')) {
     getDb().run('ALTER TABLE rune_pages ADD COLUMN pinned INTEGER NOT NULL DEFAULT 0')
+  }
+  if (!tableHasColumn('rune_pages', 'champion_ids')) {
+    getDb().run("ALTER TABLE rune_pages ADD COLUMN champion_ids TEXT NOT NULL DEFAULT '[]'")
   }
 }
 

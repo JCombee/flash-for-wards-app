@@ -12,7 +12,8 @@ function rowToPage(row: Record<string, unknown>): StoredRunePage {
     createdAt: row['created_at'] as number,
     updatedAt: row['updated_at'] as number,
     lastUsedAt: (row['last_used_at'] as number | null) ?? undefined,
-    pinned: (row['pinned'] as number) === 1
+    pinned: (row['pinned'] as number) === 1,
+    championIds: JSON.parse((row['champion_ids'] as string | null) ?? '[]')
   }
 }
 
@@ -47,9 +48,9 @@ export function createRunePage(
   const id = uuidv4()
   const now = Date.now()
   getDb().run(
-    `INSERT INTO rune_pages (id, name, primary_style_id, sub_style_id, selected_perk_ids, created_at, updated_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [id, data.name, data.primaryStyleId, data.subStyleId, JSON.stringify(data.selectedPerkIds), now, now]
+    `INSERT INTO rune_pages (id, name, primary_style_id, sub_style_id, selected_perk_ids, created_at, updated_at, champion_ids)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    [id, data.name, data.primaryStyleId, data.subStyleId, JSON.stringify(data.selectedPerkIds), now, now, JSON.stringify(data.championIds ?? [])]
   )
   persistDb()
   return getRunePageById(id)!
@@ -69,6 +70,7 @@ export function updateRunePage(
   if (data.selectedPerkIds !== undefined) { sets.push('selected_perk_ids = ?'); values.push(JSON.stringify(data.selectedPerkIds)) }
   if (data.lastUsedAt !== undefined) { sets.push('last_used_at = ?'); values.push(data.lastUsedAt) }
   if (data.pinned !== undefined) { sets.push('pinned = ?'); values.push(data.pinned ? 1 : 0) }
+  if (data.championIds !== undefined) { sets.push('champion_ids = ?'); values.push(JSON.stringify(data.championIds)) }
 
   values.push(id)
   getDb().run(`UPDATE rune_pages SET ${sets.join(', ')} WHERE id = ?`, values)

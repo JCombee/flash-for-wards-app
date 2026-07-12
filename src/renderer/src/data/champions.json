@@ -1,0 +1,867 @@
+[
+  {
+    "id": 266,
+    "name": "Aatrox",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/266.png"
+  },
+  {
+    "id": 103,
+    "name": "Ahri",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/103.png"
+  },
+  {
+    "id": 84,
+    "name": "Akali",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/84.png"
+  },
+  {
+    "id": 166,
+    "name": "Akshan",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/166.png"
+  },
+  {
+    "id": 12,
+    "name": "Alistar",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/12.png"
+  },
+  {
+    "id": 799,
+    "name": "Ambessa",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/799.png"
+  },
+  {
+    "id": 32,
+    "name": "Amumu",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/32.png"
+  },
+  {
+    "id": 34,
+    "name": "Anivia",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/34.png"
+  },
+  {
+    "id": 1,
+    "name": "Annie",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/1.png"
+  },
+  {
+    "id": 523,
+    "name": "Aphelios",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/523.png"
+  },
+  {
+    "id": 22,
+    "name": "Ashe",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/22.png"
+  },
+  {
+    "id": 136,
+    "name": "Aurelion Sol",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/136.png"
+  },
+  {
+    "id": 893,
+    "name": "Aurora",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/893.png"
+  },
+  {
+    "id": 268,
+    "name": "Azir",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/268.png"
+  },
+  {
+    "id": 432,
+    "name": "Bard",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/432.png"
+  },
+  {
+    "id": 200,
+    "name": "Bel'Veth",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/200.png"
+  },
+  {
+    "id": 53,
+    "name": "Blitzcrank",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/53.png"
+  },
+  {
+    "id": 63,
+    "name": "Brand",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/63.png"
+  },
+  {
+    "id": 201,
+    "name": "Braum",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/201.png"
+  },
+  {
+    "id": 233,
+    "name": "Briar",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/233.png"
+  },
+  {
+    "id": 51,
+    "name": "Caitlyn",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/51.png"
+  },
+  {
+    "id": 164,
+    "name": "Camille",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/164.png"
+  },
+  {
+    "id": 69,
+    "name": "Cassiopeia",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/69.png"
+  },
+  {
+    "id": 31,
+    "name": "Cho'Gath",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/31.png"
+  },
+  {
+    "id": 42,
+    "name": "Corki",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/42.png"
+  },
+  {
+    "id": 122,
+    "name": "Darius",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/122.png"
+  },
+  {
+    "id": 131,
+    "name": "Diana",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/131.png"
+  },
+  {
+    "id": 36,
+    "name": "Dr. Mundo",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/36.png"
+  },
+  {
+    "id": 119,
+    "name": "Draven",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/119.png"
+  },
+  {
+    "id": 245,
+    "name": "Ekko",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/245.png"
+  },
+  {
+    "id": 60,
+    "name": "Elise",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/60.png"
+  },
+  {
+    "id": 28,
+    "name": "Evelynn",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/28.png"
+  },
+  {
+    "id": 81,
+    "name": "Ezreal",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/81.png"
+  },
+  {
+    "id": 9,
+    "name": "Fiddlesticks",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/9.png"
+  },
+  {
+    "id": 114,
+    "name": "Fiora",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/114.png"
+  },
+  {
+    "id": 105,
+    "name": "Fizz",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/105.png"
+  },
+  {
+    "id": 3,
+    "name": "Galio",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/3.png"
+  },
+  {
+    "id": 41,
+    "name": "Gangplank",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/41.png"
+  },
+  {
+    "id": 86,
+    "name": "Garen",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/86.png"
+  },
+  {
+    "id": 150,
+    "name": "Gnar",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/150.png"
+  },
+  {
+    "id": 79,
+    "name": "Gragas",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/79.png"
+  },
+  {
+    "id": 104,
+    "name": "Graves",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/104.png"
+  },
+  {
+    "id": 887,
+    "name": "Gwen",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/887.png"
+  },
+  {
+    "id": 120,
+    "name": "Hecarim",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/120.png"
+  },
+  {
+    "id": 74,
+    "name": "Heimerdinger",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/74.png"
+  },
+  {
+    "id": 910,
+    "name": "Hwei",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/910.png"
+  },
+  {
+    "id": 420,
+    "name": "Illaoi",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/420.png"
+  },
+  {
+    "id": 39,
+    "name": "Irelia",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/39.png"
+  },
+  {
+    "id": 427,
+    "name": "Ivern",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/427.png"
+  },
+  {
+    "id": 40,
+    "name": "Janna",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/40.png"
+  },
+  {
+    "id": 59,
+    "name": "Jarvan IV",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/59.png"
+  },
+  {
+    "id": 24,
+    "name": "Jax",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/24.png"
+  },
+  {
+    "id": 126,
+    "name": "Jayce",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/126.png"
+  },
+  {
+    "id": 202,
+    "name": "Jhin",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/202.png"
+  },
+  {
+    "id": 222,
+    "name": "Jinx",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/222.png"
+  },
+  {
+    "id": 897,
+    "name": "K'Sante",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/897.png"
+  },
+  {
+    "id": 145,
+    "name": "Kai'Sa",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/145.png"
+  },
+  {
+    "id": 429,
+    "name": "Kalista",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/429.png"
+  },
+  {
+    "id": 43,
+    "name": "Karma",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/43.png"
+  },
+  {
+    "id": 30,
+    "name": "Karthus",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/30.png"
+  },
+  {
+    "id": 38,
+    "name": "Kassadin",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/38.png"
+  },
+  {
+    "id": 55,
+    "name": "Katarina",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/55.png"
+  },
+  {
+    "id": 10,
+    "name": "Kayle",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/10.png"
+  },
+  {
+    "id": 141,
+    "name": "Kayn",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/141.png"
+  },
+  {
+    "id": 85,
+    "name": "Kennen",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/85.png"
+  },
+  {
+    "id": 121,
+    "name": "Kha'Zix",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/121.png"
+  },
+  {
+    "id": 203,
+    "name": "Kindred",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/203.png"
+  },
+  {
+    "id": 240,
+    "name": "Kled",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/240.png"
+  },
+  {
+    "id": 96,
+    "name": "Kog'Maw",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/96.png"
+  },
+  {
+    "id": 7,
+    "name": "LeBlanc",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/7.png"
+  },
+  {
+    "id": 64,
+    "name": "Lee Sin",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/64.png"
+  },
+  {
+    "id": 89,
+    "name": "Leona",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/89.png"
+  },
+  {
+    "id": 876,
+    "name": "Lillia",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/876.png"
+  },
+  {
+    "id": 127,
+    "name": "Lissandra",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/127.png"
+  },
+  {
+    "id": 805,
+    "name": "Locke",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/805.png"
+  },
+  {
+    "id": 236,
+    "name": "Lucian",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/236.png"
+  },
+  {
+    "id": 117,
+    "name": "Lulu",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/117.png"
+  },
+  {
+    "id": 99,
+    "name": "Lux",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/99.png"
+  },
+  {
+    "id": 54,
+    "name": "Malphite",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/54.png"
+  },
+  {
+    "id": 90,
+    "name": "Malzahar",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/90.png"
+  },
+  {
+    "id": 57,
+    "name": "Maokai",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/57.png"
+  },
+  {
+    "id": 11,
+    "name": "Master Yi",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/11.png"
+  },
+  {
+    "id": 800,
+    "name": "Mel",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/800.png"
+  },
+  {
+    "id": 902,
+    "name": "Milio",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/902.png"
+  },
+  {
+    "id": 21,
+    "name": "Miss Fortune",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/21.png"
+  },
+  {
+    "id": 82,
+    "name": "Mordekaiser",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/82.png"
+  },
+  {
+    "id": 25,
+    "name": "Morgana",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/25.png"
+  },
+  {
+    "id": 950,
+    "name": "Naafiri",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/950.png"
+  },
+  {
+    "id": 267,
+    "name": "Nami",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/267.png"
+  },
+  {
+    "id": 75,
+    "name": "Nasus",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/75.png"
+  },
+  {
+    "id": 111,
+    "name": "Nautilus",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/111.png"
+  },
+  {
+    "id": 518,
+    "name": "Neeko",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/518.png"
+  },
+  {
+    "id": 76,
+    "name": "Nidalee",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/76.png"
+  },
+  {
+    "id": 895,
+    "name": "Nilah",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/895.png"
+  },
+  {
+    "id": 56,
+    "name": "Nocturne",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/56.png"
+  },
+  {
+    "id": 20,
+    "name": "Nunu & Willump",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/20.png"
+  },
+  {
+    "id": 2,
+    "name": "Olaf",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/2.png"
+  },
+  {
+    "id": 61,
+    "name": "Orianna",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/61.png"
+  },
+  {
+    "id": 516,
+    "name": "Ornn",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/516.png"
+  },
+  {
+    "id": 80,
+    "name": "Pantheon",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/80.png"
+  },
+  {
+    "id": 78,
+    "name": "Poppy",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/78.png"
+  },
+  {
+    "id": 555,
+    "name": "Pyke",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/555.png"
+  },
+  {
+    "id": 246,
+    "name": "Qiyana",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/246.png"
+  },
+  {
+    "id": 133,
+    "name": "Quinn",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/133.png"
+  },
+  {
+    "id": 497,
+    "name": "Rakan",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/497.png"
+  },
+  {
+    "id": 33,
+    "name": "Rammus",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/33.png"
+  },
+  {
+    "id": 421,
+    "name": "Rek'Sai",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/421.png"
+  },
+  {
+    "id": 526,
+    "name": "Rell",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/526.png"
+  },
+  {
+    "id": 888,
+    "name": "Renata Glasc",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/888.png"
+  },
+  {
+    "id": 58,
+    "name": "Renekton",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/58.png"
+  },
+  {
+    "id": 107,
+    "name": "Rengar",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/107.png"
+  },
+  {
+    "id": 92,
+    "name": "Riven",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/92.png"
+  },
+  {
+    "id": 68,
+    "name": "Rumble",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/68.png"
+  },
+  {
+    "id": 13,
+    "name": "Ryze",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/13.png"
+  },
+  {
+    "id": 360,
+    "name": "Samira",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/360.png"
+  },
+  {
+    "id": 113,
+    "name": "Sejuani",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/113.png"
+  },
+  {
+    "id": 235,
+    "name": "Senna",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/235.png"
+  },
+  {
+    "id": 147,
+    "name": "Seraphine",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/147.png"
+  },
+  {
+    "id": 875,
+    "name": "Sett",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/875.png"
+  },
+  {
+    "id": 35,
+    "name": "Shaco",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/35.png"
+  },
+  {
+    "id": 98,
+    "name": "Shen",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/98.png"
+  },
+  {
+    "id": 102,
+    "name": "Shyvana",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/102.png"
+  },
+  {
+    "id": 27,
+    "name": "Singed",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/27.png"
+  },
+  {
+    "id": 14,
+    "name": "Sion",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/14.png"
+  },
+  {
+    "id": 15,
+    "name": "Sivir",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/15.png"
+  },
+  {
+    "id": 72,
+    "name": "Skarner",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/72.png"
+  },
+  {
+    "id": 901,
+    "name": "Smolder",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/901.png"
+  },
+  {
+    "id": 37,
+    "name": "Sona",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/37.png"
+  },
+  {
+    "id": 16,
+    "name": "Soraka",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/16.png"
+  },
+  {
+    "id": 50,
+    "name": "Swain",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/50.png"
+  },
+  {
+    "id": 517,
+    "name": "Sylas",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/517.png"
+  },
+  {
+    "id": 134,
+    "name": "Syndra",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/134.png"
+  },
+  {
+    "id": 223,
+    "name": "Tahm Kench",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/223.png"
+  },
+  {
+    "id": 163,
+    "name": "Taliyah",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/163.png"
+  },
+  {
+    "id": 91,
+    "name": "Talon",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/91.png"
+  },
+  {
+    "id": 44,
+    "name": "Taric",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/44.png"
+  },
+  {
+    "id": 17,
+    "name": "Teemo",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/17.png"
+  },
+  {
+    "id": 412,
+    "name": "Thresh",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/412.png"
+  },
+  {
+    "id": 18,
+    "name": "Tristana",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/18.png"
+  },
+  {
+    "id": 48,
+    "name": "Trundle",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/48.png"
+  },
+  {
+    "id": 23,
+    "name": "Tryndamere",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/23.png"
+  },
+  {
+    "id": 4,
+    "name": "Twisted Fate",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/4.png"
+  },
+  {
+    "id": 29,
+    "name": "Twitch",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/29.png"
+  },
+  {
+    "id": 77,
+    "name": "Udyr",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/77.png"
+  },
+  {
+    "id": 6,
+    "name": "Urgot",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/6.png"
+  },
+  {
+    "id": 110,
+    "name": "Varus",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/110.png"
+  },
+  {
+    "id": 67,
+    "name": "Vayne",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/67.png"
+  },
+  {
+    "id": 45,
+    "name": "Veigar",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/45.png"
+  },
+  {
+    "id": 161,
+    "name": "Vel'Koz",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/161.png"
+  },
+  {
+    "id": 711,
+    "name": "Vex",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/711.png"
+  },
+  {
+    "id": 254,
+    "name": "Vi",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/254.png"
+  },
+  {
+    "id": 234,
+    "name": "Viego",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/234.png"
+  },
+  {
+    "id": 112,
+    "name": "Viktor",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/112.png"
+  },
+  {
+    "id": 8,
+    "name": "Vladimir",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/8.png"
+  },
+  {
+    "id": 106,
+    "name": "Volibear",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/106.png"
+  },
+  {
+    "id": 19,
+    "name": "Warwick",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/19.png"
+  },
+  {
+    "id": 62,
+    "name": "Wukong",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/62.png"
+  },
+  {
+    "id": 498,
+    "name": "Xayah",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/498.png"
+  },
+  {
+    "id": 101,
+    "name": "Xerath",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/101.png"
+  },
+  {
+    "id": 5,
+    "name": "Xin Zhao",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/5.png"
+  },
+  {
+    "id": 157,
+    "name": "Yasuo",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/157.png"
+  },
+  {
+    "id": 777,
+    "name": "Yone",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/777.png"
+  },
+  {
+    "id": 83,
+    "name": "Yorick",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/83.png"
+  },
+  {
+    "id": 804,
+    "name": "Yunara",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/804.png"
+  },
+  {
+    "id": 350,
+    "name": "Yuumi",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/350.png"
+  },
+  {
+    "id": 904,
+    "name": "Zaahen",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/904.png"
+  },
+  {
+    "id": 154,
+    "name": "Zac",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/154.png"
+  },
+  {
+    "id": 238,
+    "name": "Zed",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/238.png"
+  },
+  {
+    "id": 221,
+    "name": "Zeri",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/221.png"
+  },
+  {
+    "id": 115,
+    "name": "Ziggs",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/115.png"
+  },
+  {
+    "id": 26,
+    "name": "Zilean",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/26.png"
+  },
+  {
+    "id": 142,
+    "name": "Zoe",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/142.png"
+  },
+  {
+    "id": 143,
+    "name": "Zyra",
+    "iconUrl": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/143.png"
+  }
+]

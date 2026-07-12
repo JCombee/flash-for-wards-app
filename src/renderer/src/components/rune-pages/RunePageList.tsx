@@ -23,6 +23,7 @@ export function RunePageList() {
       primaryStyleId: page.primaryStyleId,
       subStyleId: page.subStyleId,
       selectedPerkIds: page.selectedPerkIds,
+      championIds: page.championIds ?? [],
       pinned: false
     })
     refresh()
