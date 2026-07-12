@@ -6,9 +6,14 @@ import { getSettings } from '../db/settings-repo'
 import type { ApplyResult, LcuStatus, RunePageData } from '@shared/index'
 
 let currentStatus: LcuStatus = { status: 'disconnected' }
+let inChampSelect = false
 
 export function setCurrentStatus(status: LcuStatus): void {
   currentStatus = status
+}
+
+export function setInChampSelect(active: boolean): void {
+  inChampSelect = active
 }
 
 /** Push a rune selection into the reserved LCU page. Shared by both apply paths. */
@@ -18,6 +23,10 @@ async function applyToReservedPage(
   if (!lcuConnection.isConnected()) {
     return { success: false, error: 'lcu_disconnected' }
   }
+
+  // Overwriting the reserved page outside champ select would clobber it for no
+  // reason — refuse regardless of what the renderer asks for.
+  if (!inChampSelect) return { success: false, error: 'not_in_champ_select' }
 
   const settings = getSettings()
   if (!settings.reservedPageId) return { success: false, error: 'no_reserved_page' }
