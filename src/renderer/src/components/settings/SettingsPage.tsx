@@ -129,8 +129,8 @@ export function SettingsPage() {
           <Toggle
             checked={settings.autoFocusOnChampSelect}
             onChange={toggleAutoFocus}
-            label="Bring window to front during champion select"
-            hint="App will focus automatically when a game starts"
+            label="Bring window to front when champion select starts"
+            hint="Focused once — it drops behind again as soon as you click away"
           />
           <Toggle
             checked={settings.launchOnStartup}
