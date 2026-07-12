@@ -1,36 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useAppStore } from '../../stores/app-store'
 import { useSettings } from '../../hooks/useSettings'
+import { Button } from '../ui/Button'
+import { Toggle } from '../ui/Toggle'
 import type { LcuRunePage } from '../../types'
-
-function Toggle({
-  checked,
-  onToggle,
-  label,
-  hint
-}: {
-  checked: boolean
-  onToggle: () => void
-  label: string
-  hint: string
-}) {
-  return (
-    <label className="flex items-center gap-3 cursor-pointer">
-      <div
-        onClick={onToggle}
-        className={`w-10 h-6 shrink-0 rounded-full transition-colors relative ${checked ? 'bg-lol-blue' : 'bg-gray-600'}`}
-      >
-        <span
-          className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${checked ? 'left-5' : 'left-1'}`}
-        />
-      </div>
-      <div>
-        <p className="text-sm text-gray-200">{label}</p>
-        <p className="text-xs text-gray-500">{hint}</p>
-      </div>
-    </label>
-  )
-}
 
 export function SettingsPage() {
   const settings = useAppStore((s) => s.settings)
@@ -110,13 +83,9 @@ export function SettingsPage() {
           </div>
 
           <div className="flex gap-2">
-            <button
-              onClick={detect}
-              disabled={detecting || lcuStatus !== 'connected'}
-              className="px-3 py-2 bg-lol-gold hover:bg-lol-gold/80 text-lol-dark font-semibold rounded text-sm disabled:opacity-50 transition-colors"
-            >
+            <Button onClick={detect} disabled={detecting || lcuStatus !== 'connected'}>
               {detecting ? 'Searching...' : 'Detect by Name'}
-            </button>
+            </Button>
           </div>
 
           {detectResult && detectResult.found && (
@@ -159,13 +128,13 @@ export function SettingsPage() {
         <div className="bg-lol-dark-mid border border-lol-gold/20 rounded-lg p-4 space-y-4">
           <Toggle
             checked={settings.autoFocusOnChampSelect}
-            onToggle={toggleAutoFocus}
+            onChange={toggleAutoFocus}
             label="Bring window to front during champion select"
             hint="App will focus automatically when a game starts"
           />
           <Toggle
             checked={settings.launchOnStartup}
-            onToggle={toggleLaunchOnStartup}
+            onChange={toggleLaunchOnStartup}
             label="Launch on system startup"
             hint="Start Flash For Wards automatically when you log in"
           />
@@ -178,12 +147,9 @@ export function SettingsPage() {
           <p className="text-sm text-gray-400 mb-3">
             Re-run the first-time setup to change your reserved page.
           </p>
-          <button
-            onClick={resetOnboarding}
-            className="px-3 py-2 bg-white/10 hover:bg-white/20 text-gray-300 rounded text-sm transition-colors"
-          >
+          <Button variant="secondary" onClick={resetOnboarding}>
             Reset Setup
-          </button>
+          </Button>
         </div>
       </section>
     </div>

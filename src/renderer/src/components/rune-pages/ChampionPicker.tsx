@@ -1,5 +1,7 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { CHAMPIONS, CHAMPION_BY_ID } from '../../data/champions'
+import { Badge } from '../ui/Badge'
+import { Input } from '../ui/Input'
 
 interface ChampionPickerProps {
   selectedIds: number[]
@@ -33,28 +35,17 @@ export function ChampionPicker({ selectedIds, onChange }: ChampionPickerProps) {
       {selectedChamps.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-2">
           {selectedChamps.map((c) => (
-            <span
-              key={c.id}
-              className="flex items-center gap-1 pl-1 pr-1.5 py-0.5 rounded bg-lol-gold/15 border border-lol-gold/30 text-xs text-lol-gold-light"
-            >
+            <Badge key={c.id} variant="accent" onRemove={() => toggle(c.id)}>
               <img src={c.iconUrl} alt={c.name} className="w-4 h-4 rounded-sm" />
               {c.name}
-              <button
-                onClick={() => toggle(c.id)}
-                title={`Remove ${c.name}`}
-                className="text-gray-400 hover:text-red-400 leading-none"
-              >
-                ×
-              </button>
-            </span>
+            </Badge>
           ))}
         </div>
       )}
 
-      <input
+      <Input
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full bg-black/40 border border-lol-gold/30 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-lol-gold/60"
         placeholder="Search champions…"
       />
 

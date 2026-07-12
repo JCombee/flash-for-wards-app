@@ -2,6 +2,8 @@ import React from 'react'
 import type { StoredRunePage } from '../../types'
 import { STYLE_BY_ID, PERK_BY_ID } from '../../data/runes'
 import { CHAMPION_BY_ID } from '../../data/champions'
+import { Button } from '../ui/Button'
+import { Badge } from '../ui/Badge'
 
 interface RunePageCardProps {
   page: StoredRunePage
@@ -79,37 +81,28 @@ export function RunePageCard({
         ) : (
           <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
             {onEdit && (
-              <button
-                onClick={() => onEdit(page)}
-                className="text-xs px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-gray-300 transition-colors"
-              >
+              <Button variant="secondary" size="sm" onClick={() => onEdit(page)}>
                 Edit
-              </button>
+              </Button>
             )}
             {onDuplicate && (
-              <button
-                onClick={() => onDuplicate(page)}
-                className="text-xs px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-gray-300 transition-colors"
-              >
+              <Button variant="secondary" size="sm" onClick={() => onDuplicate(page)}>
                 Copy
-              </button>
+              </Button>
             )}
             {onDelete && (
-              <button
-                onClick={() => onDelete(page.id)}
-                className="text-xs px-2 py-1 rounded bg-red-900/40 hover:bg-red-900/60 text-red-400 transition-colors"
-              >
+              <Button variant="danger" size="sm" onClick={() => onDelete(page.id)}>
                 Del
-              </button>
+              </Button>
             )}
           </div>
         )}
       </div>
 
-      <div className="flex gap-2 text-xs text-gray-400">
-        <span className="px-2 py-0.5 bg-black/30 rounded">{primaryName}</span>
+      <div className="flex items-center gap-2 text-xs text-gray-400">
+        <Badge>{primaryName}</Badge>
         <span className="text-gray-600">/</span>
-        <span className="px-2 py-0.5 bg-black/30 rounded">{subName}</span>
+        <Badge>{subName}</Badge>
       </div>
 
       {champions.length > 0 && (
