@@ -1,12 +1,14 @@
+@import './styles/tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background-color: #010a13;
-  color: #f0e6d3;
+  font-family: var(--font-ui);
+  background-color: rgb(var(--lol-dark));
+  color: rgb(var(--lol-gold-light));
   -webkit-user-select: none;
   user-select: none;
 }
@@ -21,9 +23,9 @@ textarea {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a1628;
+  background: rgb(var(--lol-dark-mid));
 }
 ::-webkit-scrollbar-thumb {
-  background: #c89b3c;
+  background: rgb(var(--lol-gold));
   border-radius: 3px;
 }

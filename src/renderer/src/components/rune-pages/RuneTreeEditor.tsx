@@ -6,6 +6,7 @@ import {
   type Perk,
   type RuneStyle
 } from '../../data/runes'
+import { IconTile } from '../ui/IconTile'
 
 export interface RuneSelection {
   primaryStyleId: number
@@ -222,20 +223,16 @@ function StyleSelector({
       <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">{label}</p>
       <div className="flex gap-2">
         {styles.map((s) => (
-          <button
+          <IconTile
             key={s.id}
-            type="button"
+            src={s.iconUrl}
+            alt={s.name}
+            size="style"
+            selected={s.id === activeId}
             onClick={() => onPick(s.id)}
             onMouseEnter={(e) => onHover(hoverFor(e, styleAsPerk(s)))}
             onMouseLeave={() => onHover(null)}
-            className={`w-9 h-9 rounded-full transition-all ${
-              s.id === activeId
-                ? 'ring-2 ring-lol-gold opacity-100'
-                : 'opacity-40 grayscale hover:opacity-80 hover:grayscale-0'
-            }`}
-          >
-            <img src={s.iconUrl} alt={s.name} className="w-full h-full object-contain" />
-          </button>
+          />
         ))}
       </div>
     </div>
@@ -269,30 +266,22 @@ function SlotRow({
   onHover: (h: Hover | null) => void
   size?: 'sm' | 'md' | 'lg'
 }) {
-  const dim = size === 'lg' ? 'w-12 h-12' : size === 'sm' ? 'w-8 h-8' : 'w-10 h-10'
   return (
     <div>
       {heading && <p className="text-xs uppercase tracking-wide text-gray-500 mb-1.5">{heading}</p>}
       <div className="flex gap-3">
-        {perks.map((p) => {
-          const selected = isSelected(p)
-          return (
-            <button
-              key={p.id}
-              type="button"
-              onClick={() => onPick(p)}
-              onMouseEnter={(e) => onHover(hoverFor(e, p))}
-              onMouseLeave={() => onHover(null)}
-              className={`${dim} rounded-full transition-all ${
-                selected
-                  ? 'ring-2 ring-lol-gold opacity-100'
-                  : 'opacity-40 grayscale hover:opacity-80 hover:grayscale-0'
-              }`}
-            >
-              <img src={p.iconUrl} alt={p.name} className="w-full h-full object-contain" />
-            </button>
-          )
-        })}
+        {perks.map((p) => (
+          <IconTile
+            key={p.id}
+            src={p.iconUrl}
+            alt={p.name}
+            size={size}
+            selected={isSelected(p)}
+            onClick={() => onPick(p)}
+            onMouseEnter={(e) => onHover(hoverFor(e, p))}
+            onMouseLeave={() => onHover(null)}
+          />
+        ))}
       </div>
     </div>
   )

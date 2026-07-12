@@ -1,0 +1,22 @@
+/* Design tokens — imported from the Flash For Wards design system.
+   Brand colors are RGB channel triplets, not hex, so Tailwind can compose them
+   with alpha modifiers (`border-lol-gold/20`) via the <alpha-value> placeholder
+   in tailwind.config.js. Use rgb(var(--lol-gold)) when reaching for one in raw CSS. */
+
+:root {
+  /* Brand */
+  --lol-gold: 200 155 60;
+  --lol-gold-light: 240 230 211;
+  --lol-dark: 1 10 19;
+  --lol-dark-mid: 10 22 40;
+  --lol-blue: 11 196 227;
+  --lol-blue-dark: 0 147 184;
+
+  /* Type */
+  --font-ui: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Consolas, monospace;
+
+  /* Shape — the app uses exactly two radii, plus true circles */
+  --radius-sm: 4px;
+  --radius-lg: 8px;
+}

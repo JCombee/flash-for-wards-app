@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
 import { useRunePages } from '../../hooks/useRunePages'
 import { RunePageCard } from './RunePageCard'
 import { RunePageEditor } from './RunePageEditor'
+import { Button } from '../ui/Button'
 import type { StoredRunePage } from '../../types'
 
 export function RunePageList() {
@@ -44,12 +45,7 @@ export function RunePageList() {
     <div className="flex-1 p-6 overflow-y-auto">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-lg font-semibold text-lol-gold-light">My Rune Pages</h2>
-        <button
-          onClick={() => setCreatingNew(true)}
-          className="px-4 py-2 bg-lol-gold hover:bg-lol-gold/80 text-lol-dark font-semibold rounded text-sm transition-colors"
-        >
-          + New Page
-        </button>
+        <Button onClick={() => setCreatingNew(true)}>+ New Page</Button>
       </div>
 
       {runePages.length === 0 ? (

@@ -1,20 +1,12 @@
-import React from 'react'
 import { useAppStore } from '../../stores/app-store'
+import { NavItem } from '../ui/NavItem'
+import { StatusDot } from '../ui/StatusDot'
+import logoIcon from '../../assets/logo-icon.svg'
 import type { View } from '../../App'
 
 interface SidebarProps {
   currentView: View
   onNavigate: (view: View) => void
-}
-
-function StatusDot({ status }: { status: string }) {
-  const color =
-    status === 'connected'
-      ? 'bg-green-400'
-      : status === 'connecting'
-        ? 'bg-yellow-400 animate-pulse'
-        : 'bg-gray-500'
-  return <span className={`inline-block w-2 h-2 rounded-full ${color}`} />
 }
 
 export function Sidebar({ currentView, onNavigate }: SidebarProps) {
@@ -23,47 +15,28 @@ export function Sidebar({ currentView, onNavigate }: SidebarProps) {
 
   return (
     <aside className="w-48 bg-lol-dark-mid border-r border-lol-gold/20 flex flex-col">
-      <div className="p-4 border-b border-lol-gold/20">
-        <h1 className="text-lol-gold font-bold text-sm leading-tight">Flash For Wards</h1>
-        <p className="text-xs text-gray-500 mt-0.5">Rune Manager</p>
+      <div className="p-4 border-b border-lol-gold/20 flex items-center gap-2.5">
+        <img src={logoIcon} alt="" className="w-7 h-7 shrink-0" />
+        <div className="min-w-0">
+          <h1 className="text-lol-gold font-bold text-sm leading-tight">Flash For Wards</h1>
+          <p className="text-xs text-gray-500 mt-0.5">Rune Manager</p>
+        </div>
       </div>
 
       <nav className="flex-1 p-2 space-y-1">
-        <button
-          onClick={() => onNavigate('pages')}
-          className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-            currentView === 'pages'
-              ? 'bg-lol-gold/20 text-lol-gold'
-              : 'text-gray-300 hover:bg-white/5'
-          }`}
-        >
+        <NavItem active={currentView === 'pages'} onClick={() => onNavigate('pages')}>
           My Rune Pages
-        </button>
-
-        <button
+        </NavItem>
+        <NavItem
+          active={currentView === 'champ-select'}
           onClick={() => onNavigate('champ-select')}
-          className={`w-full text-left px-3 py-2 rounded text-sm transition-colors flex items-center justify-between ${
-            currentView === 'champ-select'
-              ? 'bg-lol-gold/20 text-lol-gold'
-              : 'text-gray-300 hover:bg-white/5'
-          }`}
+          live={champSelectActive}
         >
-          <span>Champ Select</span>
-          {champSelectActive && (
-            <span className="w-2 h-2 rounded-full bg-lol-blue animate-pulse shrink-0" />
-          )}
-        </button>
-
-        <button
-          onClick={() => onNavigate('settings')}
-          className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-            currentView === 'settings'
-              ? 'bg-lol-gold/20 text-lol-gold'
-              : 'text-gray-300 hover:bg-white/5'
-          }`}
-        >
+          Champ Select
+        </NavItem>
+        <NavItem active={currentView === 'settings'} onClick={() => onNavigate('settings')}>
           Settings
-        </button>
+        </NavItem>
       </nav>
 
       <div className="p-3 border-t border-lol-gold/20 flex items-center gap-2">
