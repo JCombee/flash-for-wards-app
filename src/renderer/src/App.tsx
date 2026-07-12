@@ -3,9 +3,11 @@ import { useLcuStatus } from './hooks/useLcuStatus'
 import { useRunePages } from './hooks/useRunePages'
 import { useSettings } from './hooks/useSettings'
 import { useChampSelect } from './hooks/useChampSelect'
+import { useUpdate } from './hooks/useUpdate'
 import { useAppStore } from './stores/app-store'
 import { Sidebar } from './components/layout/Sidebar'
 import { StatusBar } from './components/layout/StatusBar'
+import { UpdateBanner } from './components/layout/UpdateBanner'
 import { OnboardingModal } from './components/onboarding/OnboardingModal'
 import { RunePageList } from './components/rune-pages/RunePageList'
 import { ChampSelectPanel } from './components/champ-select/ChampSelectPanel'
@@ -18,6 +20,7 @@ export default function App() {
   useRunePages()
   useSettings()
   useChampSelect()
+  useUpdate()
 
   const [currentView, setCurrentView] = useState<View>('pages')
   const champSelectActive = useAppStore((s) => s.champSelectActive)
@@ -37,6 +40,7 @@ export default function App() {
     <div className="flex h-screen overflow-hidden bg-lol-dark">
       <Sidebar currentView={currentView} onNavigate={setCurrentView} />
       <main className="flex-1 flex flex-col overflow-hidden">
+        <UpdateBanner />
         {renderMain()}
         <StatusBar />
       </main>

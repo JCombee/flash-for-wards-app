@@ -1,5 +1,11 @@
 import { create } from 'zustand'
-import type { StoredRunePage, AppSettings, LcuConnectionStatus, ChampSelectPhase } from '../types'
+import type {
+  StoredRunePage,
+  AppSettings,
+  LcuConnectionStatus,
+  ChampSelectPhase,
+  UpdateStatus
+} from '../types'
 
 interface AppStore {
   lcuStatus: LcuConnectionStatus
@@ -13,8 +19,12 @@ interface AppStore {
   lastApplyStatus: 'idle' | 'success' | 'error'
   lastAppliedName: string | null
   lastApplyError: string | null
+  appVersion: string
+  updateStatus: UpdateStatus
 
   setLcuStatus: (status: LcuConnectionStatus) => void
+  setAppVersion: (version: string) => void
+  setUpdateStatus: (status: UpdateStatus) => void
   setRunePages: (pages: StoredRunePage[]) => void
   setSettings: (settings: AppSettings) => void
   setChampSelectPhase: (phase: ChampSelectPhase) => void
@@ -34,8 +44,12 @@ export const useAppStore = create<AppStore>((set) => ({
   lastApplyStatus: 'idle',
   lastAppliedName: null,
   lastApplyError: null,
+  appVersion: '',
+  updateStatus: { state: 'idle' },
 
   setLcuStatus: (status) => set({ lcuStatus: status }),
+  setAppVersion: (version) => set({ appVersion: version }),
+  setUpdateStatus: (status) => set({ updateStatus: status }),
   setRunePages: (pages) => set({ runePages: pages }),
   setSettings: (settings) => set({ settings }),
   setChampSelectPhase: (phase) =>

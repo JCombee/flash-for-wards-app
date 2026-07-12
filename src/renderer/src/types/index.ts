@@ -50,3 +50,10 @@ export interface ApplyResult {
     'page_not_found' | 'no_reserved_page' | 'reserved_page_missing' | 'lcu_disconnected' | 'unknown'
   errorDetail?: string
 }
+
+export type UpdateStatus =
+  | { state: 'idle' }
+  | { state: 'available'; version: string }
+  | { state: 'downloading'; percent: number }
+  | { state: 'ready'; version: string }
+  | { state: 'error'; message: string }

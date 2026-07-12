@@ -7,6 +7,8 @@ import { getGameflowPhase, getChampSelectSession } from './lcu/rune-api'
 import { registerRunePageHandlers } from './ipc/rune-pages'
 import { registerSettingsHandlers } from './ipc/settings'
 import { registerLcuHandlers, setCurrentStatus } from './ipc/lcu'
+import { registerUpdaterHandlers } from './ipc/updater'
+import { initUpdater, stopUpdater } from './updater'
 import { getSettings } from './db/settings-repo'
 import type { Credentials } from 'league-connect'
 import type { LcuStatus, ChampSelectPhase } from '@shared/index'
@@ -101,7 +103,9 @@ function stopPolling(): void {
 }
 
 app.whenReady().then(async () => {
-  electronApp.setAppUserModelId('com.flash-for-wards')
+  // Must match `appId` in electron-builder.yml, or Windows update notifications
+  // and the installer's shortcut identity diverge.
+  electronApp.setAppUserModelId('com.jcombee.flash-for-wards')
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
@@ -111,8 +115,11 @@ app.whenReady().then(async () => {
   registerRunePageHandlers()
   registerSettingsHandlers()
   registerLcuHandlers()
+  registerUpdaterHandlers()
 
   createWindow()
+
+  initUpdater(() => mainWindow)
 
   lcuConnection.on('connecting', () => {
     const status: LcuStatus = { status: 'connecting' }
@@ -164,6 +171,7 @@ app.whenReady().then(async () => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     stopPolling()
+    stopUpdater()
     lcuConnection.stop()
     app.quit()
   }
