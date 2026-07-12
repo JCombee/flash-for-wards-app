@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-07-12
+
+### Added
+
+- Riot's recommended rune page for every champion, bundled with the app. It shows up in champion select for the champion you picked — even if you already have your own pages for them — is browsable from My Rune Pages, and can be saved as a page of your own.
+- The app now has its own icon in the window, taskbar and installer, instead of Electron's default.
+
+### Changed
+
+- Champion select focuses the window once instead of pinning it in front for the whole phase. Click back to the League client and it drops behind again like any other window.
+
+### Fixed
+
+- The Apply button in champion select did nothing when clicked — only clicking the card body applied the page.
+- Applying a page marked every page sharing its name as applied, instead of just the one you applied.
+- Applying a page outside champion select overwrote the reserved page in the client for no reason. It is now refused.
+
 ## [1.2.1] - 2026-07-12
 
 ### Added
@@ -49,7 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/JCombee/flash-for-wards-app/releases/tag/v1.1.0
