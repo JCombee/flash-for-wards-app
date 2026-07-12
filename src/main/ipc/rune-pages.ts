@@ -1,7 +1,6 @@
 import { ipcMain } from 'electron'
 import {
   getAllRunePages,
-  getRunePageById,
   createRunePage,
   updateRunePage,
   deleteRunePage

@@ -28,7 +28,11 @@ class LcuConnection extends EventEmitter {
         this.credentials = creds
         this.emit('connected', { port: creds.port, credentials: creds })
 
-        const ws = await createWebSocketConnection(creds)
+        const ws = await createWebSocketConnection({
+          authenticationOptions: { awaitConnection: true, pollInterval: 3000 },
+          // fail fast — the outer loop owns reconnection
+          maxRetries: 0
+        })
 
         ws.subscribe('OnJsonApiEvent_lol-gameflow_v1_gameflow-phase', (data) => {
           onEvent('champ-select:phase', data)

@@ -4,8 +4,7 @@ import type {
   LcuRunePage,
   LcuStatus,
   ChampSelectPhase,
-  ApplyResult,
-  LcuConnectionStatus
+  ApplyResult
 } from './index'
 
 declare global {
