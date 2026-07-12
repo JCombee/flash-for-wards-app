@@ -150,7 +150,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
                     <button
                       key={lp.id}
                       onClick={() => selectLcuPage(lp)}
-                      className="w-full text-left px-3 py-2 rounded bg-black/30 hover:bg-lol-gold/10 border border-transparent hover:border-lol-gold/30 text-sm text-gray-200 transition-colors"
+                      className="w-full text-left px-3 py-2 rounded bg-black/30 hover:bg-lol-gold/10 border border-transparent hover:border-lol-gold/40 text-sm text-gray-200 transition-colors"
                     >
                       {lp.name}
                     </button>

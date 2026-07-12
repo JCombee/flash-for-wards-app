@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
 import { RunePageCard } from '../rune-pages/RunePageCard'
+import { Notice } from '../ui/Notice'
 import { CHAMPION_BY_ID } from '../../data/champions'
 
 export function ChampSelectPanel() {
@@ -87,19 +88,23 @@ export function ChampSelectPanel() {
       </div>
 
       {noReservedPage && (
-        <div className="mb-4 px-4 py-3 bg-yellow-900/30 border border-yellow-500/30 rounded text-yellow-400 text-sm">
-          No reserved page configured — go to Settings to link one first.
+        <div className="mb-4">
+          <Notice variant="warning">
+            No reserved page configured — go to Settings to link one first.
+          </Notice>
         </div>
       )}
 
       {lastApplyStatus === 'success' && lastAppliedName && (
-        <div className="mb-4 px-4 py-2 bg-green-900/30 border border-green-500/30 rounded text-green-400 text-sm">
-          Applied: <strong>{lastAppliedName}</strong>
+        <div className="mb-4">
+          <Notice variant="success">
+            Applied: <strong>{lastAppliedName}</strong>
+          </Notice>
         </div>
       )}
       {lastApplyStatus === 'error' && lastApplyError && (
-        <div className="mb-4 px-4 py-2 bg-red-900/30 border border-red-500/30 rounded text-red-400 text-sm">
-          {lastApplyError}
+        <div className="mb-4">
+          <Notice variant="danger">{lastApplyError}</Notice>
         </div>
       )}
 
@@ -110,7 +115,7 @@ export function ChampSelectPanel() {
               <img
                 src={currentChampion.iconUrl}
                 alt={currentChampion.name}
-                className="w-5 h-5 rounded-sm"
+                className="w-5 h-5 rounded"
               />
             )}
             <h3 className="text-lol-gold text-sm font-bold">

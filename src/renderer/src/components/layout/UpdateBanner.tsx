@@ -1,5 +1,5 @@
-import React from 'react'
 import { useAppStore } from '../../stores/app-store'
+import { Button } from '../ui/Button'
 
 export function UpdateBanner() {
   const updateStatus = useAppStore((s) => s.updateStatus)
@@ -27,12 +27,9 @@ export function UpdateBanner() {
         <span className="text-lol-blue font-semibold">
           Update v{updateStatus.version} ready to install
         </span>
-        <button
-          onClick={() => window.api.installUpdate()}
-          className="px-3 py-1 rounded bg-lol-blue text-lol-dark text-xs font-semibold hover:opacity-90"
-        >
+        <Button variant="info" size="sm" onClick={() => window.api.installUpdate()}>
           Restart now
-        </button>
+        </Button>
       </div>
     )
   }
