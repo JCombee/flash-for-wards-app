@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
 import { useSettings } from '../../hooks/useSettings'
 import { Modal } from '../ui/Modal'
@@ -13,25 +13,43 @@ export function OnboardingModal() {
   const { update } = useSettings()
 
   const [detecting, setDetecting] = useState(false)
+  const [loadingPages, setLoadingPages] = useState(false)
   const [lcuPages, setLcuPages] = useState<LcuRunePage[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [selectedPageId, setSelectedPageId] = useState<number | null>(null)
 
-  if (!settings || settings.onboardingComplete) return null
+  const connected = lcuStatus === 'connected'
+  const active = Boolean(settings) && settings?.onboardingComplete === false
+
+  const loadPages = useCallback(async () => {
+    setLoadingPages(true)
+    setError(null)
+    try {
+      const pages = await window.api.getLcuPages()
+      setLcuPages(pages)
+    } catch (err: unknown) {
+      setError('Could not read rune pages: ' + (err instanceof Error ? err.message : String(err)))
+    } finally {
+      setLoadingPages(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!active || !connected) return
+    loadPages()
+  }, [active, connected, loadPages])
+
+  if (!active) return null
 
   async function detect() {
     setDetecting(true)
     setError(null)
-    setLcuPages(null)
-    setSelectedPageId(null)
 
     try {
-      // First try auto-detect by name
       const r = await window.api.findReservedPage()
 
       if (r.found) {
-        // Auto-detected — done
         await update({ onboardingComplete: true })
         return
       }
@@ -41,14 +59,10 @@ export function OnboardingModal() {
         return
       }
 
-      // Not found by name — fetch all pages so user can pick
-      const pages = await window.api.getLcuPages()
-      if (pages.length === 0) {
-        setError('No rune pages found in client. Create one first.')
-      } else {
-        setLcuPages(pages)
-        setError(null)
-      }
+      setError(
+        `No page named "${RESERVED_NAME}" found. Create it in the client, or pick an existing page below.`
+      )
+      await loadPages()
     } catch (err: unknown) {
       setError('Something went wrong: ' + (err instanceof Error ? err.message : String(err)))
     } finally {
@@ -71,100 +85,115 @@ export function OnboardingModal() {
   return (
     <Modal strong>
       <h2 className="text-lol-gold text-xl font-bold mb-2">Welcome to Flash For Wards</h2>
-      <p className="text-gray-300 text-sm mb-6">First-time setup — takes about 1 minute.</p>
+      <p className="text-gray-300 text-sm mb-4">
+        Flash For Wards needs one rune page it is allowed to overwrite during champion select. Open
+        the League client and log in, then pick one of the options below.
+      </p>
 
-      <ol className="space-y-4">
-        <li className="flex gap-3">
-          <span className="text-lol-gold font-bold text-sm mt-0.5 w-5 shrink-0">1.</span>
-          <p className="text-sm text-gray-300">Open the League of Legends client and log in.</p>
-        </li>
-        <li className="flex gap-3">
-          <span className="text-lol-gold font-bold text-sm mt-0.5 w-5 shrink-0">2.</span>
-          <p className="text-sm text-gray-300">
-            Go to <strong className="text-white">Collection → Rune Pages</strong> and create a new
-            empty page. Name doesn&apos;t matter — you&apos;ll pick it below.
+      {!connected && (
+        <p className="text-yellow-400 text-xs mb-4">
+          Waiting for League client connection ({lcuStatus})...
+        </p>
+      )}
+
+      <div className="rounded border border-lol-gold/30 bg-black/20 p-4">
+        <h3 className="text-white text-sm font-semibold mb-1">Create a new page</h3>
+        <p className="text-sm text-gray-300 mb-2">
+          In the client, go to <strong className="text-white">Collection → Rune Pages</strong>,
+          create an empty page and name it:
+        </p>
+        <div className="flex items-center gap-2 bg-black/40 border border-lol-gold/40 rounded px-3 py-2">
+          <code className="text-lol-gold-light text-xs flex-1 select-text">{RESERVED_NAME}</code>
+          <button
+            onClick={copyName}
+            className="text-xs text-lol-gold hover:text-lol-gold-light transition-colors shrink-0"
+          >
+            {copied ? 'Copied' : 'Copy'}
+          </button>
+        </div>
+        <Button onClick={detect} disabled={detecting || !connected} className="mt-3">
+          {detecting ? 'Detecting...' : 'Detect my reserved page'}
+        </Button>
+      </div>
+
+      <div className="flex items-center gap-3 my-4">
+        <span className="h-px flex-1 bg-white/10" />
+        <span className="text-xs uppercase tracking-wide text-gray-500">or</span>
+        <span className="h-px flex-1 bg-white/10" />
+      </div>
+
+      <div className="rounded border border-white/10 bg-black/20 p-4">
+        <h3 className="text-white text-sm font-semibold mb-1">Use an existing page</h3>
+        <p className="text-xs text-gray-400 mb-3">
+          Pick a page already in your client. Flash For Wards will overwrite it during champion
+          select, so don&apos;t pick one you want to keep.
+        </p>
+
+        {!connected && (
+          <p className="text-sm text-gray-400">
+            Your pages appear here once the League client is connected.
           </p>
-        </li>
-        <li className="flex gap-3">
-          <span className="text-lol-gold font-bold text-sm mt-0.5 w-5 shrink-0">3.</span>
-          <div className="flex-1">
-            <p className="text-sm text-gray-300 mb-1">
-              Optionally name it something recognisable, like:
-            </p>
-            <div className="flex items-center gap-2 bg-black/40 border border-lol-gold/40 rounded px-3 py-2">
-              <code className="text-lol-gold-light text-xs flex-1 select-text">
-                {RESERVED_NAME}
-              </code>
-              <button
-                onClick={copyName}
-                className="text-xs text-lol-gold hover:text-lol-gold-light transition-colors shrink-0"
-              >
-                {copied ? 'Copied' : 'Copy'}
-              </button>
-            </div>
-            <p className="text-xs text-gray-500 mt-1">
-              This tool will overwrite it during champion select.
-            </p>
-          </div>
-        </li>
-        <li className="flex gap-3">
-          <span className="text-lol-gold font-bold text-sm mt-0.5 w-5 shrink-0">4.</span>
-          <div className="flex-1">
-            <p className="text-sm text-gray-300 mb-2">Link your reserved page:</p>
+        )}
 
-            {lcuStatus !== 'connected' && (
-              <p className="text-yellow-400 text-xs mb-2">
-                Waiting for League client connection ({lcuStatus})...
-              </p>
-            )}
+        {connected && loadingPages && (
+          <p className="text-sm text-gray-400">Loading rune pages...</p>
+        )}
 
-            <Button onClick={detect} disabled={detecting || lcuStatus !== 'connected'}>
-              {detecting ? 'Loading pages...' : 'Load My Rune Pages'}
-            </Button>
+        {connected && !loadingPages && lcuPages && lcuPages.length === 0 && (
+          <p className="text-sm text-gray-400">
+            No rune pages found in the client. Create one first, then{' '}
+            <button
+              onClick={loadPages}
+              className="text-lol-gold hover:text-lol-gold-light transition-colors"
+            >
+              refresh
+            </button>
+            .
+          </p>
+        )}
 
-            {error && <p className="mt-2 text-red-400 text-sm">{error}</p>}
-
-            {lcuPages && lcuPages.length > 0 && (
-              <div className="mt-3">
-                <p className="text-xs text-gray-400 mb-2">
-                  Pick which page Flash For Wards should overwrite during champion select:
-                </p>
-                <div className="space-y-1 max-h-40 overflow-y-auto">
-                  {lcuPages.map((p) => (
-                    <label
-                      key={p.id}
-                      className={`flex items-center gap-3 px-3 py-2 rounded cursor-pointer border transition-colors ${
-                        selectedPageId === p.id
-                          ? 'border-lol-gold/60 bg-lol-gold/10'
-                          : 'border-transparent bg-black/30 hover:bg-black/50'
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="reserved-page"
-                        value={p.id}
-                        checked={selectedPageId === p.id}
-                        onChange={() => setSelectedPageId(p.id)}
-                        className="accent-yellow-500"
-                      />
-                      <span className="text-sm text-gray-200">{p.name}</span>
-                    </label>
-                  ))}
-                </div>
-
-                <Button
-                  variant="success"
-                  onClick={confirmManualSelection}
-                  disabled={selectedPageId === null}
-                  className="mt-3"
+        {connected && !loadingPages && lcuPages && lcuPages.length > 0 && (
+          <>
+            <div className="space-y-1 max-h-40 overflow-y-auto">
+              {lcuPages.map((p) => (
+                <label
+                  key={p.id}
+                  className={`flex items-center gap-3 px-3 py-2 rounded cursor-pointer border transition-colors ${
+                    selectedPageId === p.id
+                      ? 'border-lol-gold/60 bg-lol-gold/10'
+                      : 'border-transparent bg-black/30 hover:bg-black/50'
+                  }`}
                 >
-                  Use selected page →
-                </Button>
-              </div>
-            )}
-          </div>
-        </li>
-      </ol>
+                  <input
+                    type="radio"
+                    name="reserved-page"
+                    value={p.id}
+                    checked={selectedPageId === p.id}
+                    onChange={() => setSelectedPageId(p.id)}
+                    className="accent-yellow-500"
+                  />
+                  <span className="text-sm text-gray-200">{p.name}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3 mt-3">
+              <Button
+                variant="success"
+                onClick={confirmManualSelection}
+                disabled={selectedPageId === null}
+              >
+                Use selected page →
+              </Button>
+              <Button variant="ghost" size="sm" onClick={loadPages}>
+                Refresh
+              </Button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {error && <p className="mt-4 text-red-400 text-sm">{error}</p>}
     </Modal>
   )
 }
