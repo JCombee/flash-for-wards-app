@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-13
+
+### Added
+
+- Rune pages can now be tagged with the positions and game modes they are for. In champion select, pages matching your assigned position and the queue you are in are shown first. Pages tagged for something else are ranked lower, never hidden.
+- Win/loss record per rune page. When you apply a page and the game is played, the result is read back from your match history and shown on the page as `12W 5L · 71%`. Dodges, remakes and Practice Tool games are not counted, and a game that was still running when you closed the app is picked up the next time you open it.
+- Share codes: copy a rune page to a code you can paste to someone else, and import a page from a code. The page is previewed before it is saved.
+- Share a rune page as an image: copy it to the clipboard or save it as a PNG, ready to drop into Discord.
+- Tray icon. Closing the window now keeps the app running in the tray (switch it off under Settings → Behavior), where you can apply a pinned page without opening the window.
+
 ## [1.4.0] - 2026-07-13
 
 ### Added
@@ -76,7 +86,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.0...v1.2.1
