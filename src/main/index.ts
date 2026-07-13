@@ -5,6 +5,7 @@ import { initDb } from './db/index'
 import { lcuConnection } from './lcu/connection'
 import { getGameflowPhase, getChampSelectSession, getGameflowSession } from './lcu/rune-api'
 import { setCurrentStatus, setInChampSelect } from './lcu/apply'
+import { buildSnapshot, emptySnapshot, resetRosterCache, setLastSnapshot } from './lcu/roster'
 import { registerRunePageHandlers } from './ipc/rune-pages'
 import { registerSettingsHandlers } from './ipc/settings'
 import { registerLcuHandlers } from './ipc/lcu'
@@ -95,6 +96,13 @@ function handlePhaseChange(phase: string): void {
     sendToRenderer('champ-select:queue', { queueId: 0, gameMode: '', queueName: '' })
   }
 
+  if (isRosterPhase(phase)) {
+    pushRoster(phase)
+  } else {
+    resetRosterCache()
+    sendToRenderer('in-game:snapshot', emptySnapshot())
+  }
+
   if (!mainWindow || mainWindow.isDestroyed()) return
 
   if (champSelectPhase.active) {
@@ -121,6 +129,27 @@ async function pushQueue(): Promise<void> {
     sendToRenderer('champ-select:queue', payload)
   } catch {
     // Non-fatal: pages just stay mode-agnostic for this champ select.
+  }
+}
+
+/** The phases the In Game tab has rosters for. */
+function isRosterPhase(phase: string): boolean {
+  return phase === 'ChampSelect' || phase === 'InProgress'
+}
+
+/**
+ * The roster fills in over time — picks lock in one by one, and in game the Live
+ * Client fallback only answers once the game window is up — so this is re-run on
+ * every poll tick for as long as the phase lasts, not just when it starts.
+ */
+async function pushRoster(phase: string): Promise<void> {
+  if (!lcuConnection.isConnected()) return
+  try {
+    const snapshot = await buildSnapshot(lcuConnection.getCredentials(), phase)
+    setLastSnapshot(snapshot)
+    sendToRenderer('in-game:snapshot', snapshot)
+  } catch {
+    // Non-fatal: the tab keeps showing the last roster it got.
   }
 }
 
@@ -158,6 +187,10 @@ function startPolling(credentials: Credentials): void {
       if (phase === 'ChampSelect') {
         const session = await getChampSelectSession(credentials)
         sendToRenderer('champ-select:session', session)
+      }
+
+      if (isRosterPhase(phase)) {
+        await pushRoster(phase)
       }
     } catch {
       // ignore — WS events are primary; polling is fallback

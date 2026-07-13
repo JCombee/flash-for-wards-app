@@ -61,27 +61,57 @@ export function lcuRequest<T>(
   })
 }
 
+/** A player as the gameflow session reports them, once a game is being set up. */
+export interface LcuLobbyMember {
+  /** Empty string when Riot withholds the identity. */
+  puuid?: string
+  summonerName?: string
+  championId?: number
+}
+
 export interface LcuGameflowSession {
   phase: string
   gameData?: {
     gameId?: number
     queue?: { id?: number; gameMode?: string; type?: string; description?: string }
+    teamOne?: LcuLobbyMember[]
+    teamTwo?: LcuLobbyMember[]
   }
+}
+
+export interface LcuChampSelectMember {
+  cellId: number
+  /** Empty string for the enemy team in queues that hide identities. */
+  puuid?: string
+  championId?: number
+  championPickIntent?: number
+  assignedPosition?: string
 }
 
 export interface LcuChampSelectSession {
   localPlayerCellId?: number
-  myTeam?: {
-    cellId: number
-    championId?: number
-    championPickIntent?: number
-    assignedPosition?: string
-  }[]
+  myTeam?: LcuChampSelectMember[]
+  theirTeam?: LcuChampSelectMember[]
 }
 
 export interface LcuSummoner {
   puuid: string
   gameName?: string
+  tagLine?: string
+  summonerLevel?: number
+}
+
+/** Riot reports a division of 'NA' above Diamond, and tier 'NONE' when unranked. */
+export interface LcuRankedQueue {
+  tier?: string
+  division?: string
+  leaguePoints?: number
+  wins?: number
+  losses?: number
+}
+
+export interface LcuRankedStats {
+  queueMap?: Record<string, LcuRankedQueue>
 }
 
 export interface LcuMatchParticipant {
@@ -120,6 +150,42 @@ export async function getRecentMatches(credentials: Credentials, count = 20): Pr
 /** Full match DTO, for games that have already fallen out of the recent list. */
 export function getMatchById(credentials: Credentials, gameId: number): Promise<LcuMatch> {
   return lcuRequest<LcuMatch>(credentials, 'GET', `/lol-match-history/v1/games/${gameId}`)
+}
+
+/**
+ * Riot ID → puuid. The only bridge from the Live Client API (which reports names)
+ * back to the LCU routes (which are all keyed by puuid). 404s for bots, which have
+ * no real account behind them.
+ */
+export async function lookupPuuidByRiotId(
+  credentials: Credentials,
+  gameName: string,
+  tagLine: string
+): Promise<string> {
+  const query = `gameName=${encodeURIComponent(gameName)}&tagLine=${encodeURIComponent(tagLine)}`
+  const res = await lcuRequest<{ puuid?: string }>(
+    credentials,
+    'GET',
+    `/lol-summoner/v1/alias/lookup?${query}`
+  )
+  return res?.puuid ?? ''
+}
+
+export function getSummonerByPuuid(credentials: Credentials, puuid: string): Promise<LcuSummoner> {
+  return lcuRequest<LcuSummoner>(credentials, 'GET', `/lol-summoner/v2/summoners/puuid/${puuid}`)
+}
+
+export function getRankedStats(credentials: Credentials, puuid: string): Promise<LcuRankedStats> {
+  return lcuRequest<LcuRankedStats>(credentials, 'GET', `/lol-ranked/v1/ranked-stats/${puuid}`)
+}
+
+/**
+ * The region the client is logged in to, e.g. 'EUW'. The LoginDataPacket platformId
+ * key that would give 'EUW1' directly isn't there — this route is the one that answers.
+ */
+export async function getRegion(credentials: Credentials): Promise<string> {
+  const res = await lcuRequest<{ region?: string }>(credentials, 'GET', '/riotclient/region-locale')
+  return res?.region ?? ''
 }
 
 export function getLcuPages(credentials: Credentials): Promise<LcuRunePage[]> {

@@ -12,6 +12,7 @@ interface SidebarProps {
 export function Sidebar({ currentView, onNavigate }: SidebarProps) {
   const lcuStatus = useAppStore((s) => s.lcuStatus)
   const champSelectActive = useAppStore((s) => s.champSelectActive)
+  const inGameActive = useAppStore((s) => s.inGameSnapshot.active)
 
   return (
     <aside className="w-48 bg-lol-dark-mid border-r border-lol-gold/20 flex flex-col">
@@ -33,6 +34,13 @@ export function Sidebar({ currentView, onNavigate }: SidebarProps) {
           live={champSelectActive}
         >
           Champ Select
+        </NavItem>
+        <NavItem
+          active={currentView === 'in-game'}
+          onClick={() => onNavigate('in-game')}
+          live={inGameActive}
+        >
+          In Game
         </NavItem>
         <NavItem active={currentView === 'settings'} onClick={() => onNavigate('settings')}>
           Settings

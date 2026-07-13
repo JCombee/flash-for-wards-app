@@ -7,7 +7,8 @@ import type {
   ChampSelectQueue,
   ApplyResult,
   RunePageData,
-  UpdateStatus
+  UpdateStatus,
+  InGameSnapshot
 } from './index'
 import type {
   DecodeResult,
@@ -48,6 +49,7 @@ declare global {
       applyRunePage: (storedPageId: string) => Promise<ApplyResult>
       applyRunePageData: (page: RunePageData) => Promise<ApplyResult>
       getLcuStatus: () => Promise<LcuStatus>
+      getInGameSnapshot: () => Promise<InGameSnapshot>
 
       // Sharing
       sharePageImage: (req: ShareImageRequest) => Promise<ShareImageResult>
@@ -65,6 +67,7 @@ declare global {
       onChampSelectPhase: (cb: (phase: ChampSelectPhase) => void) => () => void
       onChampSelectSession: (cb: (session: unknown) => void) => () => void
       onChampSelectQueue: (cb: (queue: ChampSelectQueue) => void) => () => void
+      onInGameSnapshot: (cb: (snapshot: InGameSnapshot) => void) => () => void
       onRunePagesChanged: (cb: () => void) => () => void
       onUpdateStatus: (cb: (status: UpdateStatus) => void) => () => void
     }
