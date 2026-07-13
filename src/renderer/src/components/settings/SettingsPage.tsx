@@ -55,6 +55,11 @@ export function SettingsPage() {
     await update({ launchOnStartup: !settings.launchOnStartup })
   }
 
+  async function toggleCloseToTray() {
+    if (!settings) return
+    await update({ closeToTray: !settings.closeToTray })
+  }
+
   async function resetOnboarding() {
     await update({ onboardingComplete: false, reservedPageId: null })
   }
@@ -137,6 +142,12 @@ export function SettingsPage() {
             onChange={toggleLaunchOnStartup}
             label="Launch on system startup"
             hint="Start Flash For Wards automatically when you log in"
+          />
+          <Toggle
+            checked={settings.closeToTray}
+            onChange={toggleCloseToTray}
+            label="Close to tray"
+            hint="Keep running in the background — apply pages from the tray, and finish tracking the game you're in"
           />
         </div>
       </section>

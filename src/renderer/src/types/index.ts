@@ -10,7 +10,45 @@ export interface StoredRunePage {
   pinned?: boolean
   /** Champion IDs that prefer this page — surfaced in champ select. */
   championIds?: number[]
+  /** Positions this page is for. Empty = any position. */
+  positions?: Position[]
+  /** Game modes this page is for (CLASSIC / ARAM / …). Empty = any mode. */
+  gameModes?: string[]
+  /** Aggregated from the games this page was applied in. Absent = never used. */
+  stats?: RunePageStats
 }
+
+export interface RunePageStats {
+  /** Games this page was applied in, including remakes and unresolved ones. */
+  games: number
+  wins: number
+  losses: number
+  remakes: number
+  /** Games whose result hasn't been read back from match history yet. */
+  pending: number
+  /** wins / (wins + losses); null until there is a decided game. */
+  winRate: number | null
+}
+
+export type GameOutcome = 'pending' | 'win' | 'loss' | 'remake' | 'unknown'
+
+/** One game a rune page was applied in. */
+export interface PageGame {
+  gameId: number
+  pageId: string
+  championId: number
+  queueId: number
+  gameMode: string
+  position: string
+  startedAt: number
+  outcome: GameOutcome
+}
+
+export const POSITIONS = ['TOP', 'JUNGLE', 'MIDDLE', 'BOTTOM', 'UTILITY'] as const
+export type Position = (typeof POSITIONS)[number]
+
+/** Game modes worth offering as page filters — the LCU reports many more. */
+export const GAME_MODES = ['CLASSIC', 'ARAM', 'CHERRY', 'URF', 'NEXUSBLITZ'] as const
 
 /** The rune selection itself, without any of the stored-page bookkeeping. */
 export interface RunePageData {
@@ -36,6 +74,8 @@ export interface AppSettings {
   onboardingComplete: boolean
   autoFocusOnChampSelect: boolean
   launchOnStartup: boolean
+  /** Closing the window hides it to the tray instead of quitting. */
+  closeToTray: boolean
 }
 
 export interface LcuRunePage {
@@ -61,6 +101,13 @@ export interface LcuStatus {
 export interface ChampSelectPhase {
   active: boolean
   phase: string
+}
+
+/** The queue the current champ select belongs to. Empty gameMode = not known yet. */
+export interface ChampSelectQueue {
+  queueId: number
+  gameMode: string
+  queueName: string
 }
 
 export interface ApplyResult {

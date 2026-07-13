@@ -4,10 +4,17 @@ import type {
   AppSettings,
   LcuStatus,
   ChampSelectPhase,
+  ChampSelectQueue,
   ApplyResult,
   RunePageData,
   UpdateStatus
 } from '../renderer/src/types/index'
+import type {
+  DecodeResult,
+  SharePagePayload,
+  ShareImageRequest,
+  ShareImageResult
+} from '../renderer/src/types/share'
 
 contextBridge.exposeInMainWorld('api', {
   // Rune pages CRUD
@@ -51,6 +58,22 @@ contextBridge.exposeInMainWorld('api', {
 
   getLcuStatus: (): Promise<LcuStatus> => ipcRenderer.invoke('lcu:status:get'),
 
+  // Sharing
+  sharePageImage: (req: ShareImageRequest): Promise<ShareImageResult> =>
+    ipcRenderer.invoke('share:page-image', req),
+
+  encodePageCode: (page: SharePagePayload): Promise<string> =>
+    ipcRenderer.invoke('share:encode-code', page),
+
+  decodePageCode: (code: string): Promise<DecodeResult> =>
+    ipcRenderer.invoke('share:decode-code', code),
+
+  /** Preview window only: the page this hidden window was opened to render. */
+  previewPayload: (): Promise<SharePagePayload | null> => ipcRenderer.invoke('preview:payload'),
+
+  /** Preview window only: everything is painted, main can capture now. */
+  previewReady: (): void => ipcRenderer.send('preview:ready'),
+
   // Updates
   getAppVersion: (): Promise<string> => ipcRenderer.invoke('updater:get-version'),
 
@@ -73,6 +96,19 @@ contextBridge.exposeInMainWorld('api', {
     const handler = (_: Electron.IpcRendererEvent, d: unknown) => cb(d)
     ipcRenderer.on('champ-select:session', handler)
     return () => ipcRenderer.removeListener('champ-select:session', handler)
+  },
+
+  onChampSelectQueue: (cb: (queue: ChampSelectQueue) => void) => {
+    const handler = (_: Electron.IpcRendererEvent, q: ChampSelectQueue) => cb(q)
+    ipcRenderer.on('champ-select:queue', handler)
+    return () => ipcRenderer.removeListener('champ-select:queue', handler)
+  },
+
+  /** Fires when a tracked game resolves and the pages' win/loss records change. */
+  onRunePagesChanged: (cb: () => void) => {
+    const handler = () => cb()
+    ipcRenderer.on('rune-pages:changed', handler)
+    return () => ipcRenderer.removeListener('rune-pages:changed', handler)
   },
 
   onUpdateStatus: (cb: (status: UpdateStatus) => void) => {

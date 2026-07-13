@@ -4,6 +4,7 @@ import type {
   AppSettings,
   LcuConnectionStatus,
   ChampSelectPhase,
+  ChampSelectQueue,
   UpdateStatus
 } from '../types'
 
@@ -15,6 +16,11 @@ interface AppStore {
   champSelectPhase: string
   /** Local player's hovered/locked champion during champ select (0 = none). */
   currentChampionId: number
+  /** Assigned position, uppercase. Empty in blind pick / ARAM, where Riot reports none. */
+  currentPosition: string
+  /** Game mode of the current queue (CLASSIC / ARAM / …). Empty when not known. */
+  currentGameMode: string
+  currentQueueId: number
   selectedPageForApply: string | null
   lastApplyStatus: 'idle' | 'success' | 'error'
   lastAppliedId: string | null
@@ -30,6 +36,8 @@ interface AppStore {
   setSettings: (settings: AppSettings) => void
   setChampSelectPhase: (phase: ChampSelectPhase) => void
   setCurrentChampionId: (id: number) => void
+  setCurrentPosition: (position: string) => void
+  setCurrentQueue: (queue: ChampSelectQueue) => void
   setSelectedPageForApply: (id: string | null) => void
   setApplyResult: (
     status: 'idle' | 'success' | 'error',
@@ -45,6 +53,9 @@ export const useAppStore = create<AppStore>((set) => ({
   champSelectActive: false,
   champSelectPhase: 'None',
   currentChampionId: 0,
+  currentPosition: '',
+  currentGameMode: '',
+  currentQueueId: 0,
   selectedPageForApply: null,
   lastApplyStatus: 'idle',
   lastAppliedId: null,
@@ -62,11 +73,14 @@ export const useAppStore = create<AppStore>((set) => ({
     set({
       champSelectActive: phase.active,
       champSelectPhase: phase.phase,
-      // Clear the tracked champion and any stale apply result when champ select ends.
+      // Clear the tracked champ-select context and any stale apply result when it ends.
       ...(phase.active
         ? {}
         : {
             currentChampionId: 0,
+            currentPosition: '',
+            currentGameMode: '',
+            currentQueueId: 0,
             lastApplyStatus: 'idle' as const,
             lastAppliedId: null,
             lastAppliedName: null,
@@ -74,6 +88,9 @@ export const useAppStore = create<AppStore>((set) => ({
           })
     }),
   setCurrentChampionId: (id) => set({ currentChampionId: id }),
+  setCurrentPosition: (position) => set({ currentPosition: position }),
+  setCurrentQueue: (queue) =>
+    set({ currentGameMode: queue.gameMode, currentQueueId: queue.queueId }),
   setSelectedPageForApply: (id) => set({ selectedPageForApply: id }),
   setApplyResult: (status, applied, error) =>
     set({

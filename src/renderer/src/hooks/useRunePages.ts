@@ -11,6 +11,8 @@ export function useRunePages() {
 
   useEffect(() => {
     refresh()
+    // A game resolving in the background changes a page's win/loss record.
+    return window.api.onRunePagesChanged(refresh)
   }, [])
 
   return { refresh }

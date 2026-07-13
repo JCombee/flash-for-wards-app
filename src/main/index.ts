@@ -3,21 +3,32 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { initDb } from './db/index'
 import { lcuConnection } from './lcu/connection'
-import { getGameflowPhase, getChampSelectSession } from './lcu/rune-api'
+import { getGameflowPhase, getChampSelectSession, getGameflowSession } from './lcu/rune-api'
+import { setCurrentStatus, setInChampSelect } from './lcu/apply'
 import { registerRunePageHandlers } from './ipc/rune-pages'
 import { registerSettingsHandlers } from './ipc/settings'
-import { registerLcuHandlers, setCurrentStatus, setInChampSelect } from './ipc/lcu'
+import { registerLcuHandlers } from './ipc/lcu'
 import { registerUpdaterHandlers } from './ipc/updater'
+import { registerShareHandlers } from './ipc/share'
 import { initUpdater, stopUpdater } from './updater'
+import {
+  onLcuConnected,
+  onPhaseChange as trackPhaseChange,
+  setOnStatsChanged,
+  stopTracking
+} from './tracking/game-tracker'
 import { getSettings } from './db/settings-repo'
 import { applyLaunchOnStartup } from './startup'
+import { initTray, destroyTray } from './tray'
 import icon from '../../build/icon.png?asset'
 import type { Credentials } from 'league-connect'
-import type { LcuStatus, ChampSelectPhase } from '@shared/index'
+import type { LcuStatus, ChampSelectPhase, ChampSelectQueue } from '@shared/index'
 
 let mainWindow: BrowserWindow | null = null
 let pollTimer: NodeJS.Timeout | null = null
 let lastPolledPhase = ''
+/** Set once the user really means to exit, so the close handler stops intercepting. */
+let isQuitting = false
 
 /** How long the always-on-top flag stays set while the raise lands. */
 const RAISE_SETTLE_MS = 300
@@ -41,6 +52,14 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow!.show()
+  })
+
+  // Closing the window keeps the app alive in the tray, so it can still see champ
+  // select and finish tracking the game that's running.
+  mainWindow.on('close', (e) => {
+    if (isQuitting || !getSettings().closeToTray) return
+    e.preventDefault()
+    mainWindow?.hide()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -68,12 +87,40 @@ function handlePhaseChange(phase: string): void {
   }
   setInChampSelect(champSelectPhase.active)
   sendToRenderer('champ-select:phase', champSelectPhase)
+  trackPhaseChange(phase)
+
+  if (champSelectPhase.active) {
+    pushQueue()
+  } else {
+    sendToRenderer('champ-select:queue', { queueId: 0, gameMode: '', queueName: '' })
+  }
 
   if (!mainWindow || mainWindow.isDestroyed()) return
 
   if (champSelectPhase.active) {
     const settings = getSettings()
     if (settings.autoFocusOnChampSelect) raiseOnce()
+  }
+}
+
+/**
+ * The champ-select session says nothing about which queue we're in, so the game
+ * mode has to come from the gameflow session — it carries the queue from champ
+ * select onwards. Fetched once per champ select, not polled.
+ */
+async function pushQueue(): Promise<void> {
+  if (!lcuConnection.isConnected()) return
+  try {
+    const session = await getGameflowSession(lcuConnection.getCredentials())
+    const queue = session.gameData?.queue
+    const payload: ChampSelectQueue = {
+      queueId: queue?.id ?? 0,
+      gameMode: queue?.gameMode ?? '',
+      queueName: queue?.description ?? ''
+    }
+    sendToRenderer('champ-select:queue', payload)
+  } catch {
+    // Non-fatal: pages just stay mode-agnostic for this champ select.
   }
 }
 
@@ -160,10 +207,17 @@ app.whenReady().then(async () => {
   registerSettingsHandlers()
   registerLcuHandlers()
   registerUpdaterHandlers()
+  registerShareHandlers(() => mainWindow)
 
   createWindow()
 
+  initTray(
+    () => mainWindow,
+    () => sendToRenderer('rune-pages:changed', null)
+  )
+
   initUpdater(() => mainWindow)
+  setOnStatsChanged(() => sendToRenderer('rune-pages:changed', null))
 
   lcuConnection.on('connecting', () => {
     const status: LcuStatus = { status: 'connecting' }
@@ -179,6 +233,7 @@ app.whenReady().then(async () => {
       setCurrentStatus(status)
       sendToRenderer('lcu:status', status)
       startPolling(credentials)
+      onLcuConnected()
     }
   )
 
@@ -212,11 +267,17 @@ app.whenReady().then(async () => {
   })
 })
 
+// With close-to-tray on, the window is hidden rather than closed, so this only
+// fires when the user turned that off — then closing the window means quitting.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    stopPolling()
-    stopUpdater()
-    lcuConnection.stop()
-    app.quit()
-  }
+  if (process.platform !== 'darwin') app.quit()
+})
+
+app.on('before-quit', () => {
+  isQuitting = true
+  stopPolling()
+  stopUpdater()
+  stopTracking()
+  destroyTray()
+  lcuConnection.stop()
 })

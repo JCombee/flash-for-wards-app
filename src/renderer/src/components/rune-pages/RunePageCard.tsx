@@ -2,6 +2,7 @@ import React from 'react'
 import type { StoredRunePage } from '../../types'
 import { STYLE_BY_ID, PERK_BY_ID } from '../../data/runes'
 import { CHAMPION_BY_ID } from '../../data/champions'
+import { formatPosition, formatGameMode } from '../../lib/page-context'
 import { Button } from '../ui/Button'
 import { Badge } from '../ui/Badge'
 
@@ -11,6 +12,7 @@ interface RunePageCardProps {
   onDelete?: (id: string) => void
   onDuplicate?: (page: StoredRunePage) => void
   onTogglePin?: (page: StoredRunePage) => void
+  onShare?: (page: StoredRunePage) => void
   /** Custom action node rendered in place of Edit/Del (always visible). */
   actions?: React.ReactNode
   /** Green "applied" highlight border. */
@@ -26,6 +28,7 @@ export function RunePageCard({
   onDelete,
   onDuplicate,
   onTogglePin,
+  onShare,
   actions,
   highlight,
   onClick,
@@ -37,6 +40,7 @@ export function RunePageCard({
   const champions = (page.championIds ?? [])
     .map((id) => CHAMPION_BY_ID.get(id))
     .filter((c): c is NonNullable<typeof c> => !!c)
+  const stats = page.stats
 
   return (
     <div
@@ -90,6 +94,11 @@ export function RunePageCard({
                 Copy
               </Button>
             )}
+            {onShare && (
+              <Button variant="secondary" size="sm" onClick={() => onShare(page)}>
+                Share
+              </Button>
+            )}
             {onDelete && (
               <Button variant="danger" size="sm" onClick={() => onDelete(page.id)}>
                 Del
@@ -105,6 +114,21 @@ export function RunePageCard({
         <Badge>{subName}</Badge>
       </div>
 
+      {(page.positions?.length ?? 0) + (page.gameModes?.length ?? 0) > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5 mt-2">
+          {page.positions?.map((p) => (
+            <Badge key={p} variant="accent">
+              {formatPosition(p)}
+            </Badge>
+          ))}
+          {page.gameModes?.map((m) => (
+            <Badge key={m} variant="accent">
+              {formatGameMode(m)}
+            </Badge>
+          ))}
+        </div>
+      )}
+
       {champions.length > 0 && (
         <div className="flex flex-wrap gap-1 mt-2">
           {champions.map((c) => (
@@ -117,6 +141,24 @@ export function RunePageCard({
             />
           ))}
         </div>
+      )}
+
+      {stats && (
+        <p className="text-xs mt-2 flex items-center gap-1.5">
+          {stats.wins + stats.losses > 0 && (
+            <>
+              <span className="text-green-400">{stats.wins}W</span>
+              <span className="text-red-400">{stats.losses}L</span>
+              {stats.winRate !== null && (
+                <span className="text-gray-300">{Math.round(stats.winRate * 100)}%</span>
+              )}
+              <span className="text-gray-600">·</span>
+            </>
+          )}
+          <span className="text-gray-500">
+            {stats.games} {stats.games === 1 ? 'game' : 'games'}
+          </span>
+        </p>
       )}
 
       {page.lastUsedAt && (

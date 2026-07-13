@@ -4,10 +4,12 @@ import type {
   LcuRunePage,
   LcuStatus,
   ChampSelectPhase,
+  ChampSelectQueue,
   ApplyResult,
   RunePageData,
   UpdateStatus
 } from './index'
+import type { DecodeResult, SharePagePayload, ShareImageRequest, ShareImageResult } from './share'
 
 declare global {
   interface Window {
@@ -41,6 +43,13 @@ declare global {
       applyRunePageData: (page: RunePageData) => Promise<ApplyResult>
       getLcuStatus: () => Promise<LcuStatus>
 
+      // Sharing
+      sharePageImage: (req: ShareImageRequest) => Promise<ShareImageResult>
+      encodePageCode: (page: SharePagePayload) => Promise<string>
+      decodePageCode: (code: string) => Promise<DecodeResult>
+      previewPayload: () => Promise<SharePagePayload | null>
+      previewReady: () => void
+
       // Updates
       getAppVersion: () => Promise<string>
       installUpdate: () => Promise<void>
@@ -49,6 +58,8 @@ declare global {
       onLcuStatus: (cb: (status: LcuStatus) => void) => () => void
       onChampSelectPhase: (cb: (phase: ChampSelectPhase) => void) => () => void
       onChampSelectSession: (cb: (session: unknown) => void) => () => void
+      onChampSelectQueue: (cb: (queue: ChampSelectQueue) => void) => () => void
+      onRunePagesChanged: (cb: () => void) => () => void
       onUpdateStatus: (cb: (status: UpdateStatus) => void) => () => void
     }
   }
