@@ -2,12 +2,17 @@ import { ipcMain } from 'electron'
 import { getLcuPages } from '../lcu/rune-api'
 import { lcuConnection } from '../lcu/connection'
 import { applyToReservedPage, getCurrentStatus } from '../lcu/apply'
+import { getLastSnapshot } from '../lcu/roster'
 import { getRunePageById, updateLastUsed } from '../db/rune-pages-repo'
 import { notePageApplied } from '../tracking/game-tracker'
 import type { ApplyResult, RunePageData } from '@shared/index'
 
 export function registerLcuHandlers(): void {
   ipcMain.handle('lcu:status:get', () => getCurrentStatus())
+
+  // The roster is pushed as it changes; this is only for a renderer that mounts
+  // in the middle of a game and missed those pushes.
+  ipcMain.handle('in-game:get', () => getLastSnapshot())
 
   ipcMain.handle('lcu:pages:list', async () => {
     const credentials = lcuConnection.getCredentials()

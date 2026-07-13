@@ -110,6 +110,45 @@ export interface ChampSelectQueue {
   queueName: string
 }
 
+/** One queue's ranked standing. Absent (null) when the player has never played it. */
+export interface RankedEntry {
+  /** IRON … CHALLENGER. Empty when unranked. */
+  tier: string
+  /** I … IV. Empty above Diamond, where Riot reports 'NA'. */
+  division: string
+  leaguePoints: number
+  wins: number
+  losses: number
+}
+
+/** One player in the current champ select or game. */
+export interface InGamePlayer {
+  /** Empty when Riot withholds the identity (enemy team in ranked champ select). */
+  puuid: string
+  /** 'Name#TAG'. Empty when unknown. */
+  riotId: string
+  /** 0 when unknown. */
+  summonerLevel: number
+  /** 0 when not picked yet, or when only the champion's name is known. */
+  championId: number
+  /** Set by the Live Client fallback, which reports names rather than IDs. */
+  championName: string
+  soloRank: RankedEntry | null
+  flexRank: RankedEntry | null
+}
+
+export interface InGameSnapshot {
+  active: boolean
+  /** 'ChampSelect' | 'InProgress' | '' */
+  phase: string
+  /** Which path produced the rosters — the Live Client one carries no level or rank. */
+  source: 'lcu' | 'live-client' | ''
+  /** The client's region, e.g. 'EUW'. Empty when the lookup failed. Needed to link out to profile sites. */
+  region: string
+  allyTeam: InGamePlayer[]
+  enemyTeam: InGamePlayer[]
+}
+
 export interface ApplyResult {
   success: boolean
   error?:

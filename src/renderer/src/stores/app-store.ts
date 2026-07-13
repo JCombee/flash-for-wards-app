@@ -5,6 +5,7 @@ import type {
   LcuConnectionStatus,
   ChampSelectPhase,
   ChampSelectQueue,
+  InGameSnapshot,
   UpdateStatus
 } from '../types'
 
@@ -26,9 +27,12 @@ interface AppStore {
   lastAppliedId: string | null
   lastAppliedName: string | null
   lastApplyError: string | null
+  /** Both teams for the current champ select or game. Inactive when neither is running. */
+  inGameSnapshot: InGameSnapshot
   appVersion: string
   updateStatus: UpdateStatus
 
+  setInGameSnapshot: (snapshot: InGameSnapshot) => void
   setLcuStatus: (status: LcuConnectionStatus) => void
   setAppVersion: (version: string) => void
   setUpdateStatus: (status: UpdateStatus) => void
@@ -61,9 +65,18 @@ export const useAppStore = create<AppStore>((set) => ({
   lastAppliedId: null,
   lastAppliedName: null,
   lastApplyError: null,
+  inGameSnapshot: {
+    active: false,
+    phase: '',
+    source: '',
+    region: '',
+    allyTeam: [],
+    enemyTeam: []
+  },
   appVersion: '',
   updateStatus: { state: 'idle' },
 
+  setInGameSnapshot: (snapshot) => set({ inGameSnapshot: snapshot }),
   setLcuStatus: (status) => set({ lcuStatus: status }),
   setAppVersion: (version) => set({ appVersion: version }),
   setUpdateStatus: (status) => set({ updateStatus: status }),

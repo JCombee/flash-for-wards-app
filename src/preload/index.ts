@@ -7,7 +7,8 @@ import type {
   ChampSelectQueue,
   ApplyResult,
   RunePageData,
-  UpdateStatus
+  UpdateStatus,
+  InGameSnapshot
 } from '../renderer/src/types/index'
 import type {
   DecodeResult,
@@ -59,6 +60,8 @@ contextBridge.exposeInMainWorld('api', {
 
   getLcuStatus: (): Promise<LcuStatus> => ipcRenderer.invoke('lcu:status:get'),
 
+  getInGameSnapshot: (): Promise<InGameSnapshot> => ipcRenderer.invoke('in-game:get'),
+
   // Sharing
   sharePageImage: (req: ShareImageRequest): Promise<ShareImageResult> =>
     ipcRenderer.invoke('share:page-image', req),
@@ -103,6 +106,12 @@ contextBridge.exposeInMainWorld('api', {
     const handler = (_: Electron.IpcRendererEvent, q: ChampSelectQueue) => cb(q)
     ipcRenderer.on('champ-select:queue', handler)
     return () => ipcRenderer.removeListener('champ-select:queue', handler)
+  },
+
+  onInGameSnapshot: (cb: (snapshot: InGameSnapshot) => void) => {
+    const handler = (_: Electron.IpcRendererEvent, s: InGameSnapshot) => cb(s)
+    ipcRenderer.on('in-game:snapshot', handler)
+    return () => ipcRenderer.removeListener('in-game:snapshot', handler)
   },
 
   /** Fires when a tracked game resolves and the pages' win/loss records change. */

@@ -12,3 +12,6 @@ export interface Champion {
 export const CHAMPIONS: Champion[] = championsJson as Champion[]
 
 export const CHAMPION_BY_ID = new Map<number, Champion>(CHAMPIONS.map((c) => [c.id, c]))
+
+/** For the Live Client API, which reports champions by display name rather than ID. */
+export const CHAMPION_BY_NAME = new Map<string, Champion>(CHAMPIONS.map((c) => [c.name, c]))
