@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-07-13
+
+### Added
+
+- In Game screen: both teams from champion select through the end of the game, with each player's Riot ID, account level, ranked standing and champion. In queues where the client withholds the enemy roster, the names are read from the running game instead.
+- Every player links out to their profile on OP.GG, U.GG, Porofessor and DeepLoL. The links open in your browser and know which region you are on.
+
 ## [1.5.1] - 2026-07-13
 
 ### Fixed
@@ -92,7 +99,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.1...v1.6.0
 [1.5.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.3.0...v1.4.0
