@@ -9,7 +9,7 @@ function authHeader(credentials: Credentials): string {
   return `Basic ${encoded}`
 }
 
-function lcuRequest<T>(
+export function lcuRequest<T>(
   credentials: Credentials,
   method: string,
   path: string,
@@ -61,6 +61,67 @@ function lcuRequest<T>(
   })
 }
 
+export interface LcuGameflowSession {
+  phase: string
+  gameData?: {
+    gameId?: number
+    queue?: { id?: number; gameMode?: string; type?: string; description?: string }
+  }
+}
+
+export interface LcuChampSelectSession {
+  localPlayerCellId?: number
+  myTeam?: {
+    cellId: number
+    championId?: number
+    championPickIntent?: number
+    assignedPosition?: string
+  }[]
+}
+
+export interface LcuSummoner {
+  puuid: string
+  gameName?: string
+}
+
+export interface LcuMatchParticipant {
+  participantId: number
+  championId: number
+  stats?: { win?: boolean; gameEndedInEarlySurrender?: boolean }
+}
+
+export interface LcuMatch {
+  gameId: number
+  /** Seconds. */
+  gameDuration?: number
+  queueId?: number
+  gameMode?: string
+  participants?: LcuMatchParticipant[]
+  participantIdentities?: { participantId: number; player?: { puuid?: string } }[]
+}
+
+export function getCurrentSummoner(credentials: Credentials): Promise<LcuSummoner> {
+  return lcuRequest<LcuSummoner>(credentials, 'GET', '/lol-summoner/v1/current-summoner')
+}
+
+/**
+ * The current summoner's recent games. This variant returns only the local
+ * player's participant entry, so the result needs no identity join.
+ */
+export async function getRecentMatches(credentials: Credentials, count = 20): Promise<LcuMatch[]> {
+  const res = await lcuRequest<{ games?: { games?: LcuMatch[] } }>(
+    credentials,
+    'GET',
+    `/lol-match-history/v1/products/lol/current-summoner/matches?begIndex=0&endIndex=${count}`
+  )
+  return res?.games?.games ?? []
+}
+
+/** Full match DTO, for games that have already fallen out of the recent list. */
+export function getMatchById(credentials: Credentials, gameId: number): Promise<LcuMatch> {
+  return lcuRequest<LcuMatch>(credentials, 'GET', `/lol-match-history/v1/games/${gameId}`)
+}
+
 export function getLcuPages(credentials: Credentials): Promise<LcuRunePage[]> {
   return lcuRequest<LcuRunePage[]>(credentials, 'GET', '/lol-perks/v1/pages')
 }
@@ -69,9 +130,14 @@ export function getGameflowPhase(credentials: Credentials): Promise<string> {
   return lcuRequest<string>(credentials, 'GET', '/lol-gameflow/v1/gameflow-phase')
 }
 
+/** Carries the queue (game mode) from champ select onwards, and the gameId once a game starts. */
+export function getGameflowSession(credentials: Credentials): Promise<LcuGameflowSession> {
+  return lcuRequest<LcuGameflowSession>(credentials, 'GET', '/lol-gameflow/v1/session')
+}
+
 /** Rejects with a 404 when not currently in champion select. */
-export function getChampSelectSession(credentials: Credentials): Promise<unknown> {
-  return lcuRequest<unknown>(credentials, 'GET', '/lol-champ-select/v1/session')
+export function getChampSelectSession(credentials: Credentials): Promise<LcuChampSelectSession> {
+  return lcuRequest<LcuChampSelectSession>(credentials, 'GET', '/lol-champ-select/v1/session')
 }
 
 export function overwriteLcuPage(

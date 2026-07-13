@@ -7,6 +7,8 @@ import { Button } from '../ui/Button'
 import { Notice } from '../ui/Notice'
 import { CHAMPION_BY_ID } from '../../data/champions'
 import { getDefaultRunePage, defaultPageName } from '../../data/default-runes'
+import { rankPages, formatPosition, formatGameMode } from '../../lib/page-context'
+import type { PageContext } from '../../lib/page-context'
 import type { ApplyResult, StoredRunePage } from '../../types'
 
 // The card's action slot stops click propagation, so this needs its own handler
@@ -40,15 +42,18 @@ export function ChampSelectPanel() {
   const setApplyResult = useAppStore((s) => s.setApplyResult)
   const settings = useAppStore((s) => s.settings)
   const currentChampionId = useAppStore((s) => s.currentChampionId)
+  const currentPosition = useAppStore((s) => s.currentPosition)
+  const currentGameMode = useAppStore((s) => s.currentGameMode)
   const { refresh } = useRunePages()
   const [applyingId, setApplyingId] = useState<string | null>(null)
   const [savingDefault, setSavingDefault] = useState(false)
 
-  const sorted = [...runePages].sort(
-    (a, b) =>
-      Number(b.pinned ?? false) - Number(a.pinned ?? false) ||
-      (b.lastUsedAt ?? 0) - (a.lastUsedAt ?? 0)
-  )
+  const context: PageContext = {
+    championId: currentChampionId,
+    position: currentPosition,
+    gameMode: currentGameMode
+  }
+  const sorted = rankPages(runePages, context)
 
   const currentChampion = currentChampionId > 0 ? CHAMPION_BY_ID.get(currentChampionId) : undefined
   const preferred =
@@ -189,7 +194,11 @@ export function ChampSelectPanel() {
   return (
     <div className="flex-1 p-6 overflow-y-auto">
       <div className="mb-4">
-        <h2 className="text-lg font-semibold text-lol-gold-light mb-1">Champion Select</h2>
+        <div className="flex items-center gap-2 mb-1">
+          <h2 className="text-lg font-semibold text-lol-gold-light">Champion Select</h2>
+          {currentGameMode && <Badge variant="accent">{formatGameMode(currentGameMode)}</Badge>}
+          {currentPosition && <Badge variant="accent">{formatPosition(currentPosition)}</Badge>}
+        </div>
         <p className="text-gray-400 text-sm">
           Click a rune page to apply it to your reserved slot.
         </p>

@@ -4,6 +4,8 @@ import { useRunePages } from '../../hooks/useRunePages'
 import { RecommendedPages } from './RecommendedPages'
 import { RunePageCard } from './RunePageCard'
 import { RunePageEditor } from './RunePageEditor'
+import { SharePageModal } from './SharePageModal'
+import { ImportCodeModal } from './ImportCodeModal'
 import { Button } from '../ui/Button'
 import type { StoredRunePage } from '../../types'
 
@@ -11,7 +13,9 @@ export function RunePageList() {
   const runePages = useAppStore((s) => s.runePages)
   const { refresh } = useRunePages()
   const [editingPage, setEditingPage] = useState<StoredRunePage | null>(null)
+  const [sharingPage, setSharingPage] = useState<StoredRunePage | null>(null)
   const [creatingNew, setCreatingNew] = useState(false)
+  const [importingCode, setImportingCode] = useState(false)
 
   async function handleDelete(id: string) {
     if (!confirm('Delete this rune page?')) return
@@ -26,6 +30,8 @@ export function RunePageList() {
       subStyleId: page.subStyleId,
       selectedPerkIds: page.selectedPerkIds,
       championIds: page.championIds ?? [],
+      positions: page.positions ?? [],
+      gameModes: page.gameModes ?? [],
       pinned: false
     })
     refresh()
@@ -46,7 +52,12 @@ export function RunePageList() {
     <div className="flex-1 p-6 overflow-y-auto">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-lg font-semibold text-lol-gold-light">My Rune Pages</h2>
-        <Button onClick={() => setCreatingNew(true)}>+ New Page</Button>
+        <div className="flex gap-2">
+          <Button variant="secondary" onClick={() => setImportingCode(true)}>
+            Import code
+          </Button>
+          <Button onClick={() => setCreatingNew(true)}>+ New Page</Button>
+        </div>
       </div>
 
       {runePages.length === 0 ? (
@@ -67,6 +78,7 @@ export function RunePageList() {
               onDelete={handleDelete}
               onDuplicate={handleDuplicate}
               onTogglePin={handleTogglePin}
+              onShare={setSharingPage}
             />
           ))}
         </div>
@@ -84,6 +96,16 @@ export function RunePageList() {
           page={editingPage}
           onSave={handleSaved}
           onCancel={() => setEditingPage(null)}
+        />
+      )}
+      {sharingPage && <SharePageModal page={sharingPage} onClose={() => setSharingPage(null)} />}
+      {importingCode && (
+        <ImportCodeModal
+          onImported={() => {
+            setImportingCode(false)
+            refresh()
+          }}
+          onClose={() => setImportingCode(false)}
         />
       )}
     </div>

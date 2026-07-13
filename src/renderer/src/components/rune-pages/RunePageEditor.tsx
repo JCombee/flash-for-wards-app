@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
-import type { StoredRunePage, LcuRunePage } from '../../types'
+import type { StoredRunePage, LcuRunePage, Position } from '../../types'
+import { POSITIONS, GAME_MODES } from '../../types'
 import { useAppStore } from '../../stores/app-store'
+import { formatPosition, formatGameMode } from '../../lib/page-context'
 import { RuneTreeEditor } from './RuneTreeEditor'
 import { ChampionPicker } from './ChampionPicker'
 import { Modal } from '../ui/Modal'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Tabs } from '../ui/Tabs'
+import { PillPicker } from '../ui/PillPicker'
 
 interface RunePageEditorProps {
   page?: StoredRunePage
@@ -17,7 +20,7 @@ interface RunePageEditorProps {
 export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) {
   const lcuStatus = useAppStore((s) => s.lcuStatus)
 
-  const [tab, setTab] = useState<'runes' | 'champions'>('runes')
+  const [tab, setTab] = useState<'runes' | 'assignment'>('runes')
   const [mode, setMode] = useState<'import' | 'visual'>('visual')
   const [lcuPages, setLcuPages] = useState<LcuRunePage[]>([])
   const [loadingLcu, setLoadingLcu] = useState(false)
@@ -29,7 +32,22 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
     page?.selectedPerkIds ?? Array(9).fill(0)
   )
   const [championIds, setChampionIds] = useState<number[]>(page?.championIds ?? [])
+  const [positions, setPositions] = useState<Position[]>(page?.positions ?? [])
+  const [gameModes, setGameModes] = useState<string[]>(page?.gameModes ?? [])
   const [saving, setSaving] = useState(false)
+
+  function togglePosition(value: string) {
+    const position = value as Position
+    setPositions((prev) =>
+      prev.includes(position) ? prev.filter((p) => p !== position) : [...prev, position]
+    )
+  }
+
+  function toggleGameMode(value: string) {
+    setGameModes((prev) =>
+      prev.includes(value) ? prev.filter((m) => m !== value) : [...prev, value]
+    )
+  }
 
   useEffect(() => {
     if (mode === 'import' && lcuStatus === 'connected') {
@@ -65,7 +83,9 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
         primaryStyleId,
         subStyleId,
         selectedPerkIds,
-        championIds
+        championIds,
+        positions,
+        gameModes
       }
       if (page) {
         await window.api.updateRunePage(page.id, data)
@@ -118,8 +138,12 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
           items={[
             { value: 'runes', label: 'Runes' },
             {
-              value: 'champions',
-              label: `Champions${championIds.length > 0 ? ` (${championIds.length})` : ''}`
+              value: 'assignment',
+              label: `Assignment${
+                championIds.length + positions.length + gameModes.length > 0
+                  ? ` (${championIds.length + positions.length + gameModes.length})`
+                  : ''
+              }`
             }
           ]}
         />
@@ -179,8 +203,34 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
         </div>
       )}
 
-      {tab === 'champions' && (
-        <ChampionPicker selectedIds={championIds} onChange={setChampionIds} />
+      {tab === 'assignment' && (
+        <div className="space-y-4">
+          <ChampionPicker selectedIds={championIds} onChange={setChampionIds} />
+
+          <div>
+            <label className="text-xs text-gray-400 block mb-1">
+              Positions <span className="text-gray-600">(optional — empty means any)</span>
+            </label>
+            <PillPicker
+              options={POSITIONS}
+              selected={positions}
+              onToggle={togglePosition}
+              format={formatPosition}
+            />
+          </div>
+
+          <div>
+            <label className="text-xs text-gray-400 block mb-1">
+              Game modes <span className="text-gray-600">(optional — empty means any)</span>
+            </label>
+            <PillPicker
+              options={GAME_MODES}
+              selected={gameModes}
+              onToggle={toggleGameMode}
+              format={formatGameMode}
+            />
+          </div>
+        </div>
       )}
 
       <div className="flex justify-end gap-2 mt-6">
