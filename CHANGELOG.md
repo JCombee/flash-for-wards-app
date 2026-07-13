@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-07-13
+
+### Fixed
+
+- Long rune page names are no longer cut off. The name now gets the full width of the card, and the Edit/Copy/Share/Delete buttons sit on the row with the champion icons.
+
 ## [1.5.0] - 2026-07-13
 
 ### Added
@@ -86,7 +92,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.1...HEAD
+[1.5.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.1...v1.3.0
