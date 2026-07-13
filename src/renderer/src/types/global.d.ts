@@ -9,7 +9,13 @@ import type {
   RunePageData,
   UpdateStatus
 } from './index'
-import type { DecodeResult, SharePagePayload, ShareImageRequest, ShareImageResult } from './share'
+import type {
+  DecodeResult,
+  PreviewSize,
+  SharePagePayload,
+  ShareImageRequest,
+  ShareImageResult
+} from './share'
 
 declare global {
   interface Window {
@@ -48,7 +54,7 @@ declare global {
       encodePageCode: (page: SharePagePayload) => Promise<string>
       decodePageCode: (code: string) => Promise<DecodeResult>
       previewPayload: () => Promise<SharePagePayload | null>
-      previewReady: () => void
+      previewSize: (size: PreviewSize) => void
 
       // Updates
       getAppVersion: () => Promise<string>

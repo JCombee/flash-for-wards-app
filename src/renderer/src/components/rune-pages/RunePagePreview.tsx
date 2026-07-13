@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { STYLE_BY_ID, STAT_SHARD_ROWS, PERK_BY_ID, type Perk } from '../../data/runes'
 import { CHAMPION_BY_ID } from '../../data/champions'
 import { formatPosition, formatGameMode } from '../../lib/page-context'
-import { PREVIEW_WIDTH, PREVIEW_HEIGHT, type SharePagePayload } from '../../types/share'
+import { PREVIEW_WIDTH, type SharePagePayload } from '../../types/share'
 
 const MAX_CHAMPION_ICONS = 6
 
@@ -36,7 +36,7 @@ export function RunePagePreview({ page }: { page: SharePagePayload }) {
   return (
     <div
       className="bg-lol-dark border border-lol-gold/20 rounded-lg flex flex-col overflow-hidden"
-      style={{ width: PREVIEW_WIDTH, height: PREVIEW_HEIGHT }}
+      style={{ width: PREVIEW_WIDTH }}
     >
       <header className="flex items-center gap-4 px-8 pt-7 pb-5">
         <RuneIcon perk={PERK_BY_ID.get(perks[0])} size={56} selected />
@@ -70,7 +70,7 @@ export function RunePagePreview({ page }: { page: SharePagePayload }) {
         )}
       </header>
 
-      <div className="flex-1 grid grid-cols-[56fr_44fr] gap-8 px-8 min-h-0">
+      <div className="grid grid-cols-[52fr_48fr] gap-10 px-8">
         <section className="space-y-4">
           {primary && <StyleHeader iconUrl={primary.iconUrl} name={primary.name} />}
           {primary && (
@@ -97,7 +97,7 @@ export function RunePagePreview({ page }: { page: SharePagePayload }) {
         </section>
       </div>
 
-      <footer className="flex items-center justify-between px-8 py-4 mt-5 border-t border-lol-gold/10">
+      <footer className="flex items-center justify-between px-8 py-4 mt-7 border-t border-lol-gold/10">
         <span className="text-xs text-gray-600 tracking-wide">flash for wards</span>
         {stats && decided > 0 && (
           <span className="text-xs flex items-center gap-1.5">

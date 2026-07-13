@@ -5,7 +5,7 @@ import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { Notice } from '../ui/Notice'
 import { PERK_BY_ID, STYLE_BY_ID } from '../../data/runes'
-import { PREVIEW_WIDTH, PREVIEW_HEIGHT, type SharePagePayload } from '../../types/share'
+import type { SharePagePayload } from '../../types/share'
 import type { Position } from '../../types'
 
 const DISPLAY_SCALE = 0.45
@@ -100,13 +100,8 @@ export function ImportCodeModal({
       )}
 
       {page && (
-        <div
-          className="mt-4 mx-auto overflow-hidden"
-          style={{ width: PREVIEW_WIDTH * DISPLAY_SCALE, height: PREVIEW_HEIGHT * DISPLAY_SCALE }}
-        >
-          <div style={{ transform: `scale(${DISPLAY_SCALE})`, transformOrigin: 'top left' }}>
-            <RunePagePreview page={page} />
-          </div>
+        <div className="mt-4 mx-auto w-fit" style={{ zoom: DISPLAY_SCALE }}>
+          <RunePagePreview page={page} />
         </div>
       )}
 

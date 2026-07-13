@@ -1,11 +1,19 @@
 import type { RunePageStats } from './index'
 
-/** Card size in CSS pixels. The capture window renders it at PREVIEW_SCALE. */
+/** Card width in CSS pixels. Its height follows from the content, so it isn't fixed. */
 export const PREVIEW_WIDTH = 1000
-export const PREVIEW_HEIGHT = 620
 
-/** Rendered at 2x so the PNG is crisp regardless of the user's display scaling. */
+/**
+ * How far the card is zoomed before capture, to keep the PNG sharp. This is the
+ * ideal; the real scale is whatever the display can hold (see captureScale in main).
+ */
 export const PREVIEW_SCALE = 2
+
+/** The measured size of the rendered card, in CSS pixels. */
+export interface PreviewSize {
+  width: number
+  height: number
+}
 
 /** Everything the shared image (or a share code) needs to describe a page. */
 export interface SharePagePayload {

@@ -11,6 +11,7 @@ import type {
 } from '../renderer/src/types/index'
 import type {
   DecodeResult,
+  PreviewSize,
   SharePagePayload,
   ShareImageRequest,
   ShareImageResult
@@ -71,8 +72,8 @@ contextBridge.exposeInMainWorld('api', {
   /** Preview window only: the page this hidden window was opened to render. */
   previewPayload: (): Promise<SharePagePayload | null> => ipcRenderer.invoke('preview:payload'),
 
-  /** Preview window only: everything is painted, main can capture now. */
-  previewReady: (): void => ipcRenderer.send('preview:ready'),
+  /** Preview window only: painted, and this is the size it drew — capture now. */
+  previewSize: (size: PreviewSize): void => ipcRenderer.send('preview:size', size),
 
   // Updates
   getAppVersion: (): Promise<string> => ipcRenderer.invoke('updater:get-version'),

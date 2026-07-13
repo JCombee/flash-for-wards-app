@@ -3,7 +3,7 @@ import { RunePagePreview } from './RunePagePreview'
 import { Modal } from '../ui/Modal'
 import { Button } from '../ui/Button'
 import { Notice } from '../ui/Notice'
-import { PREVIEW_WIDTH, PREVIEW_HEIGHT, type SharePagePayload } from '../../types/share'
+import type { SharePagePayload } from '../../types/share'
 import type { StoredRunePage } from '../../types'
 
 /** Fits the 1000px card inside the modal. The exported PNG is rendered at full size. */
@@ -67,13 +67,9 @@ export function SharePageModal({ page, onClose }: { page: StoredRunePage; onClos
         </button>
       </div>
 
-      <div
-        className="mx-auto overflow-hidden"
-        style={{ width: PREVIEW_WIDTH * DISPLAY_SCALE, height: PREVIEW_HEIGHT * DISPLAY_SCALE }}
-      >
-        <div style={{ transform: `scale(${DISPLAY_SCALE})`, transformOrigin: 'top left' }}>
-          <RunePagePreview page={payload} />
-        </div>
+      {/* zoom, not transform: it affects layout, so the box shrinks with the card. */}
+      <div className="mx-auto w-fit" style={{ zoom: DISPLAY_SCALE }}>
+        <RunePagePreview page={payload} />
       </div>
 
       <div className="mt-5">
