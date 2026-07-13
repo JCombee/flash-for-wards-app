@@ -126,7 +126,23 @@ function stopPolling(): void {
   lastPolledPhase = ''
 }
 
+// A second instance would open the same sql.js DB and overwrite the first one's
+// writes on flush, so bail out before any init work happens.
+if (!app.requestSingleInstanceLock()) {
+  app.quit()
+}
+
+app.on('second-instance', () => {
+  if (!mainWindow || mainWindow.isDestroyed()) return
+  if (mainWindow.isMinimized()) mainWindow.restore()
+  mainWindow.show()
+  mainWindow.focus()
+})
+
 app.whenReady().then(async () => {
+  // `app.quit()` on a lost lock is async; whenReady still fires, so don't boot.
+  if (!app.hasSingleInstanceLock()) return
+
   // Must match `appId` in electron-builder.yml, or Windows update notifications
   // and the installer's shortcut identity diverge.
   electronApp.setAppUserModelId('com.jcombee.flash-for-wards')
