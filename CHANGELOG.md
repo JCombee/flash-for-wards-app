@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-07-13
+
+### Added
+
+- First-time setup can now reserve a rune page you already have in the client, instead of only the one you create and name "Flash For Wards Reserved". Your pages are listed as soon as the League client connects.
+
+### Changed
+
+- Launching Flash For Wards while it is already running now focuses the existing window instead of opening a second copy.
+
 ## [1.3.0] - 2026-07-12
 
 ### Added
@@ -66,7 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.1.0...v1.2.0
