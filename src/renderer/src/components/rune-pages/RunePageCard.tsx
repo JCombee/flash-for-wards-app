@@ -41,6 +41,7 @@ export function RunePageCard({
     .map((id) => CHAMPION_BY_ID.get(id))
     .filter((c): c is NonNullable<typeof c> => !!c)
   const stats = page.stats
+  const hasActions = !!(actions || onEdit || onDuplicate || onShare || onDelete)
 
   return (
     <div
@@ -51,61 +52,31 @@ export function RunePageCard({
           : 'bg-lol-dark-mid border-lol-gold/20 hover:border-lol-gold/40'
       } ${onClick ? 'cursor-pointer' : ''} ${disabled ? 'opacity-60 cursor-not-allowed' : ''}`}
     >
-      <div className="flex items-start justify-between gap-2 mb-3">
-        <div className="flex items-center gap-2 min-w-0">
-          {onTogglePin && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation()
-                onTogglePin(page)
-              }}
-              title={page.pinned ? 'Unpin' : 'Pin'}
-              className={`shrink-0 text-base leading-none transition-colors ${
-                page.pinned ? 'text-lol-gold' : 'text-gray-600 hover:text-lol-gold/70'
-              }`}
-            >
-              {page.pinned ? '★' : '☆'}
-            </button>
-          )}
-          {keystone && (
-            <img
-              src={keystone.iconUrl}
-              alt={keystone.name}
-              className="w-6 h-6 object-contain shrink-0"
-            />
-          )}
-          <h3 className="font-semibold text-lol-gold-light text-sm leading-tight truncate">
-            {page.name}
-          </h3>
-        </div>
-        {actions ? (
-          <div className="flex gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
-            {actions}
-          </div>
-        ) : (
-          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-            {onEdit && (
-              <Button variant="secondary" size="sm" onClick={() => onEdit(page)}>
-                Edit
-              </Button>
-            )}
-            {onDuplicate && (
-              <Button variant="secondary" size="sm" onClick={() => onDuplicate(page)}>
-                Copy
-              </Button>
-            )}
-            {onShare && (
-              <Button variant="secondary" size="sm" onClick={() => onShare(page)}>
-                Share
-              </Button>
-            )}
-            {onDelete && (
-              <Button variant="danger" size="sm" onClick={() => onDelete(page.id)}>
-                Del
-              </Button>
-            )}
-          </div>
+      <div className="flex items-center gap-2 min-w-0 mb-3">
+        {onTogglePin && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onTogglePin(page)
+            }}
+            title={page.pinned ? 'Unpin' : 'Pin'}
+            className={`shrink-0 text-base leading-none transition-colors ${
+              page.pinned ? 'text-lol-gold' : 'text-gray-600 hover:text-lol-gold/70'
+            }`}
+          >
+            {page.pinned ? '★' : '☆'}
+          </button>
         )}
+        {keystone && (
+          <img
+            src={keystone.iconUrl}
+            alt={keystone.name}
+            className="w-6 h-6 object-contain shrink-0"
+          />
+        )}
+        <h3 className="font-semibold text-lol-gold-light text-sm leading-tight truncate">
+          {page.name}
+        </h3>
       </div>
 
       <div className="flex items-center gap-2 text-xs text-gray-400">
@@ -129,17 +100,47 @@ export function RunePageCard({
         </div>
       )}
 
-      {champions.length > 0 && (
-        <div className="flex flex-wrap gap-1 mt-2">
-          {champions.map((c) => (
-            <img
-              key={c.id}
-              src={c.iconUrl}
-              alt={c.name}
-              title={c.name}
-              className="w-5 h-5 rounded"
-            />
-          ))}
+      {(champions.length > 0 || hasActions) && (
+        <div className="flex items-center justify-between gap-2 mt-2">
+          <div className="flex flex-wrap gap-1 min-w-0">
+            {champions.map((c) => (
+              <img
+                key={c.id}
+                src={c.iconUrl}
+                alt={c.name}
+                title={c.name}
+                className="w-5 h-5 rounded"
+              />
+            ))}
+          </div>
+          {actions ? (
+            <div className="flex gap-1 shrink-0" onClick={(e) => e.stopPropagation()}>
+              {actions}
+            </div>
+          ) : (
+            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+              {onEdit && (
+                <Button variant="secondary" size="sm" onClick={() => onEdit(page)}>
+                  Edit
+                </Button>
+              )}
+              {onDuplicate && (
+                <Button variant="secondary" size="sm" onClick={() => onDuplicate(page)}>
+                  Copy
+                </Button>
+              )}
+              {onShare && (
+                <Button variant="secondary" size="sm" onClick={() => onShare(page)}>
+                  Share
+                </Button>
+              )}
+              {onDelete && (
+                <Button variant="danger" size="sm" onClick={() => onDelete(page.id)}>
+                  Del
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       )}
 
