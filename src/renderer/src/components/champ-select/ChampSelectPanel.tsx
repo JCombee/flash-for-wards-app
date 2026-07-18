@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAppStore } from '../../stores/app-store'
 import { useRunePages } from '../../hooks/useRunePages'
 import { RunePageCard } from '../rune-pages/RunePageCard'
+import { RunePageEditor } from '../rune-pages/RunePageEditor'
 import { Badge } from '../ui/Badge'
 import { Button } from '../ui/Button'
 import { Notice } from '../ui/Notice'
@@ -31,6 +32,9 @@ function ApplyButton({
   )
 }
 
+/** What the quick-edit modal is working on: an existing row, or a copy of a page with no row. */
+type EditTarget = { page?: StoredRunePage; copyFrom?: StoredRunePage }
+
 export function ChampSelectPanel() {
   const champSelectActive = useAppStore((s) => s.champSelectActive)
   const lcuStatus = useAppStore((s) => s.lcuStatus)
@@ -47,6 +51,7 @@ export function ChampSelectPanel() {
   const { refresh } = useRunePages()
   const [applyingId, setApplyingId] = useState<string | null>(null)
   const [savingDefault, setSavingDefault] = useState(false)
+  const [editing, setEditing] = useState<EditTarget | null>(null)
 
   const context: PageContext = {
     championId: currentChampionId,
@@ -135,6 +140,14 @@ export function ChampSelectPanel() {
     }
   }
 
+  // Quick edit: tweak the page, then push it straight to the reserved slot. Editing
+  // the recommended page saves a copy first, so there's a real row to apply.
+  async function handleEditorSave(saved: StoredRunePage) {
+    setEditing(null)
+    refresh()
+    await applyPage(saved.id, saved.name)
+  }
+
   const noReservedPage = settings && !settings.reservedPageId
 
   // Applying a page overwrites the reserved slot in the live client — only offer
@@ -180,12 +193,23 @@ export function ChampSelectPanel() {
         disabled={!!applyingId}
         onClick={() => applyPage(page.id, page.name)}
         actions={
-          <ApplyButton
-            applying={isApplying}
-            applied={wasApplied}
-            disabled={!!applyingId}
-            onApply={() => applyPage(page.id, page.name)}
-          />
+          <>
+            <Button
+              variant="secondary"
+              size="sm"
+              disabled={!!applyingId}
+              title="Quick edit"
+              onClick={() => setEditing({ page })}
+            >
+              ✎
+            </Button>
+            <ApplyButton
+              applying={isApplying}
+              applied={wasApplied}
+              disabled={!!applyingId}
+              onApply={() => applyPage(page.id, page.name)}
+            />
+          </>
         }
       />
     )
@@ -274,6 +298,15 @@ export function ChampSelectPanel() {
                   <Button
                     variant="secondary"
                     size="sm"
+                    disabled={!!applyingId}
+                    title="Quick edit (saves a copy)"
+                    onClick={() => setEditing({ copyFrom: fallbackPage })}
+                  >
+                    ✎
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="sm"
                     disabled={savingDefault}
                     onClick={saveFallback}
                   >
@@ -311,6 +344,16 @@ export function ChampSelectPanel() {
             {sorted.map(renderCard)}
           </div>
         </>
+      )}
+
+      {editing && (
+        <RunePageEditor
+          page={editing.page}
+          copyFrom={editing.copyFrom}
+          saveLabel="Save & Apply"
+          onSave={handleEditorSave}
+          onCancel={() => setEditing(null)}
+        />
       )}
     </div>
   )

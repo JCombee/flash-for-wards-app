@@ -12,28 +12,39 @@ import { Tabs } from '../ui/Tabs'
 import { PillPicker } from '../ui/PillPicker'
 
 interface RunePageEditorProps {
+  /** Existing row — saving updates it in place. */
   page?: StoredRunePage
-  onSave: () => void
+  /** Prefill from a page that has no DB row (e.g. a built-in default); saving creates a new one. */
+  copyFrom?: StoredRunePage
+  onSave: (saved: StoredRunePage) => void
   onCancel: () => void
+  saveLabel?: string
 }
 
-export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) {
+export function RunePageEditor({
+  page,
+  copyFrom,
+  onSave,
+  onCancel,
+  saveLabel = 'Save Page'
+}: RunePageEditorProps) {
   const lcuStatus = useAppStore((s) => s.lcuStatus)
+  const source = page ?? copyFrom
 
   const [tab, setTab] = useState<'runes' | 'assignment'>('runes')
   const [mode, setMode] = useState<'import' | 'visual'>('visual')
   const [lcuPages, setLcuPages] = useState<LcuRunePage[]>([])
   const [loadingLcu, setLoadingLcu] = useState(false)
-  const [name, setName] = useState(page?.name ?? '')
-  const [editingName, setEditingName] = useState(!page)
-  const [primaryStyleId, setPrimaryStyleId] = useState(page?.primaryStyleId ?? 8000)
-  const [subStyleId, setSubStyleId] = useState(page?.subStyleId ?? 8100)
+  const [name, setName] = useState(source?.name ?? '')
+  const [editingName, setEditingName] = useState(!source)
+  const [primaryStyleId, setPrimaryStyleId] = useState(source?.primaryStyleId ?? 8000)
+  const [subStyleId, setSubStyleId] = useState(source?.subStyleId ?? 8100)
   const [selectedPerkIds, setSelectedPerkIds] = useState<number[]>(
-    page?.selectedPerkIds ?? Array(9).fill(0)
+    source?.selectedPerkIds ?? Array(9).fill(0)
   )
-  const [championIds, setChampionIds] = useState<number[]>(page?.championIds ?? [])
-  const [positions, setPositions] = useState<Position[]>(page?.positions ?? [])
-  const [gameModes, setGameModes] = useState<string[]>(page?.gameModes ?? [])
+  const [championIds, setChampionIds] = useState<number[]>(source?.championIds ?? [])
+  const [positions, setPositions] = useState<Position[]>(source?.positions ?? [])
+  const [gameModes, setGameModes] = useState<string[]>(source?.gameModes ?? [])
   const [saving, setSaving] = useState(false)
 
   function togglePosition(value: string) {
@@ -87,12 +98,10 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
         positions,
         gameModes
       }
-      if (page) {
-        await window.api.updateRunePage(page.id, data)
-      } else {
-        await window.api.createRunePage(data)
-      }
-      onSave()
+      const saved = page
+        ? await window.api.updateRunePage(page.id, data)
+        : await window.api.createRunePage({ ...data, pinned: false })
+      onSave(saved)
     } finally {
       setSaving(false)
     }
@@ -151,7 +160,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
 
       {tab === 'runes' && (
         <div className="space-y-3">
-          {!page && mode === 'visual' && (
+          {!source && mode === 'visual' && (
             <div className="flex justify-end">
               <Button variant="secondary" size="sm" onClick={() => setMode('import')}>
                 ⬇ Import from client
@@ -159,7 +168,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
             </div>
           )}
 
-          {!page && mode === 'import' ? (
+          {!source && mode === 'import' ? (
             <div>
               {lcuStatus !== 'connected' && (
                 <p className="text-yellow-400 text-sm mb-2">
@@ -238,7 +247,7 @@ export function RunePageEditor({ page, onSave, onCancel }: RunePageEditorProps) 
           Cancel
         </Button>
         <Button onClick={handleSave} disabled={saving || !complete}>
-          {saving ? 'Saving...' : 'Save Page'}
+          {saving ? 'Saving...' : saveLabel}
         </Button>
       </div>
     </Modal>
