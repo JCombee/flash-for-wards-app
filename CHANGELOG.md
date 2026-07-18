@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-07-18
+
+### Added
+
+- Rune pages can now be edited straight from champion select. The pencil on any card opens the editor, and saving applies the page to your reserved slot right away — no switching to My Rune Pages and back mid-pick. Editing the recommended page saves your own copy first.
+
 ## [1.6.0] - 2026-07-13
 
 ### Added
@@ -99,7 +105,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Pin and duplicate rune pages.
 - Split rune page editor with Runes and Champions tabs.
 
-[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/JCombee/flash-for-wards-app/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.1...v1.6.0
 [1.5.1]: https://github.com/JCombee/flash-for-wards-app/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/JCombee/flash-for-wards-app/compare/v1.4.0...v1.5.0
